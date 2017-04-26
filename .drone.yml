@@ -1,0 +1,25 @@
+pipeline:
+
+  test:
+    image: kkarczmarczyk/node-yarn:6.9-slim
+    pull: true
+    commands:
+      - yarn install
+      - yarn run build
+      - yarn run test
+
+  publish: 
+    image: plugins/npm
+    username: ethicaljobs
+    password: ${NPM_PASSWORD}
+    email: andrew@ethicaljobs.com.au
+    when:
+      status: success
+      event: tag    
+
+  notify-slack:
+    image: plugins/slack
+    webhook: https://hooks.slack.com/services/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
+    channel: deployments
+    when:
+      status: changed
