@@ -6,9 +6,10 @@ import * as JobActions from './actions';
 export const initialState = Immutable.fromJS({
   fetching: false,
   error: false,
-  filters: Immutable.Map(),
-  result: Immutable.Set(),
-  entities: Immutable.Map(),
+  filters: {},
+  entities: {},
+  results: [],
+  result: false,
 });
 
 /**
@@ -39,9 +40,7 @@ export default function reducer(state = initialState, action = {}) {
     case REQUEST(JobActions.DETACH):
       return ImmutableUtils.mergeRequest(state);
 
-    case SUCCESS(JobActions.FETCH_COLLECTION):
     case SUCCESS(JobActions.FETCH_ENTITY):
-    case SUCCESS(JobActions.CREATE):
     case SUCCESS(JobActions.CREATE):
     case SUCCESS(JobActions.UPDATE):
     case SUCCESS(JobActions.ARCHIVE):
@@ -49,12 +48,14 @@ export default function reducer(state = initialState, action = {}) {
     case SUCCESS(JobActions.EXPIRE):
     case SUCCESS(JobActions.ATTACH):
     case SUCCESS(JobActions.DETACH):
-    case SUCCESS(JobActions.SEARCH):
       return ImmutableUtils.mergeSuccess(state, action.payload);
+
+    case SUCCESS(JobActions.FETCH_COLLECTION):
+    case SUCCESS(JobActions.SEARCH):
+      return ImmutableUtils.mergeCollectionSuccess(state, action.payload);
 
     case FAILURE(JobActions.FETCH_COLLECTION):
     case FAILURE(JobActions.FETCH_ENTITY):
-    case FAILURE(JobActions.CREATE):
     case FAILURE(JobActions.CREATE):
     case FAILURE(JobActions.UPDATE):
     case FAILURE(JobActions.ARCHIVE):

@@ -6,9 +6,10 @@ import * as OrgActions from './actions';
 export const initialState = Immutable.fromJS({
   fetching: false,
   error: false,
-  filters: Immutable.Map(),
-  result: Immutable.Set(),
-  entities: Immutable.Map(),
+  filters: {},
+  entities: {},
+  results: [],
+  result: false,
 });
 
 /**
@@ -37,7 +38,6 @@ export default function reducer(state = initialState, action = {}) {
     case REQUEST(OrgActions.DEDUCT_CREDITS):
       return ImmutableUtils.mergeRequest(state);
 
-    case SUCCESS(OrgActions.FETCH_COLLECTION):
     case SUCCESS(OrgActions.FETCH_ENTITY):
     case SUCCESS(OrgActions.CREATE):
     case SUCCESS(OrgActions.UPDATE):
@@ -45,6 +45,10 @@ export default function reducer(state = initialState, action = {}) {
     case SUCCESS(OrgActions.CREATE_CREDITS):
     case SUCCESS(OrgActions.DEDUCT_CREDITS):
       return ImmutableUtils.mergeSuccess(state, action.payload);
+
+    case SUCCESS(OrgActions.FETCH_COLLECTION):
+    case SUCCESS(OrgActions.SEARCH):
+      return ImmutableUtils.mergeCollectionSuccess(state, action.payload);
 
     case FAILURE(OrgActions.FETCH_COLLECTION):
     case FAILURE(OrgActions.FETCH_ENTITY):
@@ -54,6 +58,7 @@ export default function reducer(state = initialState, action = {}) {
     case FAILURE(OrgActions.ARCHIVE):
     case FAILURE(OrgActions.CREATE_CREDITS):
     case FAILURE(OrgActions.DEDUCT_CREDITS):
+    case FAILURE(OrgActions.SEARCH):
       return ImmutableUtils.mergeFailure(state, action.payload);
 
     default:

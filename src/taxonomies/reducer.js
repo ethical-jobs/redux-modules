@@ -7,7 +7,7 @@ import * as AppActions from '../app/actions';
 export const initialState = Immutable.fromJS({
   fetching: false,
   error: false,
-  taxonomies: Immutable.Map(),
+  taxonomies: {},
 });
 
 /**

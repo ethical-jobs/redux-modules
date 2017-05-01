@@ -5,11 +5,21 @@ export const rootSelector = state => state.getIn(['entities','auth']);
 
 export const fetchingSelector = state => state.getIn(['entities','auth','fetching']);
 
-export const resultSelector = state => state.getIn(['entities','auth','result']);
+export const resultsSelector = state => state.getIn([
+  'entities','auth','results'
+], Immutable.List());
 
-export const usersSelector = state => state.getIn(['entities','auth','entities','users'], Immutable.Map());
+export const resultSelector = state => state.getIn([
+  'entities','auth','result'
+], false);
 
-export const orgsSelector = state => state.getIn(['entities','auth','entities','organisations'], Immutable.Map());
+export const usersSelector = state => state.getIn([
+  'entities','auth','entities','users'
+], Immutable.Map());
+
+export const orgsSelector = state => state.getIn([
+  'entities','auth','entities','organisations'
+], Immutable.Map());
 
 export const authedUserSelector = createSelector(
   [usersSelector, resultSelector],

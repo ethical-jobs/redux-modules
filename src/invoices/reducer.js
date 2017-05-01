@@ -6,9 +6,10 @@ import * as InvoiceActions from './actions';
 export const initialState = Immutable.fromJS({
   fetching: false,
   error: false,
-  filters: Immutable.Map(),
-  result: Immutable.Set(),
-  entities: Immutable.Map(),
+  filters: {},
+  entities: {},
+  results: [],
+  result: false,
 });
 
 /**
@@ -35,18 +36,22 @@ export default function reducer(state = initialState, action = {}) {
     case REQUEST(InvoiceActions.ARCHIVE):
       return ImmutableUtils.mergeRequest(state);
 
-    case SUCCESS(InvoiceActions.FETCH_COLLECTION):
     case SUCCESS(InvoiceActions.FETCH_ENTITY):
     case SUCCESS(InvoiceActions.CREATE):
     case SUCCESS(InvoiceActions.UPDATE):
     case SUCCESS(InvoiceActions.ARCHIVE):
       return ImmutableUtils.mergeSuccess(state, action.payload);
 
+    case SUCCESS(InvoiceActions.FETCH_COLLECTION):
+    case SUCCESS(InvoiceActions.SEARCH):
+      return ImmutableUtils.mergeCollectionSuccess(state, action.payload);
+
     case FAILURE(InvoiceActions.FETCH_COLLECTION):
     case FAILURE(InvoiceActions.FETCH_ENTITY):
     case FAILURE(InvoiceActions.CREATE):
     case FAILURE(InvoiceActions.UPDATE):
     case FAILURE(InvoiceActions.ARCHIVE):
+    case FAILURE(InvoiceActions.SEARCH):
       return ImmutableUtils.mergeFailure(state, action.payload);
 
     default:

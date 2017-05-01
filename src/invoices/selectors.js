@@ -6,11 +6,21 @@ export const rootSelector = state => state.getIn(['entities','invoices']);
 
 export const fetchingSelector = state => state.getIn(['entities','invoices','fetching']);
 
-export const filtersSelector = state => state.getIn(['entities','invoices','filters']);
+export const filtersSelector = state => state.getIn([
+  'entities','invoices','filters'
+], Immutable.Map());
 
-export const resultSelector = state => state.getIn(['entities','invoices','result']);
+export const resultsSelector = state => state.getIn([
+  'entities','invoices','results'
+], Immutable.List());
 
-export const invoicesSelector = state => state.getIn(['entities','invoices','entities','invoices'], Immutable.Map());
+export const resultSelector = state => state.getIn([
+  'entities','invoices','result'
+], false);
+
+export const invoicesSelector = state => state.getIn([
+  'entities','invoices','entities','invoices'
+], Immutable.Map());
 
 export const invoiceByIdSelector = createSelector(
   [invoicesSelector, resultSelector],

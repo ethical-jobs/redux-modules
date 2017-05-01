@@ -6,8 +6,9 @@ import * as AuthActions from './actions';
 export const initialState = Immutable.fromJS({
   fetching: false,
   error: false,
-  result: Immutable.Set(),
-  entities: Immutable.Map(),
+  entities: {},
+  results: [],
+  result: false,
 });
 
 /**

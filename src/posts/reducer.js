@@ -6,9 +6,10 @@ import * as PostsActions from './actions';
 export const initialState = Immutable.fromJS({
   fetching: false,
   error: false,
-  filters: Immutable.Map(),
-  result: Immutable.Set(),
-  entities: Immutable.Map(),
+  filters: {},
+  entities: {},
+  results: [],
+  result: false,
 });
 
 /**
@@ -29,9 +30,11 @@ export default function reducer(state = initialState, action = {}) {
     case REQUEST(PostsActions.FETCH_ENTITY):
       return ImmutableUtils.mergeRequest(state);
 
-    case SUCCESS(PostsActions.FETCH_COLLECTION):
     case SUCCESS(PostsActions.FETCH_ENTITY):
       return ImmutableUtils.mergeSuccess(state, action.payload);
+
+    case SUCCESS(PostsActions.FETCH_COLLECTION):
+      return ImmutableUtils.mergeCollectionSuccess(state, action.payload);
 
     case FAILURE(PostsActions.FETCH_COLLECTION):
     case FAILURE(PostsActions.FETCH_ENTITY):

@@ -50,14 +50,13 @@ export function byExpiration(job, expiration) {
 
 export function byTaxonomy(job, filters, taxonomy) {
   const jobTerms = job.get(taxonomy, Immutable.List());
-  const filterTerms = filters.get(taxonomy, Immutable.List());
-  if (! filterTerms.size) {
+  if (typeof filterTerms === 'undefined') {
     return true; // pass through
   }
-  if (filterTerms.size > jobTerms.size) {
-    return filterTerms.isSubset(jobTerms);
+  if (typeof filterTerms === 'string' || typeof filterTerms === 'number') {
+    return jobTerms.includes(parseInt(filterTerms, 10)); // is single term
   }
-  return jobTerms.isSubset(filterTerms);
+  return filterTerms.size > jobTerms.size ? filterTerms.isSubset(jobTerms) : jobTerms.isSubset(filterTerms);
 }
 
 /**

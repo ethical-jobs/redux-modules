@@ -8,15 +8,32 @@ export const fetchingSelector = state => state.getIn(['entities','jobs','fetchin
 
 export const errorSelector = state => state.getIn(['entities','jobs','error']);
 
-export const filtersSelector = state => state.getIn(['entities','jobs','filters']);
+export const filtersSelector = state => state.getIn([
+  'entities','jobs','filters'
+], Immutable.Map());
 
-export const propFiltersSelector = (state, props) => Immutable.Map(props.filters);
+export const propFiltersSelector = (state, props) => Immutable.Map(props.filters, Immutable.Map());
 
-export const resultSelector = state => state.getIn(['entities','jobs','result']);
+export const resultSelector = state => state.getIn([
+  'entities','jobs','result'
+], false);
 
-export const jobsSelector = state => state.getIn(['entities','jobs','entities','jobs'], Immutable.Map());
+export const resultsSelector = state => state.getIn([
+  'entities','jobs','results'
+], Immutable.List());
 
-export const organisationsSelector = state => state.getIn(['entities','jobs','entities','organisations'], Immutable.Map());
+export const jobsSelector = state => state.getIn([
+  'entities','jobs','entities','jobs'
+], Immutable.Map());
+
+export const organisationsSelector = state => state.getIn([
+  'entities','jobs','entities','organisations'
+], Immutable.Map());
+
+export const orderedJobsSelector = createSelector(
+  [jobsSelector, resultsSelector],
+  (jobs, results) => results.map(id => jobs.get(id.toString()))
+);
 
 export const jobByIdSelector = createSelector(
   [jobsSelector, resultSelector],
@@ -24,12 +41,12 @@ export const jobByIdSelector = createSelector(
 );
 
 export const jobsByFiltersSelector = createSelector(
-  [jobsSelector, filtersSelector],
+  [orderedJobsSelector, filtersSelector],
   selectByFilters
 );
 
 export const jobsByPropFiltersSelector = createSelector(
-  [jobsSelector, propFiltersSelector],
+  [orderedJobsSelector, propFiltersSelector],
   selectByFilters
 );
 
