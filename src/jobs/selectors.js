@@ -1,44 +1,28 @@
-import Immutable from 'immutable';
+import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
 import selectByFilters from './filters';
 
-export const rootSelector = state => state.getIn(['entities','jobs']);
+export const fetchingSelector = SelectorFactory.create('jobs', 'fetching');
 
-export const fetchingSelector = state => state.getIn(['entities','jobs','fetching']);
+export const errorSelector = SelectorFactory.create('jobs', 'error');
 
-export const errorSelector = state => state.getIn(['entities','jobs','error']);
+export const filtersSelector = SelectorFactory.createFiltersSelector('jobs');
 
-export const filtersSelector = state => state.getIn([
-  'entities','jobs','filters'
-], Immutable.Map());
+export const propFiltersSelector = SelectorFactory.createPropFiltersSelector();
 
-export const propFiltersSelector = (state, props) => Immutable.Map(props.filters, Immutable.Map());
+export const resultSelector = SelectorFactory.createResultSelector('jobs');
 
-export const resultSelector = state => state.getIn([
-  'entities','jobs','result'
-], false);
+export const resultsSelector = SelectorFactory.createResultsSelector('jobs');
 
-export const resultsSelector = state => state.getIn([
-  'entities','jobs','results'
-], Immutable.List());
+export const jobsSelector = SelectorFactory.createEntitiesSelector('jobs');
 
-export const jobsSelector = state => state.getIn([
-  'entities','jobs','entities','jobs'
-], Immutable.Map());
+export const organisationsSelector = SelectorFactory.createEntitiesSelector('jobs', 'organisations');
 
-export const organisationsSelector = state => state.getIn([
-  'entities','jobs','entities','organisations'
-], Immutable.Map());
+export const jobMediaSelector = SelectorFactory.createEntitiesSelector('jobs', 'media');
 
-export const orderedJobsSelector = createSelector(
-  [jobsSelector, resultsSelector],
-  (jobs, results) => results.map(id => jobs.get(id.toString()))
-);
+export const orderedJobsSelector = SelectorFactory.createOrderedEntitiesSelector(jobsSelector, resultsSelector);
 
-export const jobByIdSelector = createSelector(
-  [jobsSelector, resultSelector],
-  (jobs, result) => jobs.get(result.toString())
-);
+export const jobByIdSelector = SelectorFactory.createIdSelector(jobsSelector, resultSelector);
 
 export const jobsByFiltersSelector = createSelector(
   [orderedJobsSelector, filtersSelector],
@@ -48,9 +32,4 @@ export const jobsByFiltersSelector = createSelector(
 export const jobsByPropFiltersSelector = createSelector(
   [orderedJobsSelector, propFiltersSelector],
   selectByFilters
-);
-
-export const jobMediaSelector = createSelector(
-  rootSelector,
-  jobs => jobs.getIn(['entities','media'])
 );

@@ -1,33 +1,24 @@
-import Immutable from 'immutable';
+import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
 import selectByFilters from './filters';
 
-export const rootSelector = state => state.getIn(['entities','invoices']);
+export const fetchingSelector = SelectorFactory.create('invoices', 'fetching');
 
-export const fetchingSelector = state => state.getIn(['entities','invoices','fetching']);
+export const errorSelector = SelectorFactory.create('invoices', 'error');
 
-export const filtersSelector = state => state.getIn([
-  'entities','invoices','filters'
-], Immutable.Map());
+export const filtersSelector = SelectorFactory.createFiltersSelector('invoices');
 
-export const resultsSelector = state => state.getIn([
-  'entities','invoices','results'
-], Immutable.List());
+export const resultSelector = SelectorFactory.createResultSelector('invoices');
 
-export const resultSelector = state => state.getIn([
-  'entities','invoices','result'
-], false);
+export const resultsSelector = SelectorFactory.createResultsSelector('invoices');
 
-export const invoicesSelector = state => state.getIn([
-  'entities','invoices','entities','invoices'
-], Immutable.Map());
+export const invoicesSelector = SelectorFactory.createEntitiesSelector('invoices');
 
-export const invoiceByIdSelector = createSelector(
-  [invoicesSelector, resultSelector],
-  (invoices, result) => invoices.get(result.toString())
-);
+export const orderedInvoicesSelector = SelectorFactory.createOrderedEntitiesSelector(invoicesSelector, resultsSelector);
+
+export const invoiceByIdSelector = SelectorFactory.createIdSelector(invoicesSelector, resultSelector);
 
 export const invoicesByFiltersSelector = createSelector(
-  [invoicesSelector, filtersSelector],
-  (invoices, filters) => selectByFilters(invoices, filters)
+  [orderedInvoicesSelector, filtersSelector],
+  selectByFilters
 );

@@ -1,35 +1,19 @@
-import Immutable from 'immutable';
+import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
+import selectByFilters from './filters';
 
-export const rootSelector = state => state.getIn(['entities','posts']);
+export const fetchingSelector = SelectorFactory.create('posts', 'fetching');
 
-export const fetchingSelector = state => state.getIn(['entities','posts','fetching']);
+export const errorSelector = SelectorFactory.create('posts', 'error');
 
-export const errorSelector = state => state.getIn(['entities','posts','error']);
+export const filtersSelector = SelectorFactory.createFiltersSelector('posts');
 
-export const filtersSelector = state => state.getIn([
-  'entities','posts','filters'
-], Immutable.Map());
+export const resultSelector = SelectorFactory.createResultSelector('posts');
 
-export const resultsSelector = state => state.getIn([
-  'entities','posts','results'
-], Immutable.List());
+export const resultsSelector = SelectorFactory.createResultsSelector('posts');
 
-export const resultSelector = state => state.getIn([
-  'entities','posts','result'
-], false);
+export const postsSelector = SelectorFactory.createEntitiesSelector('posts');
 
-export const postsSelector = state => state.getIn([
-  'entities','posts','entities','posts'
-], Immutable.Map());
+export const orderedPostsSelector = SelectorFactory.createOrderedEntitiesSelector(postsSelector, resultsSelector);
 
-export const orderedPostsSelector = createSelector(
-  [postsSelector, resultsSelector],
-  (posts, results) => results.map(id => posts.get(id.toString()))
-);
-
-export const postByIdSelector = createSelector(
-  [postsSelector, resultSelector],
-  (posts, result) => posts.get(result.toString())
-);
-
+export const postByIdSelector = SelectorFactory.createIdSelector(postsSelector, resultSelector);

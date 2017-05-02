@@ -1,32 +1,22 @@
+import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
-import Immutable from 'immutable';
+import selectByFilters from './filters';
 
-export const rootSelector = state => state.getIn(['entities','auth']);
+export const fetchingSelector = SelectorFactory.create('auth', 'fetching');
 
-export const fetchingSelector = state => state.getIn(['entities','auth','fetching']);
+export const errorSelector = SelectorFactory.create('auth', 'error');
 
-export const resultsSelector = state => state.getIn([
-  'entities','auth','results'
-], Immutable.List());
+export const resultSelector = SelectorFactory.createResultSelector('auth');
 
-export const resultSelector = state => state.getIn([
-  'entities','auth','result'
-], false);
+export const resultsSelector = SelectorFactory.createResultsSelector('auth');
 
-export const usersSelector = state => state.getIn([
-  'entities','auth','entities','users'
-], Immutable.Map());
+export const usersSelector = SelectorFactory.createEntitiesSelector('auth');
 
-export const orgsSelector = state => state.getIn([
-  'entities','auth','entities','organisations'
-], Immutable.Map());
+export const orgsSelector = SelectorFactory.createEntitiesSelector('auth', 'organisations');
 
-export const authedUserSelector = createSelector(
-  [usersSelector, resultSelector],
-  (users, result) => users.get(result.toString())
-);
+export const authedUserSelector = SelectorFactory.createIdSelector(usersSelector, resultSelector);
 
-export const authedOrganisationSelector = createSelector(
+export const authedOrgSelector = createSelector(
   [orgsSelector, authedUserSelector],
   (orgs, user) => orgs.get(user.get('organisation_id', '').toString())
 );

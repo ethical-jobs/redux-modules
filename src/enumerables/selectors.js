@@ -1,9 +1,9 @@
-import Immutable from 'immutable';
+import { SelectorFactory } from 'ethical-jobs-redux';
+import { createSelector } from 'reselect';
+import selectByFilters from './filters';
 
-export const rootSelector = (state) => state.getIn(['entities','enumerables']);
+export const fetchingSelector = SelectorFactory.create('enumerables', 'fetching');
 
-export const fetchingSelector = (state) => state.getIn(['entities','enumerables','fetching']);
+export const errorSelector = SelectorFactory.create('enumerables', 'error');
 
-export const enumerablesSelector = (state) => state.getIn([
-  'entities','enumerables','enumerables'
-], Immutable.Map());
+export const enumerablesPacks = SelectorFactory.createEntitiesSelector('enumerables');

@@ -1,27 +1,19 @@
-import Immutable from 'immutable';
+import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
+import selectByFilters from './filters';
 
-export const rootSelector = (state) => state.getIn(['entities','organisations']);
+export const fetchingSelector = SelectorFactory.create('organisations', 'fetching');
 
-export const fetchingSelector = (state) => state.getIn(['entities','organisations','fetching']);
+export const errorSelector = SelectorFactory.create('organisations', 'error');
 
-export const filtersSelector = (state) => state.getIn([
-  'entities','organisations','filters'
-], Immutable.Map());
+export const filtersSelector = SelectorFactory.createFiltersSelector('organisations');
 
-export const resultsSelector = (state) => state.getIn([
-  'entities','organisations','results'
-], Immutable.List());
+export const resultSelector = SelectorFactory.createResultSelector('organisations');
 
-export const resultSelector = (state) => state.getIn([
-  'entities','organisations','result'
-], false);
+export const resultsSelector = SelectorFactory.createResultsSelector('organisations');
 
-export const organisationsSelector = (state) => state.getIn([
-  'entities','organisations','entities','organisations'
-], Immutable.Map());
+export const organisationsSelector = SelectorFactory.createEntitiesSelector('organisations');
 
-export const organisationByIdSelector = createSelector(
-  [organisationsSelector, resultSelector],
-  (organisations, result) => organisations.get(result.toString())
-);
+export const orderedOrgsSelector = SelectorFactory.createOrderedEntitiesSelector(organisationsSelector, resultsSelector);
+
+export const organisationByIdSelector = SelectorFactory.createIdSelector(organisationsSelector, resultSelector);
