@@ -1,6 +1,5 @@
 import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
-import selectByFilters from './filters';
 
 export const fetchingSelector = SelectorFactory.create('posts', 'fetching');
 
