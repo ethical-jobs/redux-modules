@@ -1,6 +1,6 @@
 {
   "name": "ethical-jobs-redux-modules",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "author": "Andrew McLagan",
   "description": "EthicalJobs.com.au redux modules",
   "license": "MIT",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "ethical-jobs-sdk": "^0.2.3",
-    "ethical-jobs-redux": "^0.2.8",
+    "ethical-jobs-redux": "^0.2.9",
     "immutable": "4.0.0-rc.2",
     "reselect": "^3.0.0"
   },
@@ -61,6 +61,6 @@
     "modulePaths": [
       "<rootDir>/src/"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/src/testing/testEnvironment.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/src/__testing/testEnvironment.js"
   }
 }

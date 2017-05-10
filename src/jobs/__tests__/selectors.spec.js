@@ -1,44 +1,37 @@
-import Immutable from 'immutable';
-import { fromJS } from 'ethical-jobs-redux/lib/utils/immutable';
+import { fromJS, is, Seq } from 'immutable';
+import { ImmutableUtils, Assertions } from 'ethical-jobs-redux';
 import { APPROVED, PENDING, DRAFT } from 'jobs/statuses';
-import * as Assert from 'ethical-jobs-redux/lib/testing/assertions';
 import Jobs from 'jobs';
 
 const { selectors } = Jobs;
 
-test('rootSelector returns correct state slice ', () => {
-  expect(
-    Assert.rootSelector('jobs', selectors.rootSelector)
-  ).toBe(true);
-});
-
 test('fetchingSelector returns correct state slice', () => {
   expect(
-    Assert.fetchingSelector('jobs', selectors.fetchingSelector)
+    Assertions.fetchingSelector('jobs', selectors.fetchingSelector)
   ).toBe(true);
 });
 
 test('filtersSelector returns correct state slice', () => {
   expect(
-    Assert.filtersSelector('jobs', selectors.filtersSelector)
+    Assertions.filtersSelector('jobs', selectors.filtersSelector)
   ).toBe(true);
 });
 
 test('resultSelector selector returns correct state slice', () => {
   expect(
-    Assert.resultSelector('jobs', selectors.resultSelector)
+    Assertions.resultSelector('jobs', selectors.resultSelector)
   ).toBe(true);
 });
 
 test('jobsSelector selector returns correct state slice', () => {
   expect(
-    Assert.entitiesSelector('jobs', 'jobs', selectors.jobsSelector)
+    Assertions.entitiesSelector('jobs', 'jobs', selectors.jobsSelector)
   ).toBe(true);
 });
 
 test('organisationsSelector selector returns correct state slice', () => {
   expect(
-    Assert.entitiesSelector('jobs', 'organisations', selectors.organisationsSelector)
+    Assertions.entitiesSelector('jobs', 'organisations', selectors.organisationsSelector)
   ).toBe(true);
 });
 
@@ -62,7 +55,7 @@ test('jobByIdSelector selector returns correct state slice', () => {
     }
   });
   const result = selectors.jobByIdSelector(state);
-  expect(Immutable.is('foo-bar-bam', result)).toBe(true);
+  expect(is('foo-bar-bam', result)).toBe(true);
 });
 
 /*
@@ -114,5 +107,5 @@ test('jobsByFiltersSelector can filter by ... filters', () => {
     workTypes: [20,30,13],
   });
   const result = selectors.jobsByFiltersSelector.resultFunc(jobs, filters);
-  expect(Immutable.is(result.keySeq(), Immutable.Seq(['51','53']))).toBe(true);
+  expect(is(result.keySeq(), Seq(['51','53']))).toBe(true);
 });
