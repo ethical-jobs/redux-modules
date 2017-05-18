@@ -1,6 +1,6 @@
 export { default as App } from './app';
 
-export { default as Auth } from './app';
+export { default as Auth } from './auth';
 
 export { default as Credits } from './credits';
 
