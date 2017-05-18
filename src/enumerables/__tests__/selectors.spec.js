@@ -1,18 +1,12 @@
 import Immutable from 'immutable';
-import * as Assert from 'ethical-jobs-redux/lib/testing/assertions';
+import { Assertions } from 'ethical-jobs-redux';
 import Enumerables from 'enumerables';
 
 const { selectors } = Enumerables;
 
-test('rootSelector returns correct state slice ', () => {
-  expect(
-    Assert.rootSelector('enumerables', selectors.rootSelector)
-  ).toBe(true);
-});
-
 test('fetchingSelector returns correct state slice', () => {
   expect(
-    Assert.fetchingSelector('enumerables', selectors.fetchingSelector)
+    Assertions.fetchingSelector('enumerables', selectors.fetchingSelector)
   ).toBe(true);
 });
 

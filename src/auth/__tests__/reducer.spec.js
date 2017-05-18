@@ -1,8 +1,7 @@
 import Immutable from 'immutable';
-import { REQUEST, SUCCESS, FAILURE } from 'ethical-jobs-redux/lib/utils/asyncTypes';
+import { REQUEST, SUCCESS, FAILURE, Assertions } from 'ethical-jobs-redux';
 import { initialState } from 'auth/reducer';
 import * as Fixtures from './_fixtures';
-import * as Assert from 'ethical-jobs-redux/lib/testing/assertions';
 import Auth from 'auth';
 
 const Reducer = Auth.reducer;
@@ -18,10 +17,11 @@ test('should return correct initial state', () => {
   const expectedState = Immutable.fromJS({
     fetching: false,
     error: false,
-    result: Immutable.Set(),
-    entities: Immutable.Map(),
+    entities: {},
+    results: [],
+    result: false,
   });
-  expect(Assert.initialState(Reducer, expectedState)).toBe(true);
+  expect(Assertions.initialState(Reducer, expectedState)).toBe(true);
 });
 
 /*
@@ -37,7 +37,7 @@ test('should handle REQUEST actions correctly', () => {
     REQUEST(Actions.LOAD),
   ];
   expect(
-    Assert.requestState(Reducer, actionTypes, initialState)
+    Assertions.requestState(Reducer, actionTypes, initialState)
   ).toBe(true);
 });
 
@@ -47,7 +47,7 @@ test('should handle SUCCESS actions correctly', () => {
     SUCCESS(Actions.LOAD),
   ];
   expect(
-    Assert.successState(Reducer, actionTypes, initialState, Fixtures.single)
+    Assertions.successState(Reducer, actionTypes, initialState, Fixtures.single)
   ).toBe(true);
 });
 
@@ -66,6 +66,6 @@ test('should handle FAILURE actions correctly', () => {
     FAILURE(Actions.LOAD),
   ];
   expect(
-    Assert.failureState(Reducer, actionTypes, initialState, Fixtures.error)
+    Assertions.failureState(Reducer, actionTypes, initialState, Fixtures.error)
   ).toBe(true);
 });

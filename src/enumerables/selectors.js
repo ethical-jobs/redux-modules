@@ -5,4 +5,4 @@ export const fetchingSelector = SelectorFactory.create('enumerables', 'fetching'
 
 export const errorSelector = SelectorFactory.create('enumerables', 'error');
 
-export const enumerablesPacks = state => state.getIn(['entities', 'enumerables', 'enumerables']);
+export const enumerablesSelector = state => state.getIn(['entities', 'enumerables', 'enumerables']);

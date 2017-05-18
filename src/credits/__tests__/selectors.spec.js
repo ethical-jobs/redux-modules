@@ -1,18 +1,12 @@
 import Immutable from 'immutable';
-import * as Assert from 'ethical-jobs-redux/lib/testing/assertions';
+import { Assertions } from 'ethical-jobs-redux';
 import Credits from 'credits';
 
 const { selectors } = Credits;
 
-test('rootSelector returns correct state slice ', () => {
-  expect(
-    Assert.rootSelector('credits', selectors.rootSelector)
-  ).toBe(true);
-});
-
 test('fetchingSelector returns correct state slice', () => {
   expect(
-    Assert.fetchingSelector('credits', selectors.fetchingSelector)
+    Assertions.fetchingSelector('credits', selectors.fetchingSelector)
   ).toBe(true);
 });
 

@@ -1,37 +1,30 @@
 import Immutable from 'immutable';
-import { fromJS } from 'ethical-jobs-redux/lib/utils/immutable';
-import * as Assert from 'ethical-jobs-redux/lib/testing/assertions';
+import { Assertions } from 'ethical-jobs-redux';
 import Invoices from 'invoices';
 
 const { selectors } = Invoices;
 
-test('rootSelector returns correct state slice ', () => {
+test('fetchingSelector returns correct state slice ', () => {
   expect(
-    Assert.rootSelector('invoices', selectors.rootSelector)
-  ).toBe(true);
-});
-
-test('fetchingSelector returns correct state slice', () => {
-  expect(
-    Assert.fetchingSelector('invoices', selectors.fetchingSelector)
+    Assertions.fetchingSelector('invoices', selectors.fetchingSelector)
   ).toBe(true);
 });
 
 test('filtersSelector returns correct state slice', () => {
   expect(
-    Assert.filtersSelector('invoices', selectors.filtersSelector)
+    Assertions.filtersSelector('invoices', selectors.filtersSelector)
   ).toBe(true);
 });
 
 test('resultSelector selector returns correct state slice', () => {
   expect(
-    Assert.resultSelector('invoices', selectors.resultSelector)
+    Assertions.resultSelector('invoices', selectors.resultSelector)
   ).toBe(true);
 });
 
 test('invoicesSelector selector returns correct state slice', () => {
   expect(
-    Assert.entitiesSelector('invoices', 'invoices', selectors.invoicesSelector)
+    Assertions.entitiesSelector('invoices', 'invoices', selectors.invoicesSelector)
   ).toBe(true);
 });
 
@@ -42,7 +35,7 @@ test('invoicesSelector selector returns correct state slice', () => {
 */
 
 test('invoiceByIdSelector selector returns correct state slice', () => {
-  const state = fromJS({
+  const state = Immutable.fromJS({
     entities: {
       invoices: {
         entities: {
@@ -66,7 +59,7 @@ test('invoiceByIdSelector selector returns correct state slice', () => {
 */
 
 test('invoicesByFiltersSelector can filter by ... filters', () => {
-  const invoices = fromJS({
+  const invoices = Immutable.fromJS({
     51: {
       id: 51,
       organisation_id: 15,
@@ -80,7 +73,7 @@ test('invoicesByFiltersSelector can filter by ... filters', () => {
       organisation_id: 15,
     },
   });
-  const filters = fromJS({
+  const filters = Immutable.fromJS({
     organisationId: 15,
   });
   const result = selectors.invoicesByFiltersSelector.resultFunc(invoices, filters);

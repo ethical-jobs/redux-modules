@@ -1,43 +1,36 @@
 import Immutable from 'immutable';
-import { fromJS } from 'ethical-jobs-redux/lib/utils/immutable';
 import { APPROVED, PENDING, DRAFT } from 'jobs/statuses';
-import * as Assert from 'ethical-jobs-redux/lib/testing/assertions';
+import { Assertions } from 'ethical-jobs-redux';
 import Auth from 'auth';
 
 const { selectors } = Auth;
 
-test('rootSelector returns correct state slice ', () => {
-  expect(
-    Assert.rootSelector('auth', selectors.rootSelector)
-  ).toBe(true);
-});
-
 test('fetchingSelector returns correct state slice', () => {
   expect(
-    Assert.fetchingSelector('auth', selectors.fetchingSelector)
+    Assertions.fetchingSelector('auth', selectors.fetchingSelector)
   ).toBe(true);
 });
 
 test('resultSelector returns correct state slice', () => {
   expect(
-    Assert.resultSelector('auth', selectors.resultSelector)
+    Assertions.resultSelector('auth', selectors.resultSelector)
   ).toBe(true);
 });
 
 test('usersSelector returns correct state slice', () => {
   expect(
-    Assert.entitiesSelector('auth', 'users', selectors.usersSelector)
+    Assertions.entitiesSelector('auth', 'users', selectors.usersSelector)
   ).toBe(true);
 });
 
 test('orgsSelector returns correct state slice', () => {
   expect(
-    Assert.entitiesSelector('auth', 'organisations', selectors.orgsSelector)
+    Assertions.entitiesSelector('auth', 'organisations', selectors.orgsSelector)
   ).toBe(true);
 });
 
 test('authedUserSelector returns correct state slice', () => {
-  const users = fromJS({
+  const users = Immutable.fromJS({
     15: {
       id: 15,
       organisation_id: 20,
@@ -54,7 +47,7 @@ test('authedUserSelector returns correct state slice', () => {
 });
 
 test('authedOrganisationSelector returns correct state slice', () => {
-  const organisations = fromJS({
+  const organisations = Immutable.fromJS({
     15: {
       id: 15,
       title: 'Red Cross Australia',
@@ -64,11 +57,11 @@ test('authedOrganisationSelector returns correct state slice', () => {
       title: 'Mission Australia',
     },
   });
-  const user = fromJS({
+  const user = Immutable.fromJS({
     id: 15,
     organisation_id: 20,
     first_name: 'Andrew',
   });
-  const result = selectors.authedOrganisationSelector.resultFunc(organisations, user);
+  const result = selectors.authedOrgSelector.resultFunc(organisations, user);
   expect(result.get('title')).toBe('Mission Australia');
 });

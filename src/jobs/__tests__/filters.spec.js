@@ -10,7 +10,7 @@ test('byOrganisationId correctly filters entities', () => {
   expect(Fltrs.byOrganisationId(job, 155)).toBe(false);
 });
 
-test('byStatus correctly filters entities', () => {
+test('byStatus correctly filters entities ', () => {
   const job = Immutable.fromJS({
     status: PENDING,
   });
@@ -30,7 +30,7 @@ test('byTaxonomy correctly filters entities', () => {
   const job = Immutable.fromJS({
     categories: [17,33,66],
   });
-  expect(Fltrs.byTaxonomy(job, 'categories', [17,33,66,88,99,100,222])).toBe(true);
-  expect(Fltrs.byTaxonomy(job, 'categories', [17,33,66])).toBe(true);
-  expect(Fltrs.byTaxonomy(job, 'categories', [17,33])).toBe(false);
+  expect(Fltrs.byTaxonomy(job, Immutable.fromJS([17,33,66,88,99]), 'categories')).toBe(true);
+  expect(Fltrs.byTaxonomy(job, Immutable.fromJS([17,33]), 'categories')).toBe(true);
+  expect(Fltrs.byTaxonomy(job, Immutable.fromJS([105,1010]), 'categories')).toBe(false);
 });

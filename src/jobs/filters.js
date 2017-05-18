@@ -50,13 +50,13 @@ export function byExpiration(job, expiration) {
 
 export function byTaxonomy(job, filters, taxonomy) {
   const jobTerms = job.get(taxonomy, Immutable.List());
-  if (typeof filterTerms === 'undefined') {
+  if (typeof filters === 'undefined') {
     return true; // pass through
   }
-  if (typeof filterTerms === 'string' || typeof filterTerms === 'number') {
-    return jobTerms.includes(parseInt(filterTerms, 10)); // is single term
+  if (typeof filters === 'string' || typeof filters === 'number') {
+    return jobTerms.includes(parseInt(filters, 10)); // is single term
   }
-  return filterTerms.size > jobTerms.size ? filterTerms.isSubset(jobTerms) : jobTerms.isSubset(filterTerms);
+  return filters.size > jobTerms.size ? jobTerms.isSubset(filters) : filters.isSubset(jobTerms);
 }
 
 /**
@@ -72,8 +72,8 @@ export default function selectByFilters(jobs, filters) {
     .filter(job => byOrganisationId(job, filters.get('organisationId')))
     .filter(job => byStatus(job, filters.get('status')))
     .filter(job => byExpiration(job, filters.get('expired')))
-    .filter(job => byTaxonomy(job, filters, 'categories'))
-    .filter(job => byTaxonomy(job, filters, 'locations'))
-    .filter(job => byTaxonomy(job, filters, 'sectors'))
-    .filter(job => byTaxonomy(job, filters, 'workTypes'));
+    .filter(job => byTaxonomy(job, filters.get('categories'), 'categories'))
+    .filter(job => byTaxonomy(job, filters.get('locations'), 'locations'))
+    .filter(job => byTaxonomy(job, filters.get('sectors'), 'sectors'))
+    .filter(job => byTaxonomy(job, filters.get('workTypes'), 'workTypes'));
 }

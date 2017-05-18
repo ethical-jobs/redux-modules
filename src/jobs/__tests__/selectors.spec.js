@@ -1,4 +1,4 @@
-import { fromJS, is, Seq } from 'immutable';
+import Immutable from 'immutable';
 import { ImmutableUtils, Assertions } from 'ethical-jobs-redux';
 import { APPROVED, PENDING, DRAFT } from 'jobs/statuses';
 import Jobs from 'jobs';
@@ -42,7 +42,7 @@ test('organisationsSelector selector returns correct state slice', () => {
 */
 
 test('jobByIdSelector selector returns correct state slice', () => {
-  const state = fromJS({
+  const state = Immutable.fromJS({
     entities: {
       jobs: {
         entities: {
@@ -55,7 +55,7 @@ test('jobByIdSelector selector returns correct state slice', () => {
     }
   });
   const result = selectors.jobByIdSelector(state);
-  expect(is('foo-bar-bam', result)).toBe(true);
+  expect(Immutable.is('foo-bar-bam', result)).toBe(true);
 });
 
 /*
@@ -65,7 +65,7 @@ test('jobByIdSelector selector returns correct state slice', () => {
 */
 
 test('jobsByFiltersSelector can filter by ... filters', () => {
-  const jobs = fromJS({
+  const jobs = Immutable.fromJS({
     51: {
       id: 51,
       organisation_id: 15,
@@ -86,26 +86,26 @@ test('jobsByFiltersSelector can filter by ... filters', () => {
       workTypes: [10,20,30],
       sectors: [20,30,13],
     },
-    53: {
+    53: { // <<-- This job should be selected
       id: 53,
       organisation_id: 15,
       status: PENDING,
       expired: true,
       categories: [10,20,30],
-      locations: [10,20,30],
-      workTypes: [10,20,30],
+      locations: [10,201,30],
+      workTypes: [10,20,301],
       sectors: [20,30,13],
     },
-  });
-  const filters = fromJS({
+  }).toList(); // << NOTE: we are convertion to a list
+  const filters = Immutable.fromJS({
     organisationId: 15,
     status: PENDING,
     expired: true,
-    categories: [20,30],
-    locations: [20,30],
-    sectors: [20,30],
-    workTypes: [20,30,13],
+    categories: [10,20,30,40,50],
+    locations: [10,201],
+    sectors: [20],
+    workTypes: [301],
   });
   const result = selectors.jobsByFiltersSelector.resultFunc(jobs, filters);
-  expect(is(result.keySeq(), Seq(['51','53']))).toBe(true);
+  expect(result.includes(jobs.get(2))).toBe(true);
 });

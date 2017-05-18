@@ -1,5 +1,3 @@
-import { ApiError } from 'ethical-jobs-sdk';
-
 export const collection = {
   "data": {
     "entities": {
@@ -88,7 +86,7 @@ export const single = {
   }
 };
 
-export const error = new ApiError('There was some kind of error', {
+export const error = new Error('There was some kind of error', {
   message: 'There was some kind of error',
   statusCode: 500,
 });

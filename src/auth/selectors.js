@@ -1,6 +1,5 @@
 import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
-import selectByFilters from './filters';
 
 export const fetchingSelector = SelectorFactory.create('auth', 'fetching');
 
@@ -10,7 +9,7 @@ export const resultSelector = SelectorFactory.createResultSelector('auth');
 
 export const resultsSelector = SelectorFactory.createResultsSelector('auth');
 
-export const usersSelector = SelectorFactory.createEntitiesSelector('auth');
+export const usersSelector = SelectorFactory.createEntitiesSelector('auth', 'users');
 
 export const orgsSelector = SelectorFactory.createEntitiesSelector('auth', 'organisations');
 

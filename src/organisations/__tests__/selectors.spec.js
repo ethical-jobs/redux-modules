@@ -1,37 +1,30 @@
 import Immutable from 'immutable';
-import { fromJS } from 'ethical-jobs-redux/lib/utils/immutable';
-import * as Assert from 'ethical-jobs-redux/lib/testing/assertions';
+import { Assertions } from 'ethical-jobs-redux';
 import Organisations from 'organisations';
 
 const { selectors } = Organisations;
 
-test('rootSelector returns correct state slice ', () => {
-  expect(
-    Assert.rootSelector('organisations', selectors.rootSelector)
-  ).toBe(true);
-});
-
 test('fetchingSelector returns correct state slice', () => {
   expect(
-    Assert.fetchingSelector('organisations', selectors.fetchingSelector)
+    Assertions.fetchingSelector('organisations', selectors.fetchingSelector)
   ).toBe(true);
 });
 
 test('filtersSelector returns correct state slice', () => {
   expect(
-    Assert.filtersSelector('organisations', selectors.filtersSelector)
+    Assertions.filtersSelector('organisations', selectors.filtersSelector)
   ).toBe(true);
 });
 
 test('resultSelector selector returns correct state slice', () => {
   expect(
-    Assert.resultSelector('organisations', selectors.resultSelector)
+    Assertions.resultSelector('organisations', selectors.resultSelector)
   ).toBe(true);
 });
 
 test('organisationsSelector selector returns correct state slice', () => {
   expect(
-    Assert.entitiesSelector('organisations', 'organisations', selectors.organisationsSelector)
+    Assertions.entitiesSelector('organisations', 'organisations', selectors.organisationsSelector)
   ).toBe(true);
 });
 
@@ -42,7 +35,7 @@ test('organisationsSelector selector returns correct state slice', () => {
 */
 
 test('organisationByIdSelector selector returns correct state slice', () => {
-  const state = fromJS({
+  const state = Immutable.fromJS({
     entities: {
       organisations: {
         entities: {

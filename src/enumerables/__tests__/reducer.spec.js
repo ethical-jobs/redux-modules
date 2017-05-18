@@ -1,8 +1,7 @@
 import Immutable from 'immutable';
-import { REQUEST, SUCCESS, FAILURE } from 'ethical-jobs-redux/lib/utils/asyncTypes';
+import { REQUEST, SUCCESS, FAILURE, Assertions } from 'ethical-jobs-redux';
 import { initialState } from 'enumerables/reducer';
 import * as Fixtures from 'app/__tests__/_fixtures';
-import * as Assert from 'ethical-jobs-redux/lib/testing/assertions';
 import App from 'app';
 import Enumerables from 'enumerables';
 
@@ -20,7 +19,7 @@ test('should return correct initial state', () => {
     error: false,
     enumerables: {},
   });
-  expect(Assert.initialState(Reducer, expectedState)).toBe(true);
+  expect(Assertions.initialState(Reducer, expectedState)).toBe(true);
 });
 
 
@@ -35,7 +34,7 @@ test('should handle REQUEST actions correctly', () => {
     REQUEST(App.actions.FETCH_APP_DATA),
   ];
   expect(
-    Assert.requestState(Reducer, actionTypes, initialState)
+    Assertions.requestState(Reducer, actionTypes, initialState)
   ).toBe(true);
 });
 
@@ -57,7 +56,7 @@ test('should handle FAILURE actions correctly', () => {
     FAILURE(App.actions.FETCH_APP_DATA),
   ];
   expect(
-    Assert.failureState(Reducer, actionTypes, initialState, Fixtures.error)
+    Assertions.failureState(Reducer, actionTypes, initialState, Fixtures.error)
   ).toBe(true);
 });
 
