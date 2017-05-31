@@ -24,6 +24,13 @@ test('fetchCollection creates correct action', () => {
   });
 });
 
+test('searchCollection creates correct action', () => {
+  expect(actions.searchCollection(params)).toEqual({
+    type: actions.SEARCH,
+    payload: new Promise(() => {}),
+  });
+});
+
 test('fetchEntity creates correct action', () => {
   expect(actions.fetchEntity(123)).toEqual({
     type: actions.FETCH_ENTITY,
@@ -48,6 +55,20 @@ test('update action creates correct action', () => {
 test('archive action creates correct action', () => {
   expect(actions.archive(123)).toEqual({
     type: actions.ARCHIVE,
+    payload: new Promise(() => {}),
+  });
+});
+
+test('restore action creates correct action', () => {
+  expect(actions.restore(123)).toEqual({
+    type: actions.RESTORE,
+    payload: new Promise(() => {}),
+  });
+});
+
+test('uploadLogo action creates correct action', () => {
+  expect(actions.uploadLogo('File', 'jobs', 22)).toEqual({
+    type: actions.UPLOAD_LOGO,
     payload: new Promise(() => {}),
   });
 });

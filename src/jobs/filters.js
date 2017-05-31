@@ -4,12 +4,18 @@ import Immutable from 'immutable';
  * Returns jobs filtered by {organisationId}
  *
  * @param {Map} job entity
- * @param {Number} organisation id
+ * @param {Number|Collection} organisations
  * @returns {Bool}
  */
 
-export function byOrganisationId(job, organisationId) {
-  return !organisationId ? true : job.get('organisation_id') === organisationId;
+export function byOrganisations(job, organisations) {
+  if (!organisations) {
+    return true; // pass through
+  }
+  if (Immutable.isCollection(organisations)) {
+    return organisations.includes(job.get('organisation_id'));
+  }
+  return job.get('organisation_id') === organisations;
 }
 
 /**
@@ -21,7 +27,14 @@ export function byOrganisationId(job, organisationId) {
  */
 
 export function byStatus(job, status) {
-  return !status ? true : job.get('status') === status;
+  if (!status) {
+    return true; // pass through
+  }
+  const jobStatus = job.get('status', '').toUpperCase();
+  if (Immutable.isCollection(status)) {
+    return status.map(stati => stati.toUpperCase()).includes(jobStatus);
+  }
+  return jobStatus === status.toUpperCase();
 }
 
 /**
@@ -33,7 +46,7 @@ export function byStatus(job, status) {
  */
 
 export function byExpiration(job, expiration) {
-  if (typeof expiration == null || typeof expiration == undefined) {
+  if (expiration === null || typeof expiration === 'undefined') {
     return true;
   }
   return job.get('expired') === expiration;
@@ -50,7 +63,7 @@ export function byExpiration(job, expiration) {
 
 export function byTaxonomy(job, filters, taxonomy) {
   const jobTerms = job.get(taxonomy, Immutable.List());
-  if (typeof filters === 'undefined') {
+  if (!filters) {
     return true; // pass through
   }
   if (typeof filters === 'string' || typeof filters === 'number') {
@@ -69,7 +82,7 @@ export function byTaxonomy(job, filters, taxonomy) {
 
 export default function selectByFilters(jobs, filters) {
   return jobs
-    .filter(job => byOrganisationId(job, filters.get('organisationId')))
+    .filter(job => byOrganisations(job, filters.get('organisations')))
     .filter(job => byStatus(job, filters.get('status')))
     .filter(job => byExpiration(job, filters.get('expired')))
     .filter(job => byTaxonomy(job, filters.get('categories'), 'categories'))

@@ -7,8 +7,7 @@ import Api from 'ethical-jobs-sdk';
 |--------------------------------------------------------------------------
 */
 
-export const FETCH_APP_DATA = createActionType('APP/FETCH_DATA');
-export const UPLOAD_MEDIA = createActionType('APP/UPLOAD_MEDIA');
+export const PURCHASE = createActionType('CREDITS/PURCHASE');
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +15,7 @@ export const UPLOAD_MEDIA = createActionType('APP/UPLOAD_MEDIA');
 |--------------------------------------------------------------------------
 */
 
-export const fetchAppData = () => ({
-  type: FETCH_APP_DATA,
-  payload: Api.get('/'),
+export const purchase = params => ({
+  type: PURCHASE,
+  payload: Api.post('/credits/purchase', params),
 });
-
-export const uploadMedia = file => ({
-  type: UPLOAD_MEDIA,
-  payload: Api.media.upload(file),
-});
-

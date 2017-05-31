@@ -8,7 +8,7 @@ export const initialState = Immutable.fromJS({
   error: false,
   filters: {},
   entities: {},
-  results: [],
+  results: Immutable.Set(),
   result: false,
 });
 
@@ -34,6 +34,7 @@ export default function reducer(state = initialState, action = {}) {
     case REQUEST(JobActions.CREATE):
     case REQUEST(JobActions.UPDATE):
     case REQUEST(JobActions.ARCHIVE):
+    case REQUEST(JobActions.RESTORE):
     case REQUEST(JobActions.APPROVE):
     case REQUEST(JobActions.EXPIRE):
     case REQUEST(JobActions.ATTACH):
@@ -44,6 +45,7 @@ export default function reducer(state = initialState, action = {}) {
     case SUCCESS(JobActions.CREATE):
     case SUCCESS(JobActions.UPDATE):
     case SUCCESS(JobActions.ARCHIVE):
+    case SUCCESS(JobActions.RESTORE):
     case SUCCESS(JobActions.APPROVE):
     case SUCCESS(JobActions.EXPIRE):
     case SUCCESS(JobActions.ATTACH):
@@ -59,6 +61,7 @@ export default function reducer(state = initialState, action = {}) {
     case FAILURE(JobActions.CREATE):
     case FAILURE(JobActions.UPDATE):
     case FAILURE(JobActions.ARCHIVE):
+    case FAILURE(JobActions.RESTORE):
     case FAILURE(JobActions.APPROVE):
     case FAILURE(JobActions.EXPIRE):
     case FAILURE(JobActions.ATTACH):

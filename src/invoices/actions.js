@@ -13,6 +13,7 @@ export const SEARCH = createActionType('INVOICES/SEARCH');
 export const CREATE = createActionType('INVOICES/CREATE');
 export const UPDATE = createActionType('INVOICES/UPDATE');
 export const ARCHIVE = createActionType('INVOICES/ARCHIVE');
+export const RESTORE = createActionType('INVOICES/RESTORE');
 export const CLEAR_ENTITIES = createActionType('INVOICES/CLEAR_ENTITIES');
 export const UPDATE_FILTERS = createActionType('INVOICES/UPDATE_FILTERS');
 
@@ -32,7 +33,7 @@ export const fetchEntity = id => ({
   payload: Api.get(`/invoices/${id}`),
 });
 
-export const search = params => ({
+export const searchCollection = params => ({
   type: SEARCH,
   payload: Api.search('invoices', params),
 });
@@ -42,15 +43,21 @@ export const create = params => ({
   payload: Api.post('/invoices', params),
 });
 
-export const update = params => ({
+export const update = (id, params) => ({
   type: UPDATE,
-  payload: Api.put('/invoices', params),
+  payload: Api.put(`/invoices/${id}`, params),
 });
 
 export const archive = id => ({
   type: ARCHIVE,
-  payload: Api.delete(`/invoices/${id}`),
+  payload: Api.archive('invoices', id),
 });
+
+export const restore = id => ({
+  type: RESTORE,
+  payload: Api.restore('invoices', id),
+});
+
 
 /*
 |--------------------------------------------------------------------------

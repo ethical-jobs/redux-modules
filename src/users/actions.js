@@ -17,5 +17,5 @@ export const UPDATE = createActionType('USERS/UPDATE');
 
 export const update = (id, params) => ({
   type: UPDATE,
-  payload: Api.put(`users/${id}`, params),
+  payload: Api.put(`/users/${id}`, params),
 });

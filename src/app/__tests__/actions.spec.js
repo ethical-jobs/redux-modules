@@ -6,3 +6,10 @@ test('fetchAppData creates correct async action', () => {
     payload: new Promise(() => {}),
   });
 });
+
+test('uploadMedia creates correct async action', () => {
+  expect(App.actions.uploadMedia()).toEqual({
+    type: App.actions.UPLOAD_MEDIA,
+    payload: new Promise(() => {}),
+  });
+});

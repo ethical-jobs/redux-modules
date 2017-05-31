@@ -12,10 +12,8 @@ export const initialState = Immutable.fromJS({
 
 /**
  * Taxonomies reducer
- *
  * @author Andrew McLagan <andrew@ethicaljobs.com.au>
  */
-
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case REQUEST(AppActions.FETCH_APP_DATA):

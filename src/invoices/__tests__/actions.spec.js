@@ -31,8 +31,8 @@ test('fetchEntity creates correct action', () => {
   });
 });
 
-test('search action creates correct action', () => {
-  expect(actions.search(params)).toEqual({
+test('searchCollection action creates correct action', () => {
+  expect(actions.searchCollection(params)).toEqual({
     type: actions.SEARCH,
     payload: new Promise(() => {}),
   });
@@ -55,6 +55,13 @@ test('update action creates correct action', () => {
 test('archive action creates correct action', () => {
   expect(actions.archive(123)).toEqual({
     type: actions.ARCHIVE,
+    payload: new Promise(() => {}),
+  });
+});
+
+test('restore action creates correct action', () => {
+  expect(actions.restore(123)).toEqual({
+    type: actions.RESTORE,
     payload: new Promise(() => {}),
   });
 });

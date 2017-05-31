@@ -13,6 +13,7 @@ export const SEARCH = createActionType('JOBS/SEARCH');
 export const CREATE = createActionType('JOBS/CREATE');
 export const UPDATE = createActionType('JOBS/UPDATE');
 export const ARCHIVE = createActionType('JOBS/ARCHIVE');
+export const RESTORE = createActionType('JOBS/RESTORE');
 export const APPROVE = createActionType('JOBS/APPROVE');
 export const EXPIRE = createActionType('JOBS/EXPIRE');
 export const ATTACH = createActionType('JOBS/ATTACH');
@@ -31,19 +32,24 @@ export const fetchCollection = params => ({
   payload: Api.get('/jobs', params),
 });
 
-export const fetchEntity = (id) => ({
-  type: FETCH_ENTITY,
-  payload: Api.get(`/jobs/${id}`),
-});
-
-export const search = params => ({
+export const searchCollection = params => ({
   type: SEARCH,
   payload: Api.search('jobs', params),
+});
+
+export const fetchEntity = id => ({
+  type: FETCH_ENTITY,
+  payload: Api.get(`/jobs/${id}`),
 });
 
 export const create = params => ({
   type: CREATE,
   payload: Api.post('/jobs', params),
+});
+
+export const draft = params => ({
+  type: CREATE,
+  payload: Api.post('/jobs/drafts', params),
 });
 
 export const update = (id, params) => ({
@@ -53,7 +59,12 @@ export const update = (id, params) => ({
 
 export const archive = id => ({
   type: ARCHIVE,
-  payload: Api.delete(`/jobs/${id}`),
+  payload: Api.archive('jobs', id),
+});
+
+export const restore = id => ({
+  type: RESTORE,
+  payload: Api.restore('jobs', id),
 });
 
 export const approve = id => ({
@@ -66,14 +77,14 @@ export const expire = id => ({
   payload: Api.jobs.expire(id),
 });
 
-export const attachMedia = (id, formData) => ({
+export const attachMedia = (id, file) => ({
   type: ATTACH,
-  payload: Api.jobs.attachMedia(id, formData),
+  payload: Api.media.attach(file, 'jobs', id),
 });
 
-export const detachMedia = (id, attachmentId) => ({
+export const detachMedia = id => ({
   type: DETACH,
-  payload: Api.jobs.detachMedia(id, attachmentId),
+  payload: Api.media.delete(id),
 });
 
 /*

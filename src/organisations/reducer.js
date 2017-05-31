@@ -8,7 +8,7 @@ export const initialState = Immutable.fromJS({
   error: false,
   filters: {},
   entities: {},
-  results: [],
+  results: Immutable.Set(),
   result: false,
 });
 
@@ -34,6 +34,8 @@ export default function reducer(state = initialState, action = {}) {
     case REQUEST(OrgActions.CREATE):
     case REQUEST(OrgActions.UPDATE):
     case REQUEST(OrgActions.ARCHIVE):
+    case REQUEST(OrgActions.RESTORE):
+    case REQUEST(OrgActions.UPLOAD_LOGO):
     case REQUEST(OrgActions.CREATE_CREDITS):
     case REQUEST(OrgActions.DEDUCT_CREDITS):
       return ImmutableUtils.mergeRequest(state);
@@ -42,8 +44,8 @@ export default function reducer(state = initialState, action = {}) {
     case SUCCESS(OrgActions.CREATE):
     case SUCCESS(OrgActions.UPDATE):
     case SUCCESS(OrgActions.ARCHIVE):
-    case SUCCESS(OrgActions.CREATE_CREDITS):
-    case SUCCESS(OrgActions.DEDUCT_CREDITS):
+    case SUCCESS(OrgActions.RESTORE):
+    case SUCCESS(OrgActions.UPLOAD_LOGO):
       return ImmutableUtils.mergeSuccess(state, action.payload);
 
     case SUCCESS(OrgActions.FETCH_COLLECTION):
@@ -53,9 +55,10 @@ export default function reducer(state = initialState, action = {}) {
     case FAILURE(OrgActions.FETCH_COLLECTION):
     case FAILURE(OrgActions.FETCH_ENTITY):
     case FAILURE(OrgActions.CREATE):
-    case FAILURE(OrgActions.CREATE):
     case FAILURE(OrgActions.UPDATE):
     case FAILURE(OrgActions.ARCHIVE):
+    case FAILURE(OrgActions.RESTORE):
+    case FAILURE(OrgActions.UPLOAD_LOGO):
     case FAILURE(OrgActions.CREATE_CREDITS):
     case FAILURE(OrgActions.DEDUCT_CREDITS):
     case FAILURE(OrgActions.SEARCH):

@@ -19,7 +19,7 @@ test('should return correct initial state', () => {
     error: false,
     filters: {},
     entities: {},
-    results: [],
+    results: Immutable.Set(),
     result: false,
   });
   expect(Assertions.initialState(Reducer, expectedState)).toBe(true);
@@ -62,6 +62,8 @@ test('should handle REQUEST actions correctly', () => {
     REQUEST(Actions.CREATE),
     REQUEST(Actions.UPDATE),
     REQUEST(Actions.ARCHIVE),
+    REQUEST(Actions.RESTORE),
+    REQUEST(Actions.UPLOAD_LOGO),
     REQUEST(Actions.CREATE_CREDITS),
     REQUEST(Actions.DEDUCT_CREDITS),
   ];
@@ -76,8 +78,8 @@ test('should handle SUCCESS actions correctly', () => {
     SUCCESS(Actions.CREATE),
     SUCCESS(Actions.UPDATE),
     SUCCESS(Actions.ARCHIVE),
-    SUCCESS(Actions.CREATE_CREDITS),
-    SUCCESS(Actions.DEDUCT_CREDITS),
+    SUCCESS(Actions.RESTORE),
+    SUCCESS(Actions.UPLOAD_LOGO),
   ];
   expect(
     Assertions.successState(Reducer, actionTypes, initialState, Fixtures.collection)
@@ -91,6 +93,8 @@ test('should handle FAILURE actions correctly', () => {
     FAILURE(Actions.CREATE),
     FAILURE(Actions.UPDATE),
     FAILURE(Actions.ARCHIVE),
+    FAILURE(Actions.RESTORE),
+    FAILURE(Actions.UPLOAD_LOGO),
     FAILURE(Actions.CREATE_CREDITS),
     FAILURE(Actions.DEDUCT_CREDITS),
   ];

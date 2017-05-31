@@ -19,7 +19,7 @@ test('should return correct initial state', () => {
     error: false,
     filters: {},
     entities: {},
-    results: [],
+    results: Immutable.Set(),
     result: false,
   });
   expect(Assertions.initialState(Reducer, expectedState)).toBe(true);

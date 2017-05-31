@@ -14,7 +14,7 @@ export const collection = {
           "views": 0,
           "clicks": 0,
           "expired": false,
-          "expiration": 1483509600000,
+          "expires_at": 1483509600000,
           "created_at": 1481508536000,
           "updated_at": 1481509764000
         },
@@ -30,7 +30,7 @@ export const collection = {
           "views": 0,
           "clicks": 0,
           "expired": false,
-          "expiration": 1482386400000,
+          "expires_at": 1482386400000,
           "created_at": 1481505807000,
           "updated_at": 1481505993000
         },
@@ -46,7 +46,7 @@ export const collection = {
           "views": 0,
           "clicks": 0,
           "expired": true,
-          "expiration": 1484546400000,
+          "expires_at": 1484546400000,
           "created_at": 1481503967000,
           "updated_at": 1481504682000
         },
@@ -76,7 +76,7 @@ export const single = {
           "views": 0,
           "clicks": 0,
           "expired": false,
-          "expiration": 1483509600000,
+          "expires_at": 1483509600000,
           "created_at": 1481508536000,
           "updated_at": 1481509764000
         },

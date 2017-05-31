@@ -24,6 +24,13 @@ test('fetchCollection creates correct action', () => {
   });
 });
 
+test('searchCollection action creates correct action', () => {
+  expect(actions.searchCollection(params)).toEqual({
+    type: actions.SEARCH,
+    payload: new Promise(() => {}),
+  });
+});
+
 test('fetchEntity creates correct action', () => {
   expect(actions.fetchEntity(123)).toEqual({
     type: actions.FETCH_ENTITY,
@@ -31,15 +38,15 @@ test('fetchEntity creates correct action', () => {
   });
 });
 
-test('search action creates correct action', () => {
-  expect(actions.search(params)).toEqual({
-    type: actions.SEARCH,
+test('create action creates correct action', () => {
+  expect(actions.create(params)).toEqual({
+    type: actions.CREATE,
     payload: new Promise(() => {}),
   });
 });
 
-test('create action creates correct action', () => {
-  expect(actions.create(params)).toEqual({
+test('draft action creates correct action', () => {
+  expect(actions.draft(params)).toEqual({
     type: actions.CREATE,
     payload: new Promise(() => {}),
   });
@@ -55,6 +62,13 @@ test('update action creates correct action', () => {
 test('archive action creates correct action', () => {
   expect(actions.archive(123)).toEqual({
     type: actions.ARCHIVE,
+    payload: new Promise(() => {}),
+  });
+});
+
+test('restore action creates correct action', () => {
+  expect(actions.restore(123)).toEqual({
+    type: actions.RESTORE,
     payload: new Promise(() => {}),
   });
 });

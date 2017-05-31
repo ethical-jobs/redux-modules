@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
 
@@ -13,6 +14,13 @@ export const resultsSelector = SelectorFactory.createResultsSelector('organisati
 
 export const organisationsSelector = SelectorFactory.createEntitiesSelector('organisations');
 
+export const usersSelector = SelectorFactory.createEntitiesSelector('organisations', 'users');
+
 export const orderedOrgsSelector = SelectorFactory.createOrderedEntitiesSelector(organisationsSelector, resultsSelector);
 
 export const organisationByIdSelector = SelectorFactory.createIdSelector(organisationsSelector, resultSelector);
+
+export const organisationOwner = createSelector(
+  [organisationByIdSelector, usersSelector],
+  (org, users) => users.get(org.get('owner_id','').toString(), Immutable.Map())
+);

@@ -19,7 +19,7 @@ export const RESET = createActionType('AUTH/RESET');
 |--------------------------------------------------------------------------
 */
 
-export const login = (params) => ({
+export const login = params => ({
   type: LOGIN,
   payload: Api.auth.login(params),
 });
@@ -34,12 +34,12 @@ export const load = () => ({
   payload: Api.auth.load(),
 });
 
-export const recover = (params) => ({
+export const recover = params => ({
   type: RECOVER,
   payload: Api.auth.recoverPassword(params),
 });
 
-export const reset = (params) => ({
+export const reset = params => ({
   type: RESET,
   payload: Api.auth.resetPassword(params),
 });
