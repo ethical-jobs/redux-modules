@@ -1,6 +1,6 @@
 {
   "name": "ethical-jobs-redux-modules",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "author": "Andrew McLagan",
   "description": "EthicalJobs.com.au redux modules",
   "license": "MIT",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "ethical-jobs-redux": "^0.2.12",
-    "ethical-jobs-sdk": "^0.2.6",
+    "ethical-jobs-sdk": "^0.2.7",
     "immutable": "4.0.0-rc.2",
     "reselect": "^3.0.0"
   },
