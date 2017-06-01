@@ -23,9 +23,14 @@ export const fetchCollection = params => ({
   payload: Api.get('/content/posts', params),
 });
 
-export const fetchEntity = (id) => ({
+export const fetchEntity = id => ({
   type: FETCH_ENTITY,
   payload: Api.get(`/content/posts/${id}`),
+});
+
+export const fetchBySlug = slug => ({
+  type: FETCH_ENTITY,
+  payload: Api.get(`/content/posts?slug=${slug}`),
 });
 
 /*

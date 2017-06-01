@@ -30,3 +30,10 @@ test('fetchEntity creates correct action', () => {
     payload: new Promise(() => {}),
   });
 });
+
+test('fetchBySlug creates correct action', () => {
+  expect(actions.fetchBySlug('my-slug-yep-this-is-it')).toEqual({
+    type: actions.FETCH_ENTITY,
+    payload: new Promise(() => {}),
+  });
+});
