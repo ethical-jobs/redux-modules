@@ -11,6 +11,7 @@ export const FETCH_COLLECTION = createActionType('POSTS/FETCH_COLLECTION');
 export const FETCH_ENTITY = createActionType('POSTS/FETCH_ENTITY');
 export const CLEAR_ENTITIES = createActionType('POSTS/CLEAR_ENTITIES');
 export const UPDATE_FILTERS = createActionType('POSTS/UPDATE_FILTERS');
+export const REPLACE_FILTERS = createActionType('POSTS/REPLACE_FILTERS');
 
 /*
 |--------------------------------------------------------------------------
@@ -39,11 +40,16 @@ export const fetchBySlug = slug => ({
 |--------------------------------------------------------------------------
 */
 
-export const clearPosts = () => ({
+export const clear = () => ({
   type: CLEAR_ENTITIES,
 });
 
-export const updateFilters = filter => ({
+export const updateFilters = filters => ({
   type: UPDATE_FILTERS,
-  payload: filter,
+  payload: filters,
+});
+
+export const replaceFilters = filters => ({
+  type: REPLACE_FILTERS,
+  payload: filters,
 });

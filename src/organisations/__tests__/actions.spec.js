@@ -4,8 +4,8 @@ const { actions } = Organisations;
 
 const params = { foo: 'bar', bar: 'foo' };
 
-test('clearOrganisations creates correct action', () => {
-  expect(actions.clearOrganisations()).toEqual({
+test('clear creates correct action', () => {
+  expect(actions.clear()).toEqual({
     type: actions.CLEAR_ENTITIES,
   });
 });
@@ -13,6 +13,13 @@ test('clearOrganisations creates correct action', () => {
 test('updateFilters creates correct action', () => {
   expect(actions.updateFilters(params)).toEqual({
     type: actions.UPDATE_FILTERS,
+    payload: params,
+  });
+});
+
+test('replaceFilters creates correct action', () => {
+  expect(actions.replaceFilters(params)).toEqual({
+    type: actions.REPLACE_FILTERS,
     payload: params,
   });
 });

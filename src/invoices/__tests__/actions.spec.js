@@ -4,8 +4,8 @@ const { actions } = Invoices;
 
 const params = { foo: 'bar', bar: 'foo' };
 
-test('clearInvoices creates correct action', () => {
-  expect(actions.clearInvoices()).toEqual({
+test('clear creates correct action', () => {
+  expect(actions.clear()).toEqual({
     type: actions.CLEAR_ENTITIES,
   });
 });
@@ -13,6 +13,13 @@ test('clearInvoices creates correct action', () => {
 test('updateFilters creates correct action', () => {
   expect(actions.updateFilters(params)).toEqual({
     type: actions.UPDATE_FILTERS,
+    payload: params,
+  });
+});
+
+test('replaceFilters creates correct action', () => {
+  expect(actions.replaceFilters(params)).toEqual({
+    type: actions.REPLACE_FILTERS,
     payload: params,
   });
 });

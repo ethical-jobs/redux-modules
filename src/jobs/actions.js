@@ -20,6 +20,7 @@ export const ATTACH = createActionType('JOBS/ATTACH');
 export const DETACH = createActionType('JOBS/DETACH');
 export const CLEAR_ENTITIES = createActionType('JOBS/CLEAR_ENTITIES');
 export const UPDATE_FILTERS = createActionType('JOBS/UPDATE_FILTERS');
+export const REPLACE_FILTERS = createActionType('JOBS/REPLACE_FILTERS');
 
 /*
 |--------------------------------------------------------------------------
@@ -93,11 +94,16 @@ export const detachMedia = id => ({
 |--------------------------------------------------------------------------
 */
 
-export const clearJobs = () => ({
+export const clear = () => ({
   type: CLEAR_ENTITIES,
 });
 
-export const updateFilters = filter => ({
+export const updateFilters = filters => ({
   type: UPDATE_FILTERS,
-  payload: filter,
+  payload: filters,
+});
+
+export const replaceFilters = filters => ({
+  type: REPLACE_FILTERS,
+  payload: filters,
 });

@@ -16,9 +16,10 @@ export const UPDATE = createActionType('ORGANISATIONS/UPDATE');
 export const ARCHIVE = createActionType('ORGANISATIONS/ARCHIVE');
 export const RESTORE = createActionType('ORGANISATIONS/RESTORE');
 export const UPLOAD_LOGO = createActionType('ORGANISATIONS/UPLOAD_LOGO');
-export const UPDATE_FILTERS = createActionType('ORGANISATIONS/UPDATE_FILTERS');
 export const CREATE_CREDITS = createActionType('ORGANISATIONS/CREATE_CREDITS');
 export const DEDUCT_CREDITS = createActionType('ORGANISATIONS/DEDUCT_CREDITS');
+export const UPDATE_FILTERS = createActionType('ORGANISATIONS/UPDATE_FILTERS');
+export const REPLACE_FILTERS = createActionType('ORGANISATIONS/REPLACE_FILTERS');
 
 /*
 |--------------------------------------------------------------------------
@@ -82,12 +83,17 @@ export const deductCredits = params => ({
 |--------------------------------------------------------------------------
 */
 
-export const clearOrganisations = () => ({
+export const clear = () => ({
   type: CLEAR_ENTITIES,
 });
 
-export const updateFilters = filter => ({
+export const updateFilters = updateFilters => ({
   type: UPDATE_FILTERS,
-  payload: filter,
+  payload: updateFilters,
+});
+
+export const replaceFilters = updateFilters => ({
+  type: REPLACE_FILTERS,
+  payload: updateFilters,
 });
 

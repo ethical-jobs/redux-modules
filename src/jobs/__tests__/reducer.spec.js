@@ -31,9 +31,9 @@ test('should return correct initial state', () => {
 |--------------------------------------------------------------------------
 */
 
-test('should handle clearJobs action correctly', () => {
+test('should handle clear action correctly', () => {
   expect(
-    Assertions.clearedEntities(Reducer, Actions.clearJobs(), initialState)
+    Assertions.clearedEntities(Reducer, Actions.clear(), initialState)
   ).toBe(true);
 });
 

@@ -16,6 +16,7 @@ export const ARCHIVE = createActionType('INVOICES/ARCHIVE');
 export const RESTORE = createActionType('INVOICES/RESTORE');
 export const CLEAR_ENTITIES = createActionType('INVOICES/CLEAR_ENTITIES');
 export const UPDATE_FILTERS = createActionType('INVOICES/UPDATE_FILTERS');
+export const REPLACE_FILTERS = createActionType('INVOICES/REPLACE_FILTERS');
 
 /*
 |--------------------------------------------------------------------------
@@ -65,11 +66,16 @@ export const restore = id => ({
 |--------------------------------------------------------------------------
 */
 
-export const clearInvoices = () => ({
+export const clear = () => ({
   type: CLEAR_ENTITIES,
 });
 
-export const updateFilters = filter => ({
+export const updateFilters = filters => ({
   type: UPDATE_FILTERS,
-  payload: filter,
+  payload: filters,
+});
+
+export const replaceFilters = filters => ({
+  type: REPLACE_FILTERS,
+  payload: filters,
 });
