@@ -17,3 +17,4 @@ export { default as Posts } from './posts';
 export { default as Taxonomies } from './taxonomies';
 
 export { default as Users } from './users';
+
