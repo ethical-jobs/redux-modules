@@ -10,11 +10,7 @@ pipeline:
 
   publish:
     image: plugins/npm
-    username: ethicaljobs
-    # refactor this back to a secret when the bug in drone `7.1` is addressed
-    # Also change the password...
-    password: Aarm4662
-    # refactor this back to a secret when the bug in drone `7.1` is addressed
+    secrets: [ npm_username, npm_password ]
     email: andrew@ethicaljobs.com.au
     when:
       status: success
