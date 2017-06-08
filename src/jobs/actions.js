@@ -30,7 +30,8 @@ export const REPLACE_FILTERS = createActionType('JOBS/REPLACE_FILTERS');
 
 export const fetchCollection = params => ({
   type: FETCH_COLLECTION,
-  payload: Api.get('/search/jobs', params),
+  // payload: Api.get('/jobs', params),
+  payload: Api.search('jobs', params),
 });
 
 export const searchCollection = params => ({
