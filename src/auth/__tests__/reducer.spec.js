@@ -18,7 +18,7 @@ test('should return correct initial state', () => {
     fetching: false,
     error: false,
     entities: {},
-    results: Immutable.Set(),
+    results: [],
     result: false,
   });
   expect(Assertions.initialState(Reducer, expectedState)).toBe(true);

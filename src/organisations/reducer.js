@@ -8,7 +8,7 @@ export const initialState = Immutable.fromJS({
   error: false,
   filters: {},
   entities: {},
-  results: Immutable.Set(),
+  results: [],
   result: false,
 });
 
