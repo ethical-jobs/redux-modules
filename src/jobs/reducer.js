@@ -26,6 +26,9 @@ export default function reducer(state = initialState, action = {}) {
     case JobActions.UPDATE_FILTERS:
       return ImmutableUtils.updateFilters(state, action.payload);
 
+    case JobActions.CLEAR_FILTERS:
+      return ImmutableUtils.clearFilters(state);
+
     case REQUEST(JobActions.SEARCH):
       return ImmutableUtils.mergeSearchRequest(state);
 

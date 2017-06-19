@@ -24,6 +24,13 @@ test('replaceFilters creates correct action', () => {
   });
 });
 
+test('clearFilters creates correct action', () => {
+  expect(actions.clearFilters(params)).toEqual({
+    type: actions.CLEAR_FILTERS,
+    payload: params,
+  });
+});
+
 test('fetchCollection creates correct action', () => {
   expect(actions.fetchCollection(params)).toEqual({
     type: actions.FETCH_COLLECTION,

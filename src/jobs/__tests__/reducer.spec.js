@@ -26,7 +26,7 @@ test('should return correct initial state', () => {
 });
 
 /*
-|--------------------------------------------------------------------------
+|-------------------------[Mini survey] NFP People: Share your top tips to hire an admin person-------------------------------------------------
 | Sync action handling
 |--------------------------------------------------------------------------
 */
@@ -42,6 +42,13 @@ test('should handle updateFilters action correctly', () => {
     Assertions.updatedFilters(Reducer, Actions.updateFilters, initialState)
   ).toBe(true);
 });
+
+test('should handle clearFilters action correctly', () => {
+  expect(
+    Assertions.clearedFilters(Reducer, Actions.clearFilters, initialState)
+  ).toBe(true);
+});
+
 
 /*
 |--------------------------------------------------------------------------
