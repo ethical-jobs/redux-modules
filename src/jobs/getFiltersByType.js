@@ -13,7 +13,7 @@ export default type => {
       };
     case JobTypes.EXPIRED:
       return {
-        status: JobStatus.APPROVED,
+        status: [JobStatus.APPROVED, JobStatus.PENDING],
         expired: true,
         limit: 1200,
       };

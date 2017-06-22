@@ -16,7 +16,7 @@ test('getFiltersByType returns correct params for PENDING', () => {
 
 test('getFiltersByType returns correct params for EXPIRED', () => {
   expect(getFiltersByType('EXPIRED')).toEqual({
-    status: 'APPROVED',
+    status: ['APPROVED','PENDING'],
     expired: true,
     limit: 1200,
   });
