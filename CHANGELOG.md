@@ -1,6 +1,8 @@
-# 0.2.26
+# 0.2.27
 
 - getFiltersByType returns PENDING + APPROVED when set to expired.
+- added bySearched job filter, this filters results in the store by if they have been searched or not.
+- TODO: remove `clear` from search results Merger
 
 # 0.2.25
 

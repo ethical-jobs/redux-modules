@@ -2,12 +2,10 @@ import Immutable from 'immutable';
 
 /**
  * Returns jobs filtered by {organisationId}
- *
  * @param {Map} job entity
  * @param {Number|Collection} organisations
  * @returns {Bool}
  */
-
 export function byOrganisations(job, organisations) {
   if (!organisations) {
     return true; // pass through
@@ -20,12 +18,10 @@ export function byOrganisations(job, organisations) {
 
 /**
  * Returns jobs filtered by {status}
- *
  * @param {Map} job entity
  * @param {String} jobs status to filter
  * @returns {Bool}
  */
-
 export function byStatus(job, status) {
   if (!status) {
     return true; // pass through
@@ -39,12 +35,10 @@ export function byStatus(job, status) {
 
 /**
  * Returns jobs filtered by {expired}
- *
  * @param {Map} job entity
  * @param {Bool} true for expired
  * @returns {Bool}
  */
-
 export function byExpiration(job, expiration) {
   if (expiration === null || typeof expiration === 'undefined') {
     return true;
@@ -54,13 +48,11 @@ export function byExpiration(job, expiration) {
 
 /**
  * Returns jobs filtered by {taxonomy}
- *
  * @param {Map} job entity
  * @param {String} taxonomy key
  * @param {List} taxonomy filterTerms
  * @returns {Bool}
  */
-
 export function byTaxonomy(job, filters, taxonomy) {
   const jobTerms = job.get(taxonomy, Immutable.List());
   if (!filters) {
@@ -73,13 +65,25 @@ export function byTaxonomy(job, filters, taxonomy) {
 }
 
 /**
+ * Returns jobs that were "searched" for
+ * @param {Map} job entity
+ * @param {String} taxonomy key
+ * @param {List} taxonomy filterTerms
+ * @returns {Bool}
+ */
+export function bySearched(job, query = false) {
+  if (!query) {
+    return true; // pass through
+  }
+  return job.get('_score', 0) > 0;
+}
+
+/**
  * Filters job entities
- *
  * @param {Map} Jobs to be filtered
  * @param {Map} Filters to apply
  * @returns {any} The filtered job state.
  */
-
 export default function selectByFilters(jobs, filters) {
   return jobs
     .filter(job => byOrganisations(job, filters.get('organisations')))
@@ -88,5 +92,6 @@ export default function selectByFilters(jobs, filters) {
     .filter(job => byTaxonomy(job, filters.get('categories'), 'categories'))
     .filter(job => byTaxonomy(job, filters.get('locations'), 'locations'))
     .filter(job => byTaxonomy(job, filters.get('sectors'), 'sectors'))
-    .filter(job => byTaxonomy(job, filters.get('workTypes'), 'workTypes'));
+    .filter(job => byTaxonomy(job, filters.get('workTypes'), 'workTypes'))
+    .filter(job => bySearched(job, filters.get('q')));
 }

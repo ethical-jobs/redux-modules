@@ -55,3 +55,15 @@ test('byTaxonomy correctly filters entities', () => {
   expect(Fltrs.byTaxonomy(job, undefined, 'categories')).toBe(true);
   expect(Fltrs.byTaxonomy(job, null, 'categories')).toBe(true);
 });
+
+test('bySearched correctly filters entities', () => {
+  const scoredJob = Immutable.fromJS({
+    _score: 10.0273,
+  });
+  expect(Fltrs.bySearched(scoredJob, 'This is a search term')).toBe(true);
+  expect(Fltrs.bySearched(scoredJob)).toBe(true);
+  const unscoredJob = Immutable.fromJS({
+    _score: null,
+  });
+  expect(Fltrs.bySearched(unscoredJob, 'This is a search term')).toBe(false);
+});
