@@ -1,4 +1,4 @@
-# 0.2.28
+# 0.2.29
 
 - getFiltersByType returns PENDING + APPROVED when set to expired.
 - added bySearched job filter, this filters results in the store by if they have been searched or not.
