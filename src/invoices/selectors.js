@@ -18,7 +18,7 @@ export const orderedInvoices = SelectorFactory.createOrderedEntitiesSelector(inv
 
 export const invoiceByResult = SelectorFactory.createIdSelector(invoices, result);
 
-export const invoicesByFiltersSelector = createSelector(
+export const filteredInvoices = createSelector(
   [orderedInvoices, filters],
   selectByFilters
 );

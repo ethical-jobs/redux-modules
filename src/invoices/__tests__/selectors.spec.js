@@ -58,7 +58,7 @@ test('invoiceByResult selector returns correct state slice', () => {
 |--------------------------------------------------------------------------
 */
 
-test('invoicesByFiltersSelector can filter by ... filters', () => {
+test('filteredInvoices can filter by ... filters', () => {
   const invoices = Immutable.fromJS({
     51: {
       id: 51,
@@ -76,6 +76,6 @@ test('invoicesByFiltersSelector can filter by ... filters', () => {
   const filters = Immutable.fromJS({
     organisationId: 15,
   });
-  const result = selectors.invoicesByFiltersSelector.resultFunc(invoices, filters);
+  const result = selectors.filteredInvoices.resultFunc(invoices, filters);
   expect(Immutable.is(result.keySeq(), Immutable.Seq(['51','53']))).toBe(true);
 });

@@ -1,4 +1,4 @@
-# 0.3.1
+# 0.3.2
 
 - job syncfilter actions, selectors and reducer logic
 
