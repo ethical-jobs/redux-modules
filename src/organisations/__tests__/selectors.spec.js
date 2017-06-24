@@ -4,33 +4,33 @@ import Organisations from 'organisations';
 
 const { selectors } = Organisations;
 
-test('fetchingSelector returns correct state slice', () => {
+test('fetching returns correct state slice', () => {
   expect(
-    Assertions.fetchingSelector('organisations', selectors.fetchingSelector)
+    Assertions.fetchingSelector('organisations', selectors.fetching)
   ).toBe(true);
 });
 
-test('filtersSelector returns correct state slice', () => {
+test('filters returns correct state slice', () => {
   expect(
-    Assertions.filtersSelector('organisations', selectors.filtersSelector)
+    Assertions.filtersSelector('organisations', selectors.filters)
   ).toBe(true);
 });
 
-test('resultSelector selector returns correct state slice', () => {
+test('result selector returns correct state slice', () => {
   expect(
-    Assertions.resultSelector('organisations', selectors.resultSelector)
+    Assertions.resultSelector('organisations', selectors.result)
   ).toBe(true);
 });
 
-test('organisationsSelector selector returns correct state slice', () => {
+test('organisations selector returns correct state slice', () => {
   expect(
-    Assertions.entitiesSelector('organisations', 'organisations', selectors.organisationsSelector)
+    Assertions.entitiesSelector('organisations', 'organisations', selectors.organisations)
   ).toBe(true);
 });
 
-test('usersSelector selector returns correct state slice', () => {
+test('users selector returns correct state slice', () => {
   expect(
-    Assertions.entitiesSelector('organisations', 'users', selectors.usersSelector)
+    Assertions.entitiesSelector('organisations', 'users', selectors.users)
   ).toBe(true);
 });
 
@@ -40,7 +40,7 @@ test('usersSelector selector returns correct state slice', () => {
 |--------------------------------------------------------------------------
 */
 
-test('organisationByIdSelector selector returns correct state slice', () => {
+test('organisationByResult selector returns correct state slice', () => {
   const state = Immutable.fromJS({
     entities: {
       organisations: {
@@ -53,7 +53,7 @@ test('organisationByIdSelector selector returns correct state slice', () => {
       },
     }
   });
-  const result = selectors.organisationByIdSelector(state);
+  const result = selectors.organisationByResult(state);
   expect(Immutable.is('foo-bar-bam', result)).toBe(true);
 });
 

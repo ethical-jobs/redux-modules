@@ -4,27 +4,27 @@ import Invoices from 'invoices';
 
 const { selectors } = Invoices;
 
-test('fetchingSelector returns correct state slice ', () => {
+test('fetching returns correct state slice ', () => {
   expect(
-    Assertions.fetchingSelector('invoices', selectors.fetchingSelector)
+    Assertions.fetchingSelector('invoices', selectors.fetching)
   ).toBe(true);
 });
 
-test('filtersSelector returns correct state slice', () => {
+test('filters returns correct state slice', () => {
   expect(
-    Assertions.filtersSelector('invoices', selectors.filtersSelector)
+    Assertions.filtersSelector('invoices', selectors.filters)
   ).toBe(true);
 });
 
-test('resultSelector selector returns correct state slice', () => {
+test('result selector returns correct state slice', () => {
   expect(
-    Assertions.resultSelector('invoices', selectors.resultSelector)
+    Assertions.resultSelector('invoices', selectors.result)
   ).toBe(true);
 });
 
-test('invoicesSelector selector returns correct state slice', () => {
+test('invoices selector returns correct state slice', () => {
   expect(
-    Assertions.entitiesSelector('invoices', 'invoices', selectors.invoicesSelector)
+    Assertions.entitiesSelector('invoices', 'invoices', selectors.invoices)
   ).toBe(true);
 });
 
@@ -34,7 +34,7 @@ test('invoicesSelector selector returns correct state slice', () => {
 |--------------------------------------------------------------------------
 */
 
-test('invoiceByIdSelector selector returns correct state slice', () => {
+test('invoiceByResult selector returns correct state slice', () => {
   const state = Immutable.fromJS({
     entities: {
       invoices: {
@@ -47,7 +47,7 @@ test('invoiceByIdSelector selector returns correct state slice', () => {
       },
     }
   });
-  const result = selectors.invoiceByIdSelector(state);
+  const result = selectors.invoiceByResult(state);
   expect(Immutable.is('foo-bar-bam', result)).toBe(true);
 });
 

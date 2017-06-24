@@ -1,8 +1,8 @@
 import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
 
-export const fetchingSelector = SelectorFactory.create('enumerables', 'fetching');
+export const fetching = SelectorFactory.create('enumerables', 'fetching');
 
-export const errorSelector = SelectorFactory.create('enumerables', 'error');
+export const error = SelectorFactory.create('enumerables', 'error');
 
-export const enumerablesSelector = state => state.getIn(['entities', 'enumerables', 'enumerables']);
+export const enumerables = state => state.getIn(['entities', 'enumerables', 'enumerables']);

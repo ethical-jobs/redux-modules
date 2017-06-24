@@ -5,33 +5,33 @@ import Jobs from 'jobs';
 
 const { selectors } = Jobs;
 
-test('fetchingSelector returns correct state slice', () => {
+test('fetching returns correct state slice', () => {
   expect(
-    Assertions.fetchingSelector('jobs', selectors.fetchingSelector)
+    Assertions.fetchingSelector('jobs', selectors.fetching)
   ).toBe(true);
 });
 
-test('filtersSelector returns correct state slice', () => {
+test('filters returns correct state slice', () => {
   expect(
-    Assertions.filtersSelector('jobs', selectors.filtersSelector)
+    Assertions.filtersSelector('jobs', selectors.filters)
   ).toBe(true);
 });
 
-test('resultSelector selector returns correct state slice', () => {
+test('result selector returns correct state slice', () => {
   expect(
-    Assertions.resultSelector('jobs', selectors.resultSelector)
+    Assertions.resultSelector('jobs', selectors.result)
   ).toBe(true);
 });
 
-test('jobsSelector selector returns correct state slice', () => {
+test('jobs selector returns correct state slice', () => {
   expect(
-    Assertions.entitiesSelector('jobs', 'jobs', selectors.jobsSelector)
+    Assertions.entitiesSelector('jobs', 'jobs', selectors.jobs)
   ).toBe(true);
 });
 
-test('organisationsSelector selector returns correct state slice', () => {
+test('organisations selector returns correct state slice', () => {
   expect(
-    Assertions.entitiesSelector('jobs', 'organisations', selectors.organisationsSelector)
+    Assertions.entitiesSelector('jobs', 'organisations', selectors.organisations)
   ).toBe(true);
 });
 
@@ -41,7 +41,7 @@ test('organisationsSelector selector returns correct state slice', () => {
 |--------------------------------------------------------------------------
 */
 
-test('jobByIdSelector selector returns correct state slice', () => {
+test('jobByResult selector returns correct state slice', () => {
   const state = Immutable.fromJS({
     entities: {
       jobs: {
@@ -54,7 +54,7 @@ test('jobByIdSelector selector returns correct state slice', () => {
       },
     }
   });
-  const result = selectors.jobByIdSelector(state);
+  const result = selectors.jobByResult(state);
   expect(Immutable.is('foo-bar-bam', result)).toBe(true);
 });
 
@@ -63,8 +63,8 @@ test('jobByIdSelector selector returns correct state slice', () => {
 | Filters
 |--------------------------------------------------------------------------
 */
+describe('filter selector functions', () => {
 
-test('jobsByFiltersSelector can filter by ... filters', () => {
   const jobs = Immutable.fromJS({
     51: {
       id: 51,
@@ -97,6 +97,7 @@ test('jobsByFiltersSelector can filter by ... filters', () => {
       sectors: [20,30,13],
     },
   }).toList(); // << NOTE: we are convertion to a list
+
   const filters = Immutable.fromJS({
     organisationId: 15,
     status: PENDING,
@@ -106,6 +107,19 @@ test('jobsByFiltersSelector can filter by ... filters', () => {
     sectors: [20],
     workTypes: [301],
   });
-  const result = selectors.jobsByFiltersSelector.resultFunc(jobs, filters);
-  expect(result.includes(jobs.get(2))).toBe(true);
+
+  test('filteredJobs selector works correctly', () => {
+    const result = selectors.filteredJobs.resultFunc(jobs, filters);
+    expect(result.includes(jobs.get(2))).toBe(true);
+  });
+
+  test('orderedFilteredJobs selector works correctly', () => {
+    const result = selectors.orderedFilteredJobs.resultFunc(jobs, filters);
+    expect(result.includes(jobs.get(2))).toBe(true);
+  });
+
+  test('propsOrderedFilteredJobs selector works correctly', () => {
+    const result = selectors.propsOrderedFilteredJobs.resultFunc(jobs, filters);
+    expect(result.includes(jobs.get(2))).toBe(true);
+  });
 });

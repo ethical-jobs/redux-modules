@@ -84,7 +84,7 @@ export function bySearched(job, query = false) {
  * @param {Map} Filters to apply
  * @returns {any} The filtered job state.
  */
-export default function selectByFilters(jobs, filters) {
+export default function filterJobs(jobs, filters) {
   return jobs
     .filter(job => byOrganisations(job, filters.get('organisations')))
     .filter(job => byStatus(job, filters.get('status')))

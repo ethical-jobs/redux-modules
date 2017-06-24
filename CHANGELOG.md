@@ -1,3 +1,8 @@
+# 0.3.0
+
+- refactored selector names
+- refactored jobs selectors
+
 # 0.2.29
 
 - getFiltersByType returns PENDING + APPROVED when set to expired.

@@ -1,35 +1,40 @@
 import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
-import selectByFilters from './filters';
+import filterJobs from './filters';
 
-export const fetchingSelector = SelectorFactory.create('jobs', 'fetching');
+export const fetching = SelectorFactory.create('jobs', 'fetching');
 
-export const errorSelector = SelectorFactory.create('jobs', 'error');
+export const error = SelectorFactory.create('jobs', 'error');
 
-export const filtersSelector = SelectorFactory.createFiltersSelector('jobs');
+export const filters = SelectorFactory.createFiltersSelector('jobs');
 
-export const propFiltersSelector = SelectorFactory.createPropFiltersSelector();
+export const propsFilters = SelectorFactory.createPropFiltersSelector();
 
-export const resultSelector = SelectorFactory.createResultSelector('jobs');
+export const result = SelectorFactory.createResultSelector('jobs');
 
-export const resultsSelector = SelectorFactory.createResultsSelector('jobs');
+export const results = SelectorFactory.createResultsSelector('jobs');
 
-export const jobsSelector = SelectorFactory.createEntitiesSelector('jobs');
+export const jobs = SelectorFactory.createEntitiesSelector('jobs');
 
-export const organisationsSelector = SelectorFactory.createEntitiesSelector('jobs', 'organisations');
+export const orderedJobs = SelectorFactory.createOrderedEntitiesSelector(jobs, results);
 
-export const jobMediaSelector = SelectorFactory.createEntitiesSelector('jobs', 'media');
+export const jobByResult = SelectorFactory.createIdSelector(jobs, result);
 
-export const orderedJobsSelector = SelectorFactory.createOrderedEntitiesSelector(jobsSelector, resultsSelector);
+export const organisations = SelectorFactory.createEntitiesSelector('jobs', 'organisations');
 
-export const jobByIdSelector = SelectorFactory.createIdSelector(jobsSelector, resultSelector);
+export const media = SelectorFactory.createEntitiesSelector('jobs', 'media');
 
-export const jobsByFiltersSelector = createSelector(
-  [orderedJobsSelector, filtersSelector],
-  selectByFilters
+export const filteredJobs = createSelector(
+  [jobs, filters],
+  filterJobs
 );
 
-export const jobsByPropFiltersSelector = createSelector(
-  [orderedJobsSelector, propFiltersSelector],
-  selectByFilters
+export const orderedFilteredJobs = createSelector(
+  [orderedJobs, filters],
+  filterJobs
+);
+
+export const propsOrderedFilteredJobs = createSelector(
+  [orderedJobs, propsFilters],
+  filterJobs
 );

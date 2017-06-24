@@ -4,9 +4,9 @@ import Credits from 'credits';
 
 const { selectors } = Credits;
 
-test('fetchingSelector returns correct state slice', () => {
+test('fetching returns correct state slice', () => {
   expect(
-    Assertions.fetchingSelector('credits', selectors.fetchingSelector)
+    Assertions.fetchingSelector('credits', selectors.fetching)
   ).toBe(true);
 });
 
@@ -18,5 +18,5 @@ test('creditPacks returns correct state slice', () => {
       },
     }
   });
-  return expect(Immutable.is('foo-bar-bam', selectors.creditPacksSelector(state))).toBe(true);
+  return expect(Immutable.is('foo-bar-bam', selectors.creditPacks(state))).toBe(true);
 });

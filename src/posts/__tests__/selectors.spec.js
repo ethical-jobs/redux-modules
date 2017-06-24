@@ -4,21 +4,21 @@ import Posts from 'posts';
 
 const { selectors } = Posts;
 
-test('fetchingSelector returns correct state slice ', () => {
+test('fetching returns correct state slice ', () => {
   expect(
-    Assertions.fetchingSelector('posts', selectors.fetchingSelector)
+    Assertions.fetchingSelector('posts', selectors.fetching)
   ).toBe(true);
 });
 
-test('filtersSelector returns correct state slice', () => {
+test('filters returns correct state slice', () => {
   expect(
-    Assertions.filtersSelector('posts', selectors.filtersSelector)
+    Assertions.filtersSelector('posts', selectors.filters)
   ).toBe(true);
 });
 
-test('resultSelector selector returns correct state slice', () => {
+test('result selector returns correct state slice', () => {
   expect(
-    Assertions.resultSelector('posts', selectors.resultSelector)
+    Assertions.resultSelector('posts', selectors.result)
   ).toBe(true);
 });
 
@@ -34,7 +34,7 @@ test('postsSelector selector returns correct state slice', () => {
 |--------------------------------------------------------------------------
 */
 
-test('postByIdSelector selector returns correct state slice', () => {
+test('postByResult selector returns correct state slice', () => {
   const state = Immutable.fromJS({
     entities: {
       posts: {
@@ -47,6 +47,6 @@ test('postByIdSelector selector returns correct state slice', () => {
       },
     }
   });
-  const result = selectors.postByIdSelector(state);
+  const result = selectors.postByResult(state);
   expect(Immutable.is('foo-bar-bam', result)).toBe(true);
 });

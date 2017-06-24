@@ -2,25 +2,25 @@ import Immutable from 'immutable';
 import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
 
-export const fetchingSelector = SelectorFactory.create('organisations', 'fetching');
+export const fetching = SelectorFactory.create('organisations', 'fetching');
 
-export const errorSelector = SelectorFactory.create('organisations', 'error');
+export const error = SelectorFactory.create('organisations', 'error');
 
-export const filtersSelector = SelectorFactory.createFiltersSelector('organisations');
+export const filters = SelectorFactory.createFiltersSelector('organisations');
 
-export const resultSelector = SelectorFactory.createResultSelector('organisations');
+export const result = SelectorFactory.createResultSelector('organisations');
 
-export const resultsSelector = SelectorFactory.createResultsSelector('organisations');
+export const results = SelectorFactory.createResultsSelector('organisations');
 
-export const organisationsSelector = SelectorFactory.createEntitiesSelector('organisations');
+export const organisations = SelectorFactory.createEntitiesSelector('organisations');
 
-export const usersSelector = SelectorFactory.createEntitiesSelector('organisations', 'users');
+export const orderedOrganisations = SelectorFactory.createOrderedEntitiesSelector(organisations, results);
 
-export const orderedOrgsSelector = SelectorFactory.createOrderedEntitiesSelector(organisationsSelector, resultsSelector);
+export const organisationByResult = SelectorFactory.createIdSelector(organisations, result);
 
-export const organisationByIdSelector = SelectorFactory.createIdSelector(organisationsSelector, resultSelector);
+export const users = SelectorFactory.createEntitiesSelector('organisations', 'users');
 
 export const organisationOwner = createSelector(
-  [organisationByIdSelector, usersSelector],
+  [organisationByResult, users],
   (org, users) => users.get(org.get('owner_id','').toString(), Immutable.Map())
 );

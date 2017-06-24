@@ -1,21 +1,21 @@
 import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
 
-export const fetchingSelector = SelectorFactory.create('auth', 'fetching');
+export const fetching = SelectorFactory.create('auth', 'fetching');
 
-export const errorSelector = SelectorFactory.create('auth', 'error');
+export const error = SelectorFactory.create('auth', 'error');
 
-export const resultSelector = SelectorFactory.createResultSelector('auth');
+export const result = SelectorFactory.createResultSelector('auth');
 
-export const resultsSelector = SelectorFactory.createResultsSelector('auth');
+export const results = SelectorFactory.createResultsSelector('auth');
 
-export const usersSelector = SelectorFactory.createEntitiesSelector('auth', 'users');
+export const users = SelectorFactory.createEntitiesSelector('auth', 'users');
 
-export const orgsSelector = SelectorFactory.createEntitiesSelector('auth', 'organisations');
+export const organisations = SelectorFactory.createEntitiesSelector('auth', 'organisations');
 
-export const authedUserSelector = SelectorFactory.createIdSelector(usersSelector, resultSelector);
+export const authedUser = SelectorFactory.createIdSelector(users, result);
 
-export const authedOrgSelector = createSelector(
-  [orgsSelector, authedUserSelector],
+export const authedOrganisation = createSelector(
+  [organisations, authedUser],
   (orgs, user) => orgs.get(user.get('organisation_id', '').toString())
 );

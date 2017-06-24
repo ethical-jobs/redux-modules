@@ -1,18 +1,18 @@
 import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
 
-export const fetchingSelector = SelectorFactory.create('posts', 'fetching');
+export const fetching = SelectorFactory.create('posts', 'fetching');
 
-export const errorSelector = SelectorFactory.create('posts', 'error');
+export const error = SelectorFactory.create('posts', 'error');
 
-export const filtersSelector = SelectorFactory.createFiltersSelector('posts');
+export const filters = SelectorFactory.createFiltersSelector('posts');
 
-export const resultSelector = SelectorFactory.createResultSelector('posts');
+export const result = SelectorFactory.createResultSelector('posts');
 
-export const resultsSelector = SelectorFactory.createResultsSelector('posts');
+export const results = SelectorFactory.createResultsSelector('posts');
 
 export const postsSelector = SelectorFactory.createEntitiesSelector('posts');
 
-export const orderedPostsSelector = SelectorFactory.createOrderedEntitiesSelector(postsSelector, resultsSelector);
+export const orderedPosts = SelectorFactory.createOrderedEntitiesSelector(postsSelector, results);
 
-export const postByIdSelector = SelectorFactory.createIdSelector(postsSelector, resultSelector);
+export const postByResult = SelectorFactory.createIdSelector(postsSelector, result);

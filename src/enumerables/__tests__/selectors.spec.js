@@ -4,13 +4,13 @@ import Enumerables from 'enumerables';
 
 const { selectors } = Enumerables;
 
-test('fetchingSelector returns correct state slice', () => {
+test('fetching returns correct state slice', () => {
   expect(
-    Assertions.fetchingSelector('enumerables', selectors.fetchingSelector)
+    Assertions.fetchingSelector('enumerables', selectors.fetching)
   ).toBe(true);
 });
 
-test('enumerablesSelector returns correct state slice', () => {
+test('enumerables returns correct state slice', () => {
   const state = Immutable.fromJS({
     entities: {
       enumerables: {
@@ -18,5 +18,5 @@ test('enumerablesSelector returns correct state slice', () => {
       },
     }
   });
-  return expect(Immutable.is('foo-bar-bam', selectors.enumerablesSelector(state))).toBe(true);
+  return expect(Immutable.is('foo-bar-bam', selectors.enumerables(state))).toBe(true);
 });

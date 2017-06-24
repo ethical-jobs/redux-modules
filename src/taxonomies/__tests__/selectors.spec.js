@@ -4,13 +4,13 @@ import Taxonomies from 'taxonomies';
 
 const { selectors } = Taxonomies;
 
-test('fetchingSelector returns correct state slice ', () => {
+test('fetching returns correct state slice ', () => {
   expect(
-    Assertions.fetchingSelector('taxonomies', selectors.fetchingSelector)
+    Assertions.fetchingSelector('taxonomies', selectors.fetching)
   ).toBe(true);
 });
 
-test('taxonomiesSelector returns correct state slice', () => {
+test('taxonomies returns correct state slice', () => {
   const state = Immutable.fromJS({
     entities: {
       taxonomies: {
@@ -18,10 +18,10 @@ test('taxonomiesSelector returns correct state slice', () => {
       },
     }
   });
-  return expect(Immutable.is('foo-bar-bam', selectors.taxonomiesSelector(state))).toBe(true);
+  return expect(Immutable.is('foo-bar-bam', selectors.taxonomies(state))).toBe(true);
 });
 
-test('orderedTaxonomySelector returns correct state slice', () => {
+test('orderedTaxonomy returns correct state slice', () => {
   const state = Immutable.fromJS({
     entities: {
       taxonomies: {
@@ -74,7 +74,7 @@ test('orderedTaxonomySelector returns correct state slice', () => {
     }
   });
   const expected = state.getIn(['entities','taxonomies','taxonomies','categories']);
-  const actual = selectors.orderedTaxonomySelector(state, 'categories');
+  const actual = selectors.orderedTaxonomy(state, 'categories');
   expect(Immutable.isOrdered(actual)).toBe(true);
   const asList = actual.toList();
   expect(asList.get(0).get('title')).toBe('alpha');

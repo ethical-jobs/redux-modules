@@ -5,31 +5,31 @@ import Auth from 'auth';
 
 const { selectors } = Auth;
 
-test('fetchingSelector returns correct state slice', () => {
+test('fetching returns correct state slice', () => {
   expect(
-    Assertions.fetchingSelector('auth', selectors.fetchingSelector)
+    Assertions.fetchingSelector('auth', selectors.fetching)
   ).toBe(true);
 });
 
-test('resultSelector returns correct state slice', () => {
+test('result returns correct state slice', () => {
   expect(
-    Assertions.resultSelector('auth', selectors.resultSelector)
+    Assertions.resultSelector('auth', selectors.result)
   ).toBe(true);
 });
 
-test('usersSelector returns correct state slice', () => {
+test('users returns correct state slice', () => {
   expect(
-    Assertions.entitiesSelector('auth', 'users', selectors.usersSelector)
+    Assertions.entitiesSelector('auth', 'users', selectors.users)
   ).toBe(true);
 });
 
-test('orgsSelector returns correct state slice', () => {
+test('organisations returns correct state slice', () => {
   expect(
-    Assertions.entitiesSelector('auth', 'organisations', selectors.orgsSelector)
+    Assertions.entitiesSelector('auth', 'organisations', selectors.organisations)
   ).toBe(true);
 });
 
-test('authedUserSelector returns correct state slice', () => {
+test('authedUser returns correct state slice', () => {
   const users = Immutable.fromJS({
     15: {
       id: 15,
@@ -42,7 +42,7 @@ test('authedUserSelector returns correct state slice', () => {
       first_name: 'Bob',
     },
   });
-  const result = selectors.authedUserSelector.resultFunc(users, 15);
+  const result = selectors.authedUser.resultFunc(users, 15);
   expect(result.get('first_name')).toBe('Andrew');
 });
 
@@ -62,6 +62,6 @@ test('authedOrganisationSelector returns correct state slice', () => {
     organisation_id: 20,
     first_name: 'Andrew',
   });
-  const result = selectors.authedOrgSelector.resultFunc(organisations, user);
+  const result = selectors.authedOrganisation.resultFunc(organisations, user);
   expect(result.get('title')).toBe('Mission Australia');
 });
