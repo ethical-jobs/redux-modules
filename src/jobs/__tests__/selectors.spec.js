@@ -17,6 +17,17 @@ test('filters returns correct state slice', () => {
   ).toBe(true);
 });
 
+test('syncFilters returns correct state slice', () => {
+  const state = Immutable.fromJS({
+    entities: {
+      jobs: {
+        syncFilters: 'foo-bar-bam',
+      },
+    }
+  });
+  expect(Immutable.is('foo-bar-bam', selectors.syncFilters(state))).toBe(true);
+});
+
 test('result selector returns correct state slice', () => {
   expect(
     Assertions.resultSelector('jobs', selectors.result)

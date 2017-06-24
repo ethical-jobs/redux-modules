@@ -31,6 +31,13 @@ test('clearFilters creates correct action', () => {
   });
 });
 
+test('updateSyncFilters creates correct action', () => {
+  expect(actions.updateSyncFilters(params)).toEqual({
+    type: actions.UPDATE_SYNC_FILTERS,
+    payload: params,
+  });
+});
+
 test('fetchCollection creates correct action', () => {
   expect(actions.fetchCollection(params)).toEqual({
     type: actions.FETCH_COLLECTION,

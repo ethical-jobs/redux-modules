@@ -8,6 +8,8 @@ export const error = SelectorFactory.create('jobs', 'error');
 
 export const filters = SelectorFactory.createFiltersSelector('jobs');
 
+export const syncFilters = SelectorFactory.createSyncFiltersSelector('jobs');
+
 export const propsFilters = SelectorFactory.createPropFiltersSelector();
 
 export const result = SelectorFactory.createResultSelector('jobs');

@@ -22,6 +22,7 @@ export const CLEAR_ENTITIES = createActionType('JOBS/CLEAR_ENTITIES');
 export const UPDATE_FILTERS = createActionType('JOBS/UPDATE_FILTERS');
 export const REPLACE_FILTERS = createActionType('JOBS/REPLACE_FILTERS');
 export const CLEAR_FILTERS = createActionType('JOBS/CLEAR_FILTERS');
+export const UPDATE_SYNC_FILTERS = createActionType('JOBS/UPDATE_SYNC_FILTERS');
 
 /*
 |--------------------------------------------------------------------------
@@ -111,5 +112,10 @@ export const replaceFilters = filters => ({
 
 export const clearFilters = filters => ({
   type: CLEAR_FILTERS,
+  payload: filters,
+});
+
+export const updateSyncFilters = filters => ({
+  type: UPDATE_SYNC_FILTERS,
   payload: filters,
 });

@@ -1,3 +1,7 @@
+# 0.3.1
+
+- job syncfilter actions, selectors and reducer logic
+
 # 0.3.0
 
 - refactored selector names

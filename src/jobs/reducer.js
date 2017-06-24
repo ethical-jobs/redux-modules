@@ -7,6 +7,7 @@ export const initialState = Immutable.fromJS({
   fetching: false,
   error: false,
   filters: {},
+  syncFilters: {},
   entities: {},
   results: [],
   result: false,
@@ -28,6 +29,9 @@ export default function reducer(state = initialState, action = {}) {
 
     case JobActions.CLEAR_FILTERS:
       return ImmutableUtils.clearFilters(state);
+
+    case JobActions.UPDATE_SYNC_FILTERS:
+      return ImmutableUtils.updateSyncFilters(state, action.payload);
 
     case REQUEST(JobActions.SEARCH):
       return ImmutableUtils.mergeSearchRequest(state);

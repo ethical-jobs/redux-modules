@@ -18,6 +18,7 @@ test('should return correct initial state', () => {
     fetching: false,
     error: false,
     filters: {},
+    syncFilters: {},
     entities: {},
     results: [],
     result: false,
@@ -46,6 +47,12 @@ test('should handle updateFilters action correctly', () => {
 test('should handle clearFilters action correctly', () => {
   expect(
     Assertions.clearedFilters(Reducer, Actions.clearFilters, initialState)
+  ).toBe(true);
+});
+
+test('should handle updateSyncFilters action correctly', () => {
+  expect(
+    Assertions.updatedSyncFilters(Reducer, Actions.updateSyncFilters, initialState)
   ).toBe(true);
 });
 
