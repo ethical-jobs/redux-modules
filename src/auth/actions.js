@@ -12,6 +12,7 @@ export const LOGOUT = createActionType('AUTH/LOGOUT');
 export const LOAD = createActionType('AUTH/LOAD');
 export const RECOVER = createActionType('AUTH/RECOVER');
 export const RESET = createActionType('AUTH/RESET');
+export const DO_THIS = createActionType('AUTH/DO_THIS');
 
 /*
 |--------------------------------------------------------------------------

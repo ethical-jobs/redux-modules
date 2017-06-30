@@ -21,21 +21,22 @@ test('taxonomies returns correct state slice', () => {
   return expect(Immutable.is('foo-bar-bam', selectors.taxonomies(state))).toBe(true);
 });
 
-test('orderedTaxonomy returns correct state slice', () => {
+describe('orderedTaxonomy selector', () => {
+
   const state = Immutable.fromJS({
     entities: {
       taxonomies: {
         taxonomies: {
           "categories": {
-            "1": {
-              "id": 1,
-              "slug": "zulu",
-              "title": "zulu"
-            },
             "2": {
               "id": 2,
               "slug": "bravo",
               "title": "bravo"
+            },
+            "1": {
+              "id": 1,
+              "slug": "zulu",
+              "title": "zulu"
             },
             "3": {
               "id": 3,
@@ -73,15 +74,44 @@ test('orderedTaxonomy returns correct state slice', () => {
       },
     }
   });
-  const expected = state.getIn(['entities','taxonomies','taxonomies','categories']);
-  const actual = selectors.orderedTaxonomy(state, 'categories');
-  expect(Immutable.isOrdered(actual)).toBe(true);
-  const asList = actual.toList();
-  expect(asList.get(0).get('title')).toBe('alpha');
-  expect(asList.get(1).get('title')).toBe('bravo');
-  expect(asList.get(2).get('title')).toBe('yankee');
-  expect(asList.get(3).get('title')).toBe('zulu');
-});
 
+  test('orderedTaxonomy ALWAYS returns an OrderedMap', () => {
+    const actual = selectors.orderedTaxonomy(state, 'categories');
+    expect(Immutable.isOrdered(actual)).toBe(true);
+    expect(Immutable.OrderedMap.isOrderedMap(actual)).toBe(true);
+  });
+
+  test('orderedTaxonomy returns correct state slice', () => {
+    const expected = state.getIn(['entities','taxonomies','taxonomies','categories']);
+    const actual = selectors.orderedTaxonomy(state, 'categories');
+    expect(Immutable.isOrdered(actual)).toBe(true);
+  });
+
+  test('orderedTaxonomy returns taxonomy ordered by title by default', () => {
+    const expected = Immutable.OrderedMap([
+      ['3', 'alpha'],
+      ['2', 'bravo'],
+      ['4', 'yankee'],
+      ['1', 'zulu'],
+    ]);
+    const actualTitles = selectors
+      .orderedTaxonomy(state, 'categories', undefined)
+      .map(term => term.get('title'));
+    expect(Immutable.is(expected, actualTitles)).toBe(true);
+  });
+
+  test('orderedTaxonomy returns taxonomy ordered by {orderBy} param', () => {
+    const expected = Immutable.OrderedMap([
+      ['1', 1],
+      ['2', 2],
+      ['3', 3],
+      ['4', 4],
+    ]);
+    const actualIds = selectors
+      .orderedTaxonomy(state, 'categories', 'id')
+      .map(term => term.get('id'));
+    expect(Immutable.is(expected, actualIds)).toBe(true);
+  });
+});
 
 

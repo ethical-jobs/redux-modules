@@ -8,8 +8,15 @@ export const error = SelectorFactory.create('taxonomies', 'error');
 
 export const taxonomies = state => state.getIn(['entities', 'taxonomies', 'taxonomies']);
 
-export const orderedTaxonomy = (state, taxonomy) => {
+export const orderedTaxonomy = (state, taxonomy, orderBy = 'title') => {
   return taxonomies(state)
   .get(taxonomy, Immutable.Map())
-  .sort((a, b) => a.get('title').localeCompare(b.get('title')))
+  .toOrderedMap()
+  .sort((a, b) => {
+    if (orderBy === 'id') {
+      return a - b;
+    } else {
+      return a.get(orderBy).localeCompare(b.get(orderBy));
+    }
+  });
 };

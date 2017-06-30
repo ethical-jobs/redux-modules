@@ -1,3 +1,7 @@
+# 0.3.3
+
+- added orderBy param to OrderedTaxonomies selector, title by default
+
 # 0.3.2
 
 - job syncfilter actions, selectors and reducer logic
