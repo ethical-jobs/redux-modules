@@ -1,4 +1,4 @@
-# 0.3.3
+# 0.3.4
 
 - added orderBy param to OrderedTaxonomies selector, title by default
 

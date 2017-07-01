@@ -28,47 +28,35 @@ describe('orderedTaxonomy selector', () => {
       taxonomies: {
         taxonomies: {
           "categories": {
-            "2": {
+            "ksi8": {
               "id": 2,
               "slug": "bravo",
               "title": "bravo"
             },
-            "1": {
+            "3k8s": {
               "id": 1,
               "slug": "zulu",
               "title": "zulu"
             },
-            "3": {
-              "id": 3,
-              "slug": "alpha",
-              "title": "alpha"
-            },
-            "4": {
+            "mkd9": {
               "id": 4,
               "slug": "yankee",
               "title": "yankee"
             },
+            "ls93": {
+              "id": 3,
+              "slug": "alpha",
+              "title": "alpha"
+            },
           },
           "locations": {
-            "1": {
-              "id": 1,
-              "slug": "VIC",
-              "title": "Melbourne"
-            },
+            "1": { "id": 1, "slug": "VIC", "title": "Melbourne" },
           },
           "sectors": {
-            "1": {
-              "id": 1,
-              "slug": "Business and Private Sector",
-              "title": "Business/Private Sector"
-            },
+            "1": { "id": 1, "slug": "Business and Private Sector", "title": "Business/Private Sector" },
           },
           "workTypes": {
-            "1": {
-              "id": 1,
-              "slug": "CASUAL",
-              "title": "Casual"
-            },
+            "1": { "id": 1, "slug": "CASUAL", "title": "Casual" },
           },
         },
       },
@@ -88,29 +76,28 @@ describe('orderedTaxonomy selector', () => {
   });
 
   test('orderedTaxonomy returns taxonomy ordered by title by default', () => {
-    const expected = Immutable.OrderedMap([
-      ['3', 'alpha'],
-      ['2', 'bravo'],
-      ['4', 'yankee'],
-      ['1', 'zulu'],
-    ]);
+    const expected = Immutable.OrderedMap({
+      'ls93': 'alpha',
+      'ksi8': 'bravo',
+      'mkd9': 'yankee',
+      '3k8s': 'zulu',
+    });
     const actualTitles = selectors
       .orderedTaxonomy(state, 'categories', undefined)
       .map(term => term.get('title'));
     expect(Immutable.is(expected, actualTitles)).toBe(true);
   });
 
-  test('orderedTaxonomy returns taxonomy ordered by {orderBy} param', () => {
-    const expected = Immutable.OrderedMap([
-      ['1', 1],
-      ['2', 2],
-      ['3', 3],
-      ['4', 4],
-    ]);
-    const actualIds = selectors
-      .orderedTaxonomy(state, 'categories', 'id')
+  test('orderedTaxonomy can order by numeric properties', () => {
+    const expectedIds = Immutable.OrderedMap({
+      '3k8s': 1,
+      'ksi8': 2,
+      'ls93': 3,
+      'mkd9': 4,
+    });
+    const actualIds = selectors.orderedTaxonomy(state, 'categories', 'id')
       .map(term => term.get('id'));
-    expect(Immutable.is(expected, actualIds)).toBe(true);
+    expect(Immutable.is(expectedIds, actualIds)).toBe(true);
   });
 });
 

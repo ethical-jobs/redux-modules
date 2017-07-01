@@ -13,8 +13,8 @@ export const orderedTaxonomy = (state, taxonomy, orderBy = 'title') => {
   .get(taxonomy, Immutable.Map())
   .toOrderedMap()
   .sort((a, b) => {
-    if (orderBy === 'id') {
-      return a - b;
+    if (Number.isInteger(a.get(orderBy))) {
+      return a.get('id') - b.get('id');
     } else {
       return a.get(orderBy).localeCompare(b.get(orderBy));
     }
