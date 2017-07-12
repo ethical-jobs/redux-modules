@@ -1,3 +1,7 @@
+# 0.3.5
+
+- Issue where organisations filters for invoices where not working correctly
+
 # 0.3.4
 
 - added orderBy param to OrderedTaxonomies selector, title by default

@@ -1,14 +1,19 @@
+import Immutable from 'immutable';
 
 /**
  * Returns invoices filtered by {organisationId}
- *
  * @param {Map} invoice entity
- * @param {Number} organisation id
+ * @param {Number|Collection} organisations
  * @returns {Bool}
  */
-
-export function byOrganisationId(invoice, organisationId) {
-  return !organisationId ? true : invoice.get('organisation_id') === organisationId;
+export function byOrganisations(invoice, organisations) {
+  if (!organisations) {
+    return true; // pass through
+  }
+  if (Immutable.isCollection(organisations)) {
+    return organisations.includes(invoice.get('organisation_id'));
+  }
+  return invoice.get('organisation_id') === organisations;
 }
 
 /**
@@ -21,5 +26,5 @@ export function byOrganisationId(invoice, organisationId) {
 
 export default function selectByFilters(invoices, filters) {
   return invoices
-    .filter(invoice => byOrganisationId(invoice, filters.get('organisationId')));
+    .filter(invoice => byOrganisations(invoice, filters.get('organisations')));
 }

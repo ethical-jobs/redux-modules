@@ -74,7 +74,7 @@ test('filteredInvoices can filter by ... filters', () => {
     },
   });
   const filters = Immutable.fromJS({
-    organisationId: 15,
+    organisations: 15,
   });
   const result = selectors.filteredInvoices.resultFunc(invoices, filters);
   expect(Immutable.is(result.keySeq(), Immutable.Seq(['51','53']))).toBe(true);
