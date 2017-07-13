@@ -85,9 +85,9 @@ export const attachMedia = (id, file) => ({
   payload: Api.media.attach(file, 'jobs', id),
 });
 
-export const detachMedia = id => ({
+export const detachMedia = (id) => ({
   type: DETACH,
-  payload: Api.media.delete(id),
+  payload: Api.media.detach(id, 'jobs'),
 });
 
 /*

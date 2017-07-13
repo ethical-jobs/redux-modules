@@ -28,6 +28,37 @@ test('postsSelector selector returns correct state slice', () => {
   ).toBe(true);
 });
 
+describe('orderedPosts selector', () => {
+  const posts = Immutable.fromJS({
+    'x8haaw264': {
+      id: 51,
+      title: 'Alpha',
+    },
+    '83n927': {
+      id: 53,
+      title: 'Charlie',
+    },
+    'ms83bs7': {
+      id: 52,
+      title: 'Bravo',
+    },
+  });
+  const results = Immutable.fromJS(['ms83bs7','x8haaw264','83n927']);
+
+  test('orderedPosts selector returns OrderedMap', () => {
+    const result = selectors.orderedPosts.resultFunc(posts, results);
+    expect(Immutable.OrderedMap.isOrderedMap(result)).toBe(true);
+  });
+
+  test('orderedPosts selector returns correct order', () => {
+    const result = selectors.orderedPosts.resultFunc(posts, results);
+    expect(result.toList().get(0).get('id')).toBe(52);
+    expect(result.toList().get(1).get('id')).toBe(51);
+    expect(result.toList().get(2).get('id')).toBe(53);
+  });
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | Single post selector

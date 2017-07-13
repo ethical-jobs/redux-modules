@@ -1,3 +1,9 @@
+# 0.3.6
+
+- bumped ej-redux-modules to 0.3.31
+- bumped ej-redux-sdk to 0.2.12
+- updated attachMedia job action inline with new API call
+
 # 0.3.5
 
 - Issue where organisations filters for invoices where not working correctly
