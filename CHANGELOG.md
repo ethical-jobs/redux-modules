@@ -1,6 +1,6 @@
-# 0.3.6
+# 0.3.7
 
-- bumped ej-redux-modules to 0.3.31
+- bumped ej-redux-modules to 0.3.32
 - bumped ej-redux-sdk to 0.2.12
 - updated attachMedia job action inline with new API call
 
