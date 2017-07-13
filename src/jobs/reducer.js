@@ -56,8 +56,10 @@ export default function reducer(state = initialState, action = {}) {
     case SUCCESS(JobActions.APPROVE):
     case SUCCESS(JobActions.EXPIRE):
     case SUCCESS(JobActions.ATTACH):
-    case SUCCESS(JobActions.DETACH):
       return ImmutableUtils.mergeSuccess(state, action.payload);
+
+    case SUCCESS(JobActions.DETACH):
+      return ImmutableUtils.mergeDeleteSuccess(state, action.payload, 'media');
 
     case SUCCESS(JobActions.FETCH_COLLECTION):
     case SUCCESS(JobActions.SEARCH):
