@@ -1,3 +1,7 @@
+# 0.3.8
+
+- Added new Payments model with PURCHASE action
+
 # 0.3.7
 
 - bumped ej-redux-modules to 0.3.32
