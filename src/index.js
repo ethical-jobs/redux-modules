@@ -18,3 +18,4 @@ export { default as Taxonomies } from './taxonomies';
 
 export { default as Users } from './users';
 
+export { default as Payments } from './payments';
