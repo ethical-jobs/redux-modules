@@ -46,6 +46,8 @@ export default function reducer(state = initialState, action = {}) {
     case REQUEST(JobActions.EXPIRE):
     case REQUEST(JobActions.ATTACH):
     case REQUEST(JobActions.DETACH):
+    case REQUEST(JobActions.LOCK):
+    case REQUEST(JobActions.UNLOCK):
       return ImmutableUtils.mergeRequest(state);
 
     case SUCCESS(JobActions.FETCH_ENTITY):
@@ -57,6 +59,8 @@ export default function reducer(state = initialState, action = {}) {
     case SUCCESS(JobActions.EXPIRE):
     case SUCCESS(JobActions.ATTACH):
     case SUCCESS(JobActions.DETACH):
+    case SUCCESS(JobActions.LOCK):
+    case SUCCESS(JobActions.UNLOCK):
       return ImmutableUtils.mergeSuccess(state, action.payload);
 
     case SUCCESS(JobActions.FETCH_COLLECTION):
@@ -74,6 +78,8 @@ export default function reducer(state = initialState, action = {}) {
     case FAILURE(JobActions.ATTACH):
     case FAILURE(JobActions.DETACH):
     case FAILURE(JobActions.SEARCH):
+    case FAILURE(JobActions.LOCK):
+    case FAILURE(JobActions.UNLOCK):
       return ImmutableUtils.mergeFailure(state, action.payload);
 
     default:
