@@ -18,6 +18,8 @@ export const APPROVE = createActionType('JOBS/APPROVE');
 export const EXPIRE = createActionType('JOBS/EXPIRE');
 export const ATTACH = createActionType('JOBS/ATTACH');
 export const DETACH = createActionType('JOBS/DETACH');
+export const LOCK = createActionType('JOBS/LOCK');
+export const UNLOCK = createActionType('JOBS/UNLOCK');
 export const CLEAR_ENTITIES = createActionType('JOBS/CLEAR_ENTITIES');
 export const UPDATE_FILTERS = createActionType('JOBS/UPDATE_FILTERS');
 export const REPLACE_FILTERS = createActionType('JOBS/REPLACE_FILTERS');
@@ -88,6 +90,16 @@ export const attachMedia = (id, file) => ({
 export const detachMedia = (id) => ({
   type: DETACH,
   payload: Api.media.detach(id, 'jobs'),
+});
+
+export const lock = (params) => ({
+  type: LOCK,
+  payload: Api.post('/jobs/users', params),
+});
+
+export const unlock = (params) => ({
+  type: UNLOCK,
+  payload: Api.delete('/jobs/users', params),
 });
 
 /*

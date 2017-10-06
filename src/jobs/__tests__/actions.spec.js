@@ -121,3 +121,18 @@ test('detachMedia action creates correct action', () => {
     payload: new Promise(() => {}),
   });
 });
+
+
+test('lock action creates correct action', () => {
+  expect(actions.lock(123)).toEqual({
+    type: actions.LOCK,
+    payload: new Promise(() => {}),
+  });
+});
+
+test('unlock action creates correct action', () => {
+  expect(actions.unlock(123)).toEqual({
+    type: actions.UNLOCK,
+    payload: new Promise(() => {}),
+  });
+});
