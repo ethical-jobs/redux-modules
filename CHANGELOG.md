@@ -1,3 +1,7 @@
+# 0.3.9
+
+- Added LOCK and UNLOCK actions to the Jobs module 
+
 # 0.3.8
 
 - Added new Payments model with PURCHASE action
