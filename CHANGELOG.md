@@ -1,3 +1,7 @@
+# 0.3.10
+
+- Bumped ethical-jobs-redux to 0.2.34
+
 # 0.3.9
 
 - Added LOCK and UNLOCK actions to the Jobs module 
