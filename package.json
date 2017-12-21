@@ -17,6 +17,7 @@
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
     "babelrc-rollup": "^3.0.0",
+    "core.js": "^0.4.2",
     "globby": "^6.1.0",
     "gulp": "^3.9.1",
     "gulp-watch": "^4.3.11",
