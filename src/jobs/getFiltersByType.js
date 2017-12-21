@@ -1,3 +1,4 @@
+import 'core-js/fn/object/assign';
 import JobStatus from './statuses';
 
 const JobTypes = Object.assign({}, JobStatus, {

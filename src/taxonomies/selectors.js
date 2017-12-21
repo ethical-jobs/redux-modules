@@ -1,3 +1,5 @@
+import 'core-js/fn/number/is-integer';
+
 import Immutable from 'immutable';
 import { SelectorFactory } from 'ethical-jobs-redux';
 import { createSelector } from 'reselect';
