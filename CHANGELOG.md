@@ -1,3 +1,7 @@
+# 0.3.12
+
+- Added Core.js polyfills for Number.IsInteger and Object.Assign for improved browser support in older Safari versions on iOS <=8
+
 # 0.3.10
 
 - Bumped ethical-jobs-redux to 0.2.34
