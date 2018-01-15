@@ -1,3 +1,8 @@
+# 0.3.13
+
+- Added organisation patch method
+- Added adminUserSelector method
+
 # 0.3.12
 
 - Added Core.js polyfills for Number.IsInteger and Object.Assign for improved browser support in older Safari versions on iOS <=8
