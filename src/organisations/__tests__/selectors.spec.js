@@ -85,3 +85,32 @@ test('organisationOwner selector returns correct state slice', () => {
   const result = selectors.organisationOwner(state);
   expect(Immutable.is('Andrew McLagan', result)).toBe(true);
 });
+
+/*
+|--------------------------------------------------------------------------
+| Organisation owner selector
+|--------------------------------------------------------------------------
+*/
+
+test('organisationAdmin selector returns correct state slice', () => {
+  const state = Immutable.fromJS({
+    entities: {
+      organisations: {
+        entities: {
+          organisations: {
+            55425: {
+              admin_id: 485,
+              name: 'Ethical Logs',
+            },
+          },
+          users: {
+            485: 'Andrew McLagan',
+          },
+        },
+        result: 55425,
+      },
+    }
+  });
+  const result = selectors.organisationAdmin(state);
+  expect(Immutable.is('Andrew McLagan', result)).toBe(true);
+});

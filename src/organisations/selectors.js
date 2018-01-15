@@ -24,3 +24,8 @@ export const organisationOwner = createSelector(
   [organisationByResult, users],
   (org, users) => users.get(org.get('owner_id','').toString(), Immutable.Map())
 );
+
+export const organisationAdmin = createSelector(
+  [organisationByResult, users],
+  (org, users) => users.get(org.get('admin_id','').toString(), Immutable.Map())
+);
