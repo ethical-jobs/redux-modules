@@ -13,6 +13,7 @@ export const CLEAR_ENTITIES = createActionType('ORGANISATIONS/CLEAR_ENTITIES');
 export const SEARCH = createActionType('ORGANISATIONS/SEARCH');
 export const CREATE = createActionType('ORGANISATIONS/CREATE');
 export const UPDATE = createActionType('ORGANISATIONS/UPDATE');
+export const PATCH = createActionType('ORGANISATIONS/PATCH');
 export const ARCHIVE = createActionType('ORGANISATIONS/ARCHIVE');
 export const RESTORE = createActionType('ORGANISATIONS/RESTORE');
 export const UPLOAD_LOGO = createActionType('ORGANISATIONS/UPLOAD_LOGO');
@@ -50,6 +51,11 @@ export const create = params => ({
 export const update = (id, params) => ({
   type: UPDATE,
   payload: Api.put(`/organisations/${id}`, params),
+});
+
+export const patch = (id, params) => ({
+  type: PATCH,
+  payload: Api.patch(`/organisations/${id}`, params),
 });
 
 export const archive = id => ({

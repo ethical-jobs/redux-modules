@@ -33,6 +33,7 @@ export default function reducer(state = initialState, action = {}) {
     case REQUEST(OrgActions.FETCH_ENTITY):
     case REQUEST(OrgActions.CREATE):
     case REQUEST(OrgActions.UPDATE):
+    case REQUEST(OrgActions.PATCH):
     case REQUEST(OrgActions.ARCHIVE):
     case REQUEST(OrgActions.RESTORE):
     case REQUEST(OrgActions.UPLOAD_LOGO):
@@ -43,6 +44,7 @@ export default function reducer(state = initialState, action = {}) {
     case SUCCESS(OrgActions.FETCH_ENTITY):
     case SUCCESS(OrgActions.CREATE):
     case SUCCESS(OrgActions.UPDATE):
+    case SUCCESS(OrgActions.PATCH):
     case SUCCESS(OrgActions.ARCHIVE):
     case SUCCESS(OrgActions.RESTORE):
     case SUCCESS(OrgActions.UPLOAD_LOGO):
@@ -56,6 +58,7 @@ export default function reducer(state = initialState, action = {}) {
     case FAILURE(OrgActions.FETCH_ENTITY):
     case FAILURE(OrgActions.CREATE):
     case FAILURE(OrgActions.UPDATE):
+    case FAILURE(OrgActions.PATCH):
     case FAILURE(OrgActions.ARCHIVE):
     case FAILURE(OrgActions.RESTORE):
     case FAILURE(OrgActions.UPLOAD_LOGO):
