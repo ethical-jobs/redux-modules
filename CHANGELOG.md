@@ -1,3 +1,7 @@
+# 0.3.14
+
+- Added orderedTaxonomyWithJobs selector
+
 # 0.3.13
 
 - Added organisation patch method

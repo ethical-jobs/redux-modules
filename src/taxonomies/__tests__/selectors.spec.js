@@ -102,3 +102,63 @@ describe('orderedTaxonomy selector', () => {
 });
 
 
+describe('orderedTaxonomyWithJobs selector', () => {
+
+  const state = Immutable.fromJS({
+    entities: {
+      taxonomies: {
+        taxonomies: {
+          "categories": {
+            "ksi8": {
+              "id": 2,
+              "slug": "bravo",
+              "title": "bravo",
+              "job_count": 100,
+            },
+            "3k8s": {
+              "id": 1,
+              "slug": "zulu",
+              "title": "zulu",
+              "job_count": 0,
+            },
+            "mkd9": {
+              "id": 4,
+              "slug": "yankee",
+              "title": "yankee",
+              "job_count": 1,
+            },
+            "ls93": {
+              "id": 3,
+              "slug": "alpha",
+              "title": "alpha",
+              "job_count": 0,
+            },
+          },
+        },
+      },
+    }
+  });
+
+  test('orderedTaxonomyWithJobs ALWAYS returns an OrderedMap', () => {
+    const actual = selectors.orderedTaxonomyWithJobs(state, 'categories');
+    expect(Immutable.isOrdered(actual)).toBe(true);
+    expect(Immutable.OrderedMap.isOrderedMap(actual)).toBe(true);
+  });
+
+  test('orderedTaxonomyWithJobs returns correct state slice', () => {
+    const expected = state.getIn(['entities','taxonomies','taxonomies','categories']);
+    const actual = selectors.orderedTaxonomyWithJobs(state, 'categories');
+    expect(Immutable.isOrdered(actual)).toBe(true);
+  });
+
+  test('orderedTaxonomyWithJobs only includes terms with jobs', () => {
+    const expectedCount = Immutable.OrderedMap({
+      'ksi8': 100,
+      'mkd9': 1,
+    });
+    const actualIds = selectors.orderedTaxonomyWithJobs(state, 'categories')
+      .map(term => term.get('job_count'));
+    expect(Immutable.is(expectedCount, actualIds)).toBe(true);
+  });
+});
+
