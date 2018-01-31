@@ -1,3 +1,7 @@
+# 0.4.00
+
+- Users module expanded to first class citizen
+
 # 0.3.14
 
 - Added orderedTaxonomyWithJobs selector

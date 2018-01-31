@@ -18,12 +18,10 @@ export function byOrganisations(invoice, organisations) {
 
 /**
  * Filters invoice entities
- *
  * @param {Map} Invoices to be filtered
  * @param {Map} Filters to apply
  * @returns {any} The filtered invoice state.
  */
-
 export default function selectByFilters(invoices, filters) {
   return invoices
     .filter(invoice => byOrganisations(invoice, filters.get('organisations')));

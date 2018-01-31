@@ -13,11 +13,9 @@ export const initialState = Immutable.fromJS({
 });
 
 /**
- * Purchase reducer
- *
+ * Invoice reducer
  * @author Andrew McLagan <andrew@ethicaljobs.com.au>
  */
-
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case InvoiceActions.CLEAR_ENTITIES:

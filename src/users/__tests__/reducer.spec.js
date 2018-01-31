@@ -1,11 +1,11 @@
 import Immutable from 'immutable';
 import { REQUEST, SUCCESS, FAILURE, Assertions } from 'ethical-jobs-redux';
-import { initialState } from 'invoices/reducer';
+import { initialState } from 'users/reducer';
 import * as Fixtures from './_fixtures';
-import Invoices from 'invoices';
+import Users from 'users';
 
-const Reducer = Invoices.reducer;
-const Actions = Invoices.actions;
+const Reducer = Users.reducer;
+const Actions = Users.actions;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,12 +48,6 @@ test('should handle updateFilters action correctly', () => {
 | REQUEST actions
 |--------------------------------------------------------------------------
 */
-
-test('should handle SEARCH_REQUEST action correctly', () => {
-  expect(
-    Assertions.searchRequestState(Reducer, Actions.SEARCH, initialState)
-  ).toBe(true);
-});
 
 test('should handle REQUEST actions correctly', () => {
   const actionTypes = [
