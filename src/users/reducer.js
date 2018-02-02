@@ -28,6 +28,7 @@ export default function reducer(state = initialState, action = {}) {
     case REQUEST(UserActions.FETCH_ENTITY):
     case REQUEST(UserActions.CREATE):
     case REQUEST(UserActions.UPDATE):
+    case REQUEST(UserActions.PATCH):
     case REQUEST(UserActions.ARCHIVE):
     case REQUEST(UserActions.RESTORE):
       return ImmutableUtils.mergeRequest(state);
@@ -35,6 +36,7 @@ export default function reducer(state = initialState, action = {}) {
     case SUCCESS(UserActions.FETCH_ENTITY):
     case SUCCESS(UserActions.CREATE):
     case SUCCESS(UserActions.UPDATE):
+    case SUCCESS(UserActions.PATCH):
     case SUCCESS(UserActions.ARCHIVE):
     case SUCCESS(UserActions.RESTORE):
       return ImmutableUtils.mergeSuccess(state, action.payload);
@@ -46,6 +48,7 @@ export default function reducer(state = initialState, action = {}) {
     case FAILURE(UserActions.FETCH_ENTITY):
     case FAILURE(UserActions.CREATE):
     case FAILURE(UserActions.UPDATE):
+    case FAILURE(UserActions.PATCH):
     case FAILURE(UserActions.ARCHIVE):
     case FAILURE(UserActions.RESTORE):
       return ImmutableUtils.mergeFailure(state, action.payload);

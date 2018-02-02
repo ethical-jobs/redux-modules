@@ -52,6 +52,13 @@ test('update action creates correct action', () => {
   });
 });
 
+test('patch action creates correct action', () => {
+  expect(actions.patch(123, params)).toEqual({
+    type: actions.PATCH,
+    payload: new Promise(() => {}),
+  });
+});
+
 test('archive action creates correct action', () => {
   expect(actions.archive(123)).toEqual({
     type: actions.ARCHIVE,

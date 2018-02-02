@@ -68,6 +68,7 @@ test('should handle SUCCESS actions correctly', () => {
     SUCCESS(Actions.FETCH_ENTITY),
     SUCCESS(Actions.CREATE),
     SUCCESS(Actions.UPDATE),
+    SUCCESS(Actions.PATCH),
     SUCCESS(Actions.ARCHIVE),
     SUCCESS(Actions.RESTORE),
   ];
@@ -82,6 +83,7 @@ test('should handle FAILURE actions correctly', () => {
     FAILURE(Actions.FETCH_ENTITY),
     FAILURE(Actions.CREATE),
     FAILURE(Actions.UPDATE),
+    FAILURE(Actions.PATCH),
     FAILURE(Actions.ARCHIVE),
     FAILURE(Actions.RESTORE),
   ];

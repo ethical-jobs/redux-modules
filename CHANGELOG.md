@@ -1,3 +1,7 @@
+# 0.4.1
+
+- Adding user.patch action and tests
+
 # 0.4.00
 
 - Users module expanded to first class citizen
