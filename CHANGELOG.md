@@ -1,3 +1,7 @@
+## [Unreleased]
+
+- Adding Subscription module to the reducer
+
 # 0.4.1
 
 - Adding user.patch action and tests
