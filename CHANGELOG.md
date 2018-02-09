@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [0.6.1] - 2018-02-07
+
+### Fixed
+
+- Modules.Auth.load test for localStorage token
+
 ## [0.6.0] - 2018-02-07
 
 ### Added
