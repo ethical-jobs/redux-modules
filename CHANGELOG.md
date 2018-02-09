@@ -1,3 +1,8 @@
+# 0.5.0
+
+- Breaking changes
+- Bumping SDK version.
+
 # 0.4.1
 
 - Adding user.patch action and tests
