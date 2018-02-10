@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [0.6.2] - 2018-02-07
+
+### Fixed
+
+- Modules.Auth.login workflow and token issue
+
 ## [0.6.1] - 2018-02-07
 
 ### Fixed
