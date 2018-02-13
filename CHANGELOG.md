@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [0.6.3] - 2018-02-07
+
+### Fixed
+
+- SDK version bump v0.3.2
+
 ## [0.6.2] - 2018-02-07
 
 ### Fixed
