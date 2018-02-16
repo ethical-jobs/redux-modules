@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [0.6.4] - 2018-02-07
+
+### Created
+
+- Addressing minor version pataches on ej-sdk package
+
 ## [0.6.3] - 2018-02-07
 
 ### Fixed
