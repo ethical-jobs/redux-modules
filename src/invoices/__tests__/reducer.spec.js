@@ -49,14 +49,9 @@ test('should handle updateFilters action correctly', () => {
 |--------------------------------------------------------------------------
 */
 
-test('should handle SEARCH_REQUEST action correctly', () => {
-  expect(
-    Assertions.searchRequestState(Reducer, Actions.SEARCH, initialState)
-  ).toBe(true);
-});
-
 test('should handle REQUEST actions correctly', () => {
   const actionTypes = [
+    REQUEST(Actions.SEARCH),
     REQUEST(Actions.FETCH_COLLECTION),
     REQUEST(Actions.FETCH_ENTITY),
     REQUEST(Actions.CREATE),

@@ -25,8 +25,6 @@ export default function reducer(state = initialState, action = {}) {
       return ImmutableUtils.updateFilters(state, action.payload);
 
     case REQUEST(InvoiceActions.SEARCH):
-      return ImmutableUtils.mergeSearchRequest(state);
-
     case REQUEST(InvoiceActions.FETCH_COLLECTION):
     case REQUEST(InvoiceActions.FETCH_ENTITY):
     case REQUEST(InvoiceActions.CREATE):

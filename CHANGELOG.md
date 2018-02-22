@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [0.7.0] - 2018-02-07
+
+### Created
+
+- Search requests no longer clear the state tree for that module
+
 ## [0.6.5] - 2018-02-07
 
 ### Created

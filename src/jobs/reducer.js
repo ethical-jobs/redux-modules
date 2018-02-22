@@ -34,8 +34,6 @@ export default function reducer(state = initialState, action = {}) {
       return ImmutableUtils.updateSyncFilters(state, action.payload);
 
     case REQUEST(JobActions.SEARCH):
-      return ImmutableUtils.mergeSearchRequest(state);
-
     case REQUEST(JobActions.FETCH_COLLECTION):
     case REQUEST(JobActions.FETCH_ENTITY):
     case REQUEST(JobActions.CREATE):
