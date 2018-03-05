@@ -10,7 +10,6 @@ export default type => {
     case JobTypes.PENDING:
       return {
         status: JobStatus.PENDING,
-        expired: false,
       };
     case JobTypes.EXPIRED:
       return {
