@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [0.8.0] - 2018-03-13
+
+### Changed
+
+- Removed the expired=false filter from Pending job type
+
 ## [0.7.0] - 2018-02-07
 
 ### Created
