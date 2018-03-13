@@ -10,7 +10,6 @@ test('getFiltersByType returns correct default params', () => {
 test('getFiltersByType returns correct params for PENDING', () => {
   expect(getFiltersByType('PENDING')).toEqual({
     status: 'PENDING',
-    expired: false,
   });
 });
 
