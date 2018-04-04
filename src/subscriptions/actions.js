@@ -1,6 +1,12 @@
 import { createActionType } from 'ethical-jobs-redux';
 import Api from 'ethical-jobs-sdk';
 
+/**
+ * API prefix for the subscriptions API
+ *
+ * @type {string}
+ */
+const prefix = '/alerts';
 /*
 |--------------------------------------------------------------------------
 | Action Types
@@ -20,25 +26,25 @@ export const CONFIRM = createActionType('SUBSCRIPTIONS/CONFIRM');
 */
 export const create = params => ({
   type: CREATE,
-  payload: Api.post('/email/subscriptions', params),
+  payload: Api.post(prefix+'/subscriptions', params),
 });
 
 export const fetchCollection = params => ({
   type: FETCH_COLLECTION,
-  payload: Api.get('/email/subscriptions', params),
+  payload: Api.get(prefix+'/subscriptions', params),
 });
 
 export const fetchEntity = id => ({
   type: FETCH_ENTITY,
-  payload: Api.get(`/email/subscriptions/${id}`),
+  payload: Api.get(prefix+`/subscriptions/${id}`),
 });
 
 export const destroy = id => ({
   type: DELETE,
-  payload: Api.delete(`/email/subscriptions/${id}`),
+  payload: Api.delete(prefix+`/subscriptions/${id}`),
 });
 
-export const update = (id) => ({
+export const confirm = (id, params) => ({
   type: CONFIRM,
-  payload: Api.get(`/email/subscriptions/${id}/confirmations`),
+  payload: Api.put(prefix+`/subscriptions/${id}`, params),
 });
