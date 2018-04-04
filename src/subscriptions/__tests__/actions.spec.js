@@ -33,7 +33,7 @@ test('destroy creates correct action', () => {
 });
 
 test('update creates correct action', () => {
-  expect(actions.update(params)).toEqual({
+  expect(actions.confirm(params)).toEqual({
     type: actions.CONFIRM,
     payload: new Promise(() => {}),
   });
