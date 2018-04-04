@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [0.9.0] - 2018-04-04
+
+### Changed
+
+- The prefix for the alert-api from "subscriptions" to "alerts"
+
 ## [0.8.0] - 2018-03-13
 
 ### Changed
