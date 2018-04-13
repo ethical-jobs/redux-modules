@@ -26,15 +26,15 @@ test('filteredActivity can filter by ... filters', () => {
   const activities = Immutable.fromJS({
     51: {
       id: 51,
-      organisation_id: 15,
+      subject_id: 15,
     },
     52: {
       id: 52,
-      organisation_id: 8,
+      subject_id: 8,
     },
     53: {
       id: 53,
-      organisation_id: 15,
+      subject_id: 15,
     },
   });
   const filters = Immutable.fromJS({
