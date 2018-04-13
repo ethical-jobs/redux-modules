@@ -21,3 +21,5 @@ export { default as Users } from './users';
 export { default as Payments } from './payments';
 
 export { default as Subscriptions } from './subscriptions';
+
+export { default as Activities } from './activities';
