@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [0.10.0] - 2018-04-16
+
+### Added
+
+- Activities module for fetching activity log collections 
+
 ## [0.9.0] - 2018-04-04
 
 ### Changed
