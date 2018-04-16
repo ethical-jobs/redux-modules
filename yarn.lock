@@ -1402,9 +1402,9 @@ ethical-jobs-redux@^0.2.34:
     redux-promise-middleware "^4.2.0"
     reselect "^3.0.0"
 
-ethical-jobs-sdk@^0.3.00:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/ethical-jobs-sdk/-/ethical-jobs-sdk-0.3.0.tgz#a2e04f8da9ee116feb400bf585bf91cd4d4addbd"
+ethical-jobs-sdk@0.3.*:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/ethical-jobs-sdk/-/ethical-jobs-sdk-0.3.5.tgz#b3fe14e336428b72a50db8c1035cb10d152058eb"
   dependencies:
     core.js "^0.4.2"
     es6-error "^4.0.2"
