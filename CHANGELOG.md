@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [1.0.0] - 2018-04-26
+
+### Added
+
+- Bumping to first major version, API has stabalised, Test suite is extensive
+- Migrating to proper SemVer 2.0.0 as of v1.0.0 of this package for proper dependancy resolution.
+
 ## [0.10.0] - 2018-04-16
 
 ### Added
