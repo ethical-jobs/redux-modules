@@ -1,7 +1,7 @@
 pipeline:
 
   test:
-    image: node:alpine
+    image: node:8-alpine
     pull: true
     commands:
       - yarn install
