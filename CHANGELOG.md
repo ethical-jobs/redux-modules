@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [2.0.0] - 2018-06-05
+
+### Added
+
+- Bumping ethical-jobs-sdk to v1.1.0
+- Bumping ethical-jobs-redux to v1.0.0
+- Bumping sem ver t0 v2.0.0 as there are BCs
+
 ## [1.0.0] - 2018-04-26
 
 ### Added
