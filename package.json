@@ -1,5 +1,6 @@
 {
   "name": "@ethical-jobs/redux-modules",
+  "private": false,
   "version": "2.2.0",
   "author": "Andrew McLagan",
   "description": "EthicalJobs.com.au redux modules",
