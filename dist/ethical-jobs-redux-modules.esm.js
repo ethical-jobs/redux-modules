@@ -1,4 +1,4 @@
-import Immutable from 'immutable';
+import Immutable, { Map } from 'immutable';
 import Api from 'ethical-jobs-sdk';
 
 /**
@@ -775,9 +775,9 @@ ListCache.prototype.set = _listCacheSet;
 var _ListCache = ListCache;
 
 /* Built-in method references that are verified to be native. */
-var Map = _getNative(_root, 'Map');
+var Map$1 = _getNative(_root, 'Map');
 
-var _Map = Map;
+var _Map = Map$1;
 
 /**
  * Removes all key-value entries from the map.
@@ -1895,10 +1895,17 @@ var enumerables = function enumerables(state) {
   return state.getIn(['entities', 'enumerables', 'enumerables']);
 };
 
+var orderedEnumerable = function orderedEnumerable(state, enumerableKey) {
+  return state.getIn(["entities", "enumerables", "enumerables", enumerableKey], Map()).sortBy(function (value, key) {
+    return value;
+  });
+};
+
 var selectors$2 = /*#__PURE__*/Object.freeze({
   fetching: fetching$2,
   error: error$2,
-  enumerables: enumerables
+  enumerables: enumerables,
+  orderedEnumerable: orderedEnumerable
 });
 
 var index$3 = {

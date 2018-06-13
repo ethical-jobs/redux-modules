@@ -4,7 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var Immutable = _interopDefault(require('immutable'));
+var Immutable = require('immutable');
+var Immutable__default = _interopDefault(Immutable);
 var Api = _interopDefault(require('ethical-jobs-sdk'));
 
 /**
@@ -1244,7 +1245,7 @@ function clearEntities(state) {
  * @return Object
  */
 function updateFilters(state, filters) {
-  return state.mergeDeep({ filters: Immutable.fromJS(filters) });
+  return state.mergeDeep({ filters: Immutable__default.fromJS(filters) });
 }
 
 /**
@@ -1262,7 +1263,7 @@ function clearFilters(state) {
  * @return Object
  */
 function updateSyncFilters(state, filters) {
-  return state.mergeDeep({ syncFilters: Immutable.fromJS(filters) });
+  return state.mergeDeep({ syncFilters: Immutable__default.fromJS(filters) });
 }
 
 /**
@@ -1280,7 +1281,7 @@ function mergeRequest(state) {
 function mergeSuccess(state, payload) {
   return state.set('fetching', false).set('error', false).update('entities', function (entities) {
     var selected = get_1(payload, 'data.entities', {});
-    return entities.mergeDeep(Immutable.fromJS(selected));
+    return entities.mergeDeep(Immutable__default.fromJS(selected));
   }).update('result', function (result) {
     return get_1(payload, 'data.result', false);
   });
@@ -1293,11 +1294,11 @@ function mergeSuccess(state, payload) {
 function mergeCollectionSuccess(state, payload) {
   return state.set('fetching', false).set('error', false).update('entities', function (entities) {
     var selected = get_1(payload, 'data.entities', {});
-    return entities.mergeDeep(Immutable.fromJS(selected));
+    return entities.mergeDeep(Immutable__default.fromJS(selected));
   }).update('results', function (results) {
     var selected = get_1(payload, 'data.result', []);
-    var payloadResults = Immutable.OrderedSet(selected);
-    var resultsSet = Immutable.OrderedSet.isOrderedSet(results) ? results : results.toOrderedSet();
+    var payloadResults = Immutable__default.OrderedSet(selected);
+    var resultsSet = Immutable__default.OrderedSet.isOrderedSet(results) ? results : results.toOrderedSet();
     return resultsSet.union(payloadResults);
   });
 }
@@ -1307,7 +1308,7 @@ function mergeCollectionSuccess(state, payload) {
  * @return Object
  */
 function mergeFailure(state, payload) {
-  return state.set('error', Immutable.fromJS(payload)).set('fetching', false);
+  return state.set('error', Immutable__default.fromJS(payload)).set('fetching', false);
 }
 
 /**
@@ -1317,7 +1318,7 @@ function mergeFailure(state, payload) {
  * @return OrderedMap
  */
 function createOrderedMap(keys, items) {
-  return Immutable.OrderedMap(keys.map(function (key) {
+  return Immutable__default.OrderedMap(keys.map(function (key) {
     return [key.toString(), items.get(key.toString())];
   }));
 }
@@ -1446,16 +1447,16 @@ var createWithDefault = function createWithDefault(key, property, defaultVal) {
 };
 
 var createFiltersSelector = function createFiltersSelector(key) {
-  return createWithDefault(key, 'filters', Immutable.Map());
+  return createWithDefault(key, 'filters', Immutable__default.Map());
 };
 
 var createSyncFiltersSelector = function createSyncFiltersSelector(key) {
-  return createWithDefault(key, 'syncFilters', Immutable.Map());
+  return createWithDefault(key, 'syncFilters', Immutable__default.Map());
 };
 
 var createPropFiltersSelector = function createPropFiltersSelector() {
   return function (state, props) {
-    return Immutable.Map(props.filters, Immutable.Map());
+    return Immutable__default.Map(props.filters, Immutable__default.Map());
   };
 };
 
@@ -1464,13 +1465,13 @@ var createResultSelector = function createResultSelector(key) {
 };
 
 var createResultsSelector = function createResultsSelector(key) {
-  return createWithDefault(key, 'results', Immutable.List());
+  return createWithDefault(key, 'results', Immutable__default.List());
 };
 
 var createEntitiesSelector = function createEntitiesSelector(key) {
   var nestedKey = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   return function (state) {
-    return state.getIn(['entities', key, 'entities', nestedKey || key], Immutable.Map());
+    return state.getIn(['entities', key, 'entities', nestedKey || key], Immutable__default.Map());
   };
 };
 
@@ -1482,7 +1483,7 @@ var createOrderedEntitiesSelector = function createOrderedEntitiesSelector(entit
 
 var createIdSelector = function createIdSelector(entitiesSelector, resultSelector) {
   return createSelector([entitiesSelector, resultSelector], function (entities, result) {
-    return entities.get(result.toString(), Immutable.Map());
+    return entities.get(result.toString(), Immutable__default.Map());
   });
 };
 
@@ -1608,7 +1609,7 @@ var actions$1 = /*#__PURE__*/Object.freeze({
 });
 
 // Initial state
-var initialState$1 = Immutable.fromJS({
+var initialState$1 = Immutable__default.fromJS({
   fetching: false,
   error: false,
   entities: {},
@@ -1784,7 +1785,7 @@ var index$1 = {
 };
 
 // Initial state
-var initialState$2 = Immutable.fromJS({
+var initialState$2 = Immutable__default.fromJS({
   fetching: false,
   error: false,
   creditPacks: []
@@ -1805,7 +1806,7 @@ function reducer$1() {
       return ImmutableTools.mergeRequest(state);
 
     case SUCCESS(App.actions.FETCH_APP_DATA):
-      return state.set('fetching', false).set('error', false).set('creditPacks', Immutable.fromJS(action.payload.data.creditPacks));
+      return state.set('fetching', false).set('error', false).set('creditPacks', Immutable__default.fromJS(action.payload.data.creditPacks));
 
     case FAILURE(App.actions.FETCH_APP_DATA):
       return ImmutableTools.mergeFailure(state, action.payload);
@@ -1862,7 +1863,7 @@ var index$2 = {
 };
 
 // Initial state
-var initialState$3 = Immutable.fromJS({
+var initialState$3 = Immutable__default.fromJS({
   fetching: false,
   error: false,
   enumerables: {}
@@ -1883,7 +1884,7 @@ function reducer$2() {
       return ImmutableTools.mergeRequest(state);
 
     case SUCCESS(App.actions.FETCH_APP_DATA):
-      return state.set('fetching', false).set('error', false).set('enumerables', Immutable.fromJS(action.payload.data.enumerables));
+      return state.set('fetching', false).set('error', false).set('enumerables', Immutable__default.fromJS(action.payload.data.enumerables));
 
     case FAILURE(App.actions.FETCH_APP_DATA):
       return ImmutableTools.mergeFailure(state, action.payload);
@@ -1901,10 +1902,17 @@ var enumerables = function enumerables(state) {
   return state.getIn(['entities', 'enumerables', 'enumerables']);
 };
 
+var orderedEnumerable = function orderedEnumerable(state, enumerableKey) {
+  return state.getIn(["entities", "enumerables", "enumerables", enumerableKey], Immutable.Map()).sortBy(function (value, key) {
+    return value;
+  });
+};
+
 var selectors$2 = /*#__PURE__*/Object.freeze({
   fetching: fetching$2,
   error: error$2,
-  enumerables: enumerables
+  enumerables: enumerables,
+  orderedEnumerable: orderedEnumerable
 });
 
 var index$3 = {
@@ -2034,7 +2042,7 @@ var actions$3 = /*#__PURE__*/Object.freeze({
 });
 
 // Initial state
-var initialState$4 = Immutable.fromJS({
+var initialState$4 = Immutable__default.fromJS({
   fetching: false,
   error: false,
   filters: {},
@@ -2102,7 +2110,7 @@ function byOrganisations(invoice, organisations) {
   if (!organisations) {
     return true; // pass through
   }
-  if (Immutable.isCollection(organisations)) {
+  if (Immutable__default.isCollection(organisations)) {
     return organisations.includes(invoice.get('organisation_id'));
   }
   return invoice.get('organisation_id') === organisations;
@@ -2366,7 +2374,7 @@ var actions$4 = /*#__PURE__*/Object.freeze({
 });
 
 // Initial state
-var initialState$5 = Immutable.fromJS({
+var initialState$5 = Immutable__default.fromJS({
   fetching: false,
   error: false,
   filters: {},
@@ -2461,7 +2469,7 @@ function byOrganisations$1(job, organisations) {
   if (!organisations) {
     return true; // pass through
   }
-  if (Immutable.isCollection(organisations)) {
+  if (Immutable__default.isCollection(organisations)) {
     return organisations.includes(job.get('organisation_id'));
   }
   return job.get('organisation_id') === organisations;
@@ -2478,7 +2486,7 @@ function byStatus(job, status) {
     return true; // pass through
   }
   var jobStatus = job.get('status', '').toUpperCase();
-  if (Immutable.isCollection(status)) {
+  if (Immutable__default.isCollection(status)) {
     return status.map(function (stati) {
       return stati.toUpperCase();
     }).includes(jobStatus);
@@ -2507,7 +2515,7 @@ function byExpiration(job, expiration) {
  * @returns {Bool}
  */
 function byTaxonomy(job, filters, taxonomy) {
-  var jobTerms = job.get(taxonomy, Immutable.List());
+  var jobTerms = job.get(taxonomy, Immutable__default.List());
   if (!filters) {
     return true; // pass through
   }
@@ -3203,7 +3211,7 @@ var actions$5 = /*#__PURE__*/Object.freeze({
 });
 
 // Initial state
-var initialState$6 = Immutable.fromJS({
+var initialState$6 = Immutable__default.fromJS({
   fetching: false,
   error: false,
   filters: {},
@@ -3292,11 +3300,11 @@ var organisationByResult = selectorFactory.createIdSelector(organisations$2, res
 var users$1 = selectorFactory.createEntitiesSelector('organisations', 'users');
 
 var organisationOwner = createSelector$1([organisationByResult, users$1], function (org, users) {
-  return users.get(org.get('owner_id', '').toString(), Immutable.Map());
+  return users.get(org.get('owner_id', '').toString(), Immutable__default.Map());
 });
 
 var organisationAdmin = createSelector$1([organisationByResult, users$1], function (org, users) {
-  return users.get(org.get('admin_id', '').toString(), Immutable.Map());
+  return users.get(org.get('admin_id', '').toString(), Immutable__default.Map());
 });
 
 var selectors$5 = /*#__PURE__*/Object.freeze({
@@ -3399,7 +3407,7 @@ var actions$6 = /*#__PURE__*/Object.freeze({
 });
 
 // Initial state
-var initialState$7 = Immutable.fromJS({
+var initialState$7 = Immutable__default.fromJS({
   fetching: false,
   error: false,
   filters: {},
@@ -3459,7 +3467,7 @@ var postsSelector = selectorFactory.createEntitiesSelector('posts');
 // export const orderedPosts = SelectorFactory.createOrderedEntitiesSelector(postsSelector, results);
 
 var orderedPosts = createSelector$1([postsSelector, results$4], function (posts, results) {
-  return Immutable.OrderedMap(results.map(function (result) {
+  return Immutable__default.OrderedMap(results.map(function (result) {
     return [result.toString(), posts.get(result.toString())];
   }));
 });
@@ -3484,7 +3492,7 @@ var index$7 = {
 };
 
 // Initial state
-var initialState$8 = Immutable.fromJS({
+var initialState$8 = Immutable__default.fromJS({
   fetching: false,
   error: false,
   taxonomies: {}
@@ -3503,7 +3511,7 @@ function reducer$7() {
       return ImmutableTools.mergeRequest(state);
 
     case SUCCESS(FETCH_APP_DATA):
-      return state.set('fetching', false).set('error', false).set('taxonomies', Immutable.fromJS(action.payload.data.taxonomies));
+      return state.set('fetching', false).set('error', false).set('taxonomies', Immutable__default.fromJS(action.payload.data.taxonomies));
 
     case FAILURE(FETCH_APP_DATA):
       return ImmutableTools.mergeFailure(state, action.payload);
@@ -3538,7 +3546,7 @@ var taxonomies = function taxonomies(state) {
 var orderedTaxonomy = function orderedTaxonomy(state, taxonomy) {
   var orderBy = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'title';
 
-  return taxonomies(state).get(taxonomy, Immutable.Map()).toOrderedMap().sort(function (a, b) {
+  return taxonomies(state).get(taxonomy, Immutable__default.Map()).toOrderedMap().sort(function (a, b) {
     if (Number.isInteger(a.get(orderBy))) {
       return a.get('id') - b.get('id');
     } else {
@@ -3690,7 +3698,7 @@ var actions$7 = /*#__PURE__*/Object.freeze({
 });
 
 // Initial state
-var initialState$9 = Immutable.fromJS({
+var initialState$9 = Immutable__default.fromJS({
   fetching: false,
   error: false,
   filters: {},
@@ -3835,7 +3843,7 @@ var actions$8 = /*#__PURE__*/Object.freeze({
 });
 
 // Initial state
-var initialState$a = Immutable.fromJS({
+var initialState$a = Immutable__default.fromJS({
   fetching: false,
   error: false,
   filters: {},
@@ -3956,7 +3964,7 @@ var actions$9 = /*#__PURE__*/Object.freeze({
 });
 
 // Initial state
-var initialState$b = Immutable.fromJS({
+var initialState$b = Immutable__default.fromJS({
   fetching: false,
   error: false,
   filters: {},
@@ -4076,7 +4084,7 @@ var actions$a = /*#__PURE__*/Object.freeze({
 });
 
 // Initial state
-var initialState$c = Immutable.fromJS({
+var initialState$c = Immutable__default.fromJS({
   fetching: false,
   error: false,
   filters: {},
@@ -4125,7 +4133,7 @@ function byOrganisations$2(activity, organisations) {
   if (!organisations) {
     return true; // pass through
   }
-  if (Immutable.isCollection(organisations)) {
+  if (Immutable__default.isCollection(organisations)) {
     return organisations.includes(activity.get('subject_id'));
   }
   return activity.get('subject_id') === organisations;

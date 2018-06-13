@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [2.2.0]
+
+- Adding ordered enumerable selector
+- Migrating to ethical-jobs npm organisation
+
 ## [2.1.0]
 
 - Upgrading rollup build facilities
