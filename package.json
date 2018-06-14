@@ -17,9 +17,9 @@
     "dist"
   ],
   "devDependencies": {
+    "@ethical-jobs/sdk": "^1.2.1",
     "babel-jest": "^23.0.1",
     "babel-preset-env": "^1.7.0",
-    "ethical-jobs-sdk": "^1.0.0",
     "immutable": "^4.0.0-rc.2",
     "jest": "^23.1.0",
     "rollup": "^0.60.1",
@@ -31,10 +31,10 @@
     "unfetch": "^3.0.0"
   },
   "dependencies": {
-    "ethical-jobs-redux": "^1.0.0"
+    "@ethical-jobs/redux": "^1.0.0"
   },
   "peerDependencies": {
-    "ethical-jobs-sdk": "^1.0.0",
+    "@ethical-jobs/sdk": "^1.0.0",
     "immutable": "^3.0.0 || ^4.0.0-rc.2",
     "redux": "^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0"
   },
