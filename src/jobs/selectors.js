@@ -1,4 +1,4 @@
-import { SelectorFactory } from 'ethical-jobs-redux';
+import { SelectorFactory } from '@ethical-jobs/redux';
 import { createSelector } from 'reselect';
 import filterJobs from './filters';
 

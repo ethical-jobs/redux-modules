@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import { APPROVED, PENDING, DRAFT } from 'jobs/statuses';
-import { Assertions } from 'ethical-jobs-redux';
+import { Assertions } from '@ethical-jobs/redux';
 import Auth from 'auth';
 
 const { selectors } = Auth;

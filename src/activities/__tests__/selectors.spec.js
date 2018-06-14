@@ -1,4 +1,4 @@
-import { Assertions } from 'ethical-jobs-redux';
+import { Assertions } from '@ethical-jobs/redux';
 import Immutable from 'immutable';
 import Activities from 'activities';
 

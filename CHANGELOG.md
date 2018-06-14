@@ -23,8 +23,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [2.0.0]
 
-- Bumping ethical-jobs-sdk to v1.1.0
-- Bumping ethical-jobs-redux to v1.0.0
+- Bumping @ethical-jobs/sdk to v1.1.0
+- Bumping @ethical-jobs/redux to v1.0.0
 - Bumping sem ver t0 v2.0.0 as there are BCs
 - Upgraded misc packages
 
@@ -97,7 +97,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [0.3.10]
 
-- Bumped ethical-jobs-redux to 0.2.34
+- Bumped @ethical-jobs/redux to 0.2.34
 
 ## [0.3.9]
 

@@ -1,5 +1,5 @@
-import { createActionType } from 'ethical-jobs-redux';
-import Api from 'ethical-jobs-sdk';
+import { createActionType } from '@ethical-jobs/redux';
+import Api from '@ethical-jobs/sdk';
 
 /**
  * API prefix for the subscriptions API

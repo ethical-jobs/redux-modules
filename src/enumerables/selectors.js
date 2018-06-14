@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import { SelectorFactory } from 'ethical-jobs-redux';
+import { SelectorFactory } from '@ethical-jobs/redux';
 
 export const fetching = SelectorFactory.create('enumerables', 'fetching');
 

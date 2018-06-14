@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { REQUEST, SUCCESS, FAILURE, Assertions } from 'ethical-jobs-redux';
+import { REQUEST, SUCCESS, FAILURE, Assertions } from '@ethical-jobs/redux';
 import { initialState } from 'activities/reducer';
 import * as Fixtures from './_fixtures';
 import Activities from 'activities';

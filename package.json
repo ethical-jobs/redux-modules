@@ -11,8 +11,8 @@
     "test": "jest",
     "test-watch": "jest --watch"
   },
-  "main": "dist/ethical-jobs-redux-modules.cjs.js",
-  "module": "dist/ethical-jobs-redux-modules.esm.js",
+  "main": "dist/redux-modules.cjs.js",
+  "module": "dist/redux-modules.esm.js",
   "files": [
     "dist"
   ],
@@ -40,12 +40,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ethical-jobs/ethical-jobs-redux-modules.git"
+    "url": "https://github.com/ethical-jobs/redux-modules.git"
   },
   "bugs": {
-    "url": "https://github.com/ethical-jobs/ethical-jobs-redux-modules/issues"
+    "url": "https://github.com/ethical-jobs/redux-modules/issues"
   },
-  "homepage": "https://github.com/ethical-jobs/ethical-jobs-redux-modules",
+  "homepage": "https://github.com/ethical-jobs/redux-modules",
   "keywords": [
     "ethicaljobs",
     "employment",
