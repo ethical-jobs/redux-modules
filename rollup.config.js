@@ -11,7 +11,7 @@ export default [
   // the `targets` option which can specify `dest` and `format`)
   {
     input: "src/index.js",
-    external: ["ethical-jobs-sdk", "immutable"],
+    external: ["@ethical-jobs/sdk", "immutable"],
     output: [
       { file: pkg.main, format: "cjs" },
       { file: pkg.module, format: "es" }

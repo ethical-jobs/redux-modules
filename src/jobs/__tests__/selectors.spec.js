@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { ImmutableUtils, Assertions } from 'ethical-jobs-redux';
+import { ImmutableUtils, Assertions } from '@ethical-jobs/redux';
 import { APPROVED, PENDING, DRAFT } from 'jobs/statuses';
 import Jobs from 'jobs';
 

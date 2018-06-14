@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { Assertions } from 'ethical-jobs-redux';
+import { Assertions } from '@ethical-jobs/redux';
 import Subscriptions from 'subscriptions';
 
 const { selectors } = Subscriptions;

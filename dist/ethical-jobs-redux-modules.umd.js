@@ -1,6 +1,6 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('ethical-jobs-redux')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'ethical-jobs-redux'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@ethical-jobs/redux')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@ethical-jobs/redux'], factory) :
 	(factory((global.ethicalJobsReduxModules = {}),global.ethicalJobsRedux));
 }(this, (function (exports,ethicalJobsRedux) { 'use strict';
 

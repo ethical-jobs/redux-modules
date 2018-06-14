@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import App from 'app';
-import { REQUEST, SUCCESS, FAILURE, Assertions } from 'ethical-jobs-redux';
+import { REQUEST, SUCCESS, FAILURE, Assertions } from '@ethical-jobs/redux';
 import Taxonomies from 'taxonomies';
 import { initialState } from 'taxonomies/reducer';
 import * as Fixtures from 'app/__tests__/_fixtures';

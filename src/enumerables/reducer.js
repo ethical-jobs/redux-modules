@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { ImmutableUtils, REQUEST, SUCCESS, FAILURE } from 'ethical-jobs-redux';
+import { ImmutableUtils, REQUEST, SUCCESS, FAILURE } from '@ethical-jobs/redux';
 import App from '../app';
 
 // Initial state
