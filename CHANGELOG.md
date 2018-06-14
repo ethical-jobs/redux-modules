@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [2.3.0]
+
 - Updated packes to use organisation scope ethical-jobs
 
 ## [2.2.0]
