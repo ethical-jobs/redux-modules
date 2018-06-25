@@ -106,6 +106,32 @@ test('attachments selector returns correct state slice', () => {
   expect(Immutable.is(result, shouldBe)).toBe(true);
 });
 
+test('attachments selector returns empty when there are no job attachments', () => {
+  const state = Immutable.fromJS({
+    entities: {
+      jobs: {
+        entities: {
+          jobs: {
+            55425: {
+              title: 'foo-bar-bam',
+              attachments: [],
+            },
+          },
+          media: {
+            33: { file: 'resume-33.pdf' },
+            45: { file: 'resume-45.pdf' },
+            120: { file: 'resume-120.pdf' },
+            22: { file: 'resume-22.pdf' },
+          },
+        },
+        result: 55425,
+      },
+    }
+  });
+  const result = selectors.attachments(state);
+  expect(Immutable.is(result, Immutable.Map())).toBe(true);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Filters
