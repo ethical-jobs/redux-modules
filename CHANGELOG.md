@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [2.4.0]
+
+- Adding Jobs.selectors.attachments
+
 ## [2.3.0]
 
 - Updated packes to use organisation scope ethical-jobs
