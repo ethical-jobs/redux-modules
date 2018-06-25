@@ -2584,6 +2584,13 @@ var organisations$1 = selectorFactory.createEntitiesSelector('jobs', 'organisati
 
 var media = selectorFactory.createEntitiesSelector('jobs', 'media');
 
+var attachments = createSelector$1([jobByResult, media], function (job, media) {
+  return media.filter(function (item, key) {
+    var mediaId = parseInt(key, 10);
+    return job.get('attachments').includes(mediaId);
+  });
+});
+
 var filteredJobs = createSelector$1([jobs, filters$1], filterJobs);
 
 var orderedFilteredJobs = createSelector$1([orderedJobs, filters$1], filterJobs);
@@ -2603,6 +2610,7 @@ var selectors$4 = /*#__PURE__*/Object.freeze({
   jobByResult: jobByResult,
   organisations: organisations$1,
   media: media,
+  attachments: attachments,
   filteredJobs: filteredJobs,
   orderedFilteredJobs: orderedFilteredJobs,
   propsOrderedFilteredJobs: propsOrderedFilteredJobs

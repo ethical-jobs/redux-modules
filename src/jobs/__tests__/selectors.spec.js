@@ -71,6 +71,43 @@ test('jobByResult selector returns correct state slice', () => {
 
 /*
 |--------------------------------------------------------------------------
+| Job attachments selector
+|--------------------------------------------------------------------------
+*/
+
+test('attachments selector returns correct state slice', () => {
+  const state = Immutable.fromJS({
+    entities: {
+      jobs: {
+        entities: {
+          jobs: {
+            55425: {
+              title: 'foo-bar-bam',
+              attachments: [33,45,22],
+            },
+          },
+          media: {
+            33: { file: 'resume-33.pdf' },
+            45: { file: 'resume-45.pdf' },
+            120: { file: 'resume-120.pdf' },
+            22: { file: 'resume-22.pdf' },
+          },
+        },
+        result: 55425,
+      },
+    }
+  });
+  const result = selectors.attachments(state);
+  const shouldBe = Immutable.fromJS({
+    33: { file: 'resume-33.pdf' },
+    45: { file: 'resume-45.pdf' },
+    22: { file: 'resume-22.pdf' },
+  });
+  expect(Immutable.is(result, shouldBe)).toBe(true);
+});
+
+/*
+|--------------------------------------------------------------------------
 | Filters
 |--------------------------------------------------------------------------
 */

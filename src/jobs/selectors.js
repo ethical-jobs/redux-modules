@@ -26,6 +26,14 @@ export const organisations = SelectorFactory.createEntitiesSelector('jobs', 'org
 
 export const media = SelectorFactory.createEntitiesSelector('jobs', 'media');
 
+export const attachments = createSelector(
+  [jobByResult, media],
+  (job, media) => media.filter((item, key) => {
+    const mediaId = parseInt(key, 10);
+    return job.get('attachments').includes(mediaId)
+  })
+);
+
 export const filteredJobs = createSelector(
   [jobs, filters],
   filterJobs
