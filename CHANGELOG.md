@@ -7,9 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
-## [2.4.0]
+## [2.5.0]
 
 - Adding Jobs.selectors.attachments
+- updating redux package for new entities merger
 
 ## [2.3.0]
 

@@ -1,7 +1,7 @@
 {
   "name": "@ethical-jobs/redux-modules",
   "private": false,
-  "version": "2.4.0",
+  "version": "2.5.0",
   "author": "Andrew McLagan",
   "description": "EthicalJobs.com.au redux modules",
   "license": "MIT",
