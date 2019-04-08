@@ -11,7 +11,7 @@ pipeline:
   publish:
     image: plugins/npm
     secrets: [ npm_username, npm_password ]
-    email: andrew@ethicaljobs.com.au
+    email: dean@ethicaljobs.com.au
     when:
       status: success
       event: tag
