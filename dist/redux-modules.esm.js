@@ -1222,6 +1222,22 @@ function get(object, path, defaultValue) {
 var get_1 = get;
 
 /**
+ * Merges [entities] properties
+ * @param {Immutable} entities
+ * @param {Immutable} payload
+ * @return {Map}
+ */
+function entitiesMerger(A, B) {
+  if (Immutable.List.isList(A) && Immutable.List.isList(B)) {
+    return B; // Replace the nested list
+  }
+  if (A && A.mergeWith) {
+    return A.mergeWith(entitiesMerger, B);
+  }
+  return B;
+}
+
+/**
  * Clears a modules entities
  * @return Object
  */
@@ -1274,7 +1290,7 @@ function mergeRequest(state) {
 function mergeSuccess(state, payload) {
   return state.set('fetching', false).set('error', false).update('entities', function (entities) {
     var selected = get_1(payload, 'data.entities', {});
-    return entities.mergeDeep(Immutable.fromJS(selected));
+    return entities.mergeWith(entitiesMerger, Immutable.fromJS(selected));
   }).update('result', function (result) {
     return get_1(payload, 'data.result', false);
   });
@@ -2642,7 +2658,7 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 });
 
 var _core = createCommonjsModule(function (module) {
-var core = module.exports = { version: '2.5.7' };
+var core = module.exports = { version: '2.6.5' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 });
 var _core_1 = _core.version;
@@ -2738,14 +2754,31 @@ var _uid = function (key) {
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
 
+var _library = false;
+
+var _shared = createCommonjsModule(function (module) {
+var SHARED = '__core-js_shared__';
+var store = _global[SHARED] || (_global[SHARED] = {});
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: _core.version,
+  mode: _library ? 'pure' : 'global',
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
+});
+});
+
+var _functionToString = _shared('native-function-to-string', Function.toString);
+
 var _redefine = createCommonjsModule(function (module) {
 var SRC = _uid('src');
+
 var TO_STRING = 'toString';
-var $toString = Function[TO_STRING];
-var TPL = ('' + $toString).split(TO_STRING);
+var TPL = ('' + _functionToString).split(TO_STRING);
 
 _core.inspectSource = function (it) {
-  return $toString.call(it);
+  return _functionToString.call(it);
 };
 
 (module.exports = function (O, key, val, safe) {
@@ -2765,7 +2798,7 @@ _core.inspectSource = function (it) {
   }
 // add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
 })(Function.prototype, TO_STRING, function toString() {
-  return typeof this == 'function' && this[SRC] || $toString.call(this);
+  return typeof this == 'function' && this[SRC] || _functionToString.call(this);
 });
 });
 
@@ -2904,19 +2937,6 @@ var _arrayIncludes = function (IS_INCLUDES) {
     } return !IS_INCLUDES && -1;
   };
 };
-
-var _shared = createCommonjsModule(function (module) {
-var SHARED = '__core-js_shared__';
-var store = _global[SHARED] || (_global[SHARED] = {});
-
-(module.exports = function (key, value) {
-  return store[key] || (store[key] = value !== undefined ? value : {});
-})('versions', []).push({
-  version: _core.version,
-  mode: 'global',
-  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
-});
-});
 
 var shared = _shared('keys');
 

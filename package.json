@@ -17,7 +17,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@ethical-jobs/sdk": "^1.2.1",
+    "@ethical-jobs/sdk": "^1.2.8",
     "babel-jest": "^23.0.1",
     "babel-preset-env": "^1.7.0",
     "immutable": "^4.0.0-rc.2",
