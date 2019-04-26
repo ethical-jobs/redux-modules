@@ -25,9 +25,9 @@
     reselect "^3.0.1"
 
 "@ethical-jobs/sdk@^1.2.8":
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/@ethical-jobs/sdk/-/sdk-1.2.8.tgz#4e4b877b622282051dbb9ca6e462326f247d753f"
-  integrity sha512-tzBWl+HlYIL9gF6n+ht9sv73o/IWx6lNLwRDDxHt4DW26PdDNy9U0OFNDDtSfPNodDVYTK8pGzRAs7M7S55Hpw==
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/@ethical-jobs/sdk/-/sdk-1.2.9.tgz#c69fafac072c32ed5f49d322697f050c9e9016f7"
+  integrity sha512-yQhQdKwI3Tw5BPKWHVgnaUOAIiRZmNNe0O0QhcgvzYjGbNk/zWlHiX3V7hxGjG0Q2H3ZUosvsQXoAcHb/+KQyw==
   dependencies:
     babel-plugin-external-helpers "^6.22.0"
     es6-error "^4.0.2"
