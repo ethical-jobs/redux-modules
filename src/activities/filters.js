@@ -11,9 +11,9 @@ export function byOrganisations(activity, organisations) {
     return true; // pass through
   }
   if (Immutable.isCollection(organisations)) {
-    return organisations.includes(activity.get('subject_id'));
+    return organisations.includes(activity.getIn(['subject', 'id']));
   }
-  return activity.get('subject_id') === organisations;
+  return activity.getIn(['subject', 'id']) === organisations;
 }
 
 /**
