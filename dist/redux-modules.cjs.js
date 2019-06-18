@@ -2665,7 +2665,7 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 });
 
 var _core = createCommonjsModule(function (module) {
-var core = module.exports = { version: '2.6.5' };
+var core = module.exports = { version: '2.5.7' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 });
 var _core_1 = _core.version;
@@ -2761,31 +2761,14 @@ var _uid = function (key) {
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
 
-var _library = false;
-
-var _shared = createCommonjsModule(function (module) {
-var SHARED = '__core-js_shared__';
-var store = _global[SHARED] || (_global[SHARED] = {});
-
-(module.exports = function (key, value) {
-  return store[key] || (store[key] = value !== undefined ? value : {});
-})('versions', []).push({
-  version: _core.version,
-  mode: _library ? 'pure' : 'global',
-  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
-});
-});
-
-var _functionToString = _shared('native-function-to-string', Function.toString);
-
 var _redefine = createCommonjsModule(function (module) {
 var SRC = _uid('src');
-
 var TO_STRING = 'toString';
-var TPL = ('' + _functionToString).split(TO_STRING);
+var $toString = Function[TO_STRING];
+var TPL = ('' + $toString).split(TO_STRING);
 
 _core.inspectSource = function (it) {
-  return _functionToString.call(it);
+  return $toString.call(it);
 };
 
 (module.exports = function (O, key, val, safe) {
@@ -2805,7 +2788,7 @@ _core.inspectSource = function (it) {
   }
 // add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
 })(Function.prototype, TO_STRING, function toString() {
-  return typeof this == 'function' && this[SRC] || _functionToString.call(this);
+  return typeof this == 'function' && this[SRC] || $toString.call(this);
 });
 });
 
@@ -2944,6 +2927,21 @@ var _arrayIncludes = function (IS_INCLUDES) {
     } return !IS_INCLUDES && -1;
   };
 };
+
+var _library = false;
+
+var _shared = createCommonjsModule(function (module) {
+var SHARED = '__core-js_shared__';
+var store = _global[SHARED] || (_global[SHARED] = {});
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: _core.version,
+  mode: _library ? 'pure' : 'global',
+  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
+});
+});
 
 var shared = _shared('keys');
 
@@ -3851,6 +3849,65 @@ var index$9 = {
 |--------------------------------------------------------------------------
 */
 
+var CREATE$4 = createActionType('INVITATIONS/CREATE');
+
+/*
+|--------------------------------------------------------------------------
+| Async Actions
+|--------------------------------------------------------------------------
+*/
+
+var create$5 = function create(params) {
+  return {
+    type: CREATE$4,
+    payload: Api.post('/invitations', params)
+  };
+};
+
+var actions$8 = /*#__PURE__*/Object.freeze({
+  CREATE: CREATE$4,
+  create: create$5
+});
+
+var initialState$a = Immutable__default.fromJS({
+  fetching: false,
+  error: false,
+  filters: {},
+  entities: {},
+  results: [],
+  result: false
+});
+
+function reducer$9() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState$a;
+  var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  switch (action.type) {
+    case REQUEST(CREATE$4):
+      return ImmutableTools.mergeRequest(state);
+
+    case SUCCESS(CREATE$4):
+      return ImmutableTools.mergeSuccess(state, action.payload);
+
+    case FAILURE(CREATE$4):
+      return ImmutableTools.mergeFailure(state, action.payload);
+
+    default:
+      return state;
+  }
+}
+
+var index$a = {
+  actions: actions$8,
+  reducer: reducer$9
+};
+
+/*
+|--------------------------------------------------------------------------
+| Action Types
+|--------------------------------------------------------------------------
+*/
+
 var PURCHASE$1 = createActionType('PAYMENTS/PURCHASE');
 
 /*
@@ -3865,13 +3922,13 @@ var purchase$1 = function purchase(params) {
   };
 };
 
-var actions$8 = /*#__PURE__*/Object.freeze({
+var actions$9 = /*#__PURE__*/Object.freeze({
   PURCHASE: PURCHASE$1,
   purchase: purchase$1
 });
 
 // Initial state
-var initialState$a = Immutable__default.fromJS({
+var initialState$b = Immutable__default.fromJS({
   fetching: false,
   error: false,
   filters: {},
@@ -3886,8 +3943,8 @@ var initialState$a = Immutable__default.fromJS({
  * @author Andrew McLagan <andrew@ethicaljobs.com.au>
  */
 
-function reducer$9() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState$a;
+function reducer$a() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState$b;
   var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   switch (action.type) {
@@ -3914,9 +3971,9 @@ var selectors$9 = /*#__PURE__*/Object.freeze({
   error: error$9
 });
 
-var index$a = {
-  reducer: reducer$9,
-  actions: actions$8,
+var index$b = {
+  reducer: reducer$a,
+  actions: actions$9,
   selectors: selectors$9
 };
 
@@ -3932,7 +3989,7 @@ var prefix = '/alerts';
 |--------------------------------------------------------------------------
 */
 
-var CREATE$4 = createActionType('SUBSCRIPTIONS/CREATE');
+var CREATE$5 = createActionType('SUBSCRIPTIONS/CREATE');
 var FETCH_COLLECTION$5 = createActionType('SUBSCRIPTIONS/FETCH_COLLECTION');
 var FETCH_ENTITY$5 = createActionType('SUBSCRIPTIONS/FETCH_ENTITY');
 var DELETE = createActionType('SUBSCRIPTIONS/DELETE');
@@ -3943,9 +4000,9 @@ var CONFIRM = createActionType('SUBSCRIPTIONS/CONFIRM');
 | Async Actions
 |--------------------------------------------------------------------------
 */
-var create$5 = function create(params) {
+var create$6 = function create(params) {
   return {
-    type: CREATE$4,
+    type: CREATE$5,
     payload: Api.post(prefix + '/subscriptions', params)
   };
 };
@@ -3978,13 +4035,13 @@ var confirm = function confirm(id, params) {
   };
 };
 
-var actions$9 = /*#__PURE__*/Object.freeze({
-  CREATE: CREATE$4,
+var actions$a = /*#__PURE__*/Object.freeze({
+  CREATE: CREATE$5,
   FETCH_COLLECTION: FETCH_COLLECTION$5,
   FETCH_ENTITY: FETCH_ENTITY$5,
   DELETE: DELETE,
   CONFIRM: CONFIRM,
-  create: create$5,
+  create: create$6,
   fetchCollection: fetchCollection$5,
   fetchEntity: fetchEntity$5,
   destroy: destroy,
@@ -3992,7 +4049,7 @@ var actions$9 = /*#__PURE__*/Object.freeze({
 });
 
 // Initial state
-var initialState$b = Immutable__default.fromJS({
+var initialState$c = Immutable__default.fromJS({
   fetching: false,
   error: false,
   filters: {},
@@ -4007,20 +4064,20 @@ var initialState$b = Immutable__default.fromJS({
  * @author Sebastian Sibelle <sebastian@ethicaljobs.com.au>
  */
 
-function reducer$a() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState$b;
+function reducer$b() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState$c;
   var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   switch (action.type) {
 
-    case REQUEST(CREATE$4):
+    case REQUEST(CREATE$5):
     case REQUEST(FETCH_COLLECTION$5):
     case REQUEST(FETCH_ENTITY$5):
     case REQUEST(DELETE):
     case REQUEST(CONFIRM):
       return ImmutableTools.mergeRequest(state);
 
-    case SUCCESS(CREATE$4):
+    case SUCCESS(CREATE$5):
     case SUCCESS(FETCH_ENTITY$5):
     case SUCCESS(DELETE):
     case SUCCESS(CONFIRM):
@@ -4029,7 +4086,7 @@ function reducer$a() {
     case SUCCESS(FETCH_COLLECTION$5):
       return ImmutableTools.mergeCollectionSuccess(state, action.payload);
 
-    case FAILURE(CREATE$4):
+    case FAILURE(CREATE$5):
     case FAILURE(FETCH_ENTITY$5):
     case FAILURE(FETCH_COLLECTION$5):
     case FAILURE(DELETE):
@@ -4062,9 +4119,9 @@ var selectors$a = /*#__PURE__*/Object.freeze({
   alerts: alerts
 });
 
-var index$b = {
-  reducer: reducer$a,
-  actions: actions$9,
+var index$c = {
+  reducer: reducer$b,
+  actions: actions$a,
   selectors: selectors$a
 };
 
@@ -4102,7 +4159,7 @@ var updateFilters$6 = function updateFilters(_updateFilters) {
   };
 };
 
-var actions$a = /*#__PURE__*/Object.freeze({
+var actions$b = /*#__PURE__*/Object.freeze({
   FETCH_COLLECTION: FETCH_COLLECTION$6,
   CLEAR_ENTITIES: CLEAR_ENTITIES$5,
   UPDATE_FILTERS: UPDATE_FILTERS$5,
@@ -4112,7 +4169,7 @@ var actions$a = /*#__PURE__*/Object.freeze({
 });
 
 // Initial state
-var initialState$c = Immutable__default.fromJS({
+var initialState$d = Immutable__default.fromJS({
   fetching: false,
   error: false,
   filters: {},
@@ -4126,8 +4183,8 @@ var initialState$c = Immutable__default.fromJS({
  *
  * @author Sebastian Sibelle <sebastian@ethicaljobs.com.au>
  */
-function reducer$b() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState$c;
+function reducer$c() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState$d;
   var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   switch (action.type) {
@@ -4207,10 +4264,10 @@ var selectors$b = /*#__PURE__*/Object.freeze({
   filteredActivities: filteredActivities
 });
 
-var index$c = {
-  reducer: reducer$b,
+var index$d = {
+  reducer: reducer$c,
   selectors: selectors$b,
-  actions: actions$a
+  actions: actions$b
 };
 
 exports.App = App;
@@ -4223,6 +4280,7 @@ exports.Organisations = index$6;
 exports.Posts = index$7;
 exports.Taxonomies = index$8;
 exports.Users = index$9;
-exports.Payments = index$a;
-exports.Subscriptions = index$b;
-exports.Activities = index$c;
+exports.Invitations = index$a;
+exports.Payments = index$b;
+exports.Subscriptions = index$c;
+exports.Activities = index$d;

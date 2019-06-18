@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [2.6.0]
+
+- trello-102 Add Invitation create action and reducer
+
 ## [2.5.4]
 
 - trello-bug-212 Fixed bug where filter was not fetching correct subject
