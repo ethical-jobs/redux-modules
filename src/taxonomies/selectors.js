@@ -9,8 +9,8 @@ export const error = SelectorFactory.create('taxonomies', 'error');
 
 export const taxonomies = state => state.getIn(['entities', 'taxonomies', 'taxonomies']);
 
-export const orderedTaxonomy = (state, taxonomy, orderBy = 'title') => {
-  return taxonomies(state)
+export const orderedTaxonomy = (state, taxonomy, orderBy = 'title', withoutArchived = false) => {
+  let result = taxonomies(state)
     .get(taxonomy, Immutable.Map())
     .toOrderedMap()
     .sort((a, b) => {
@@ -20,6 +20,20 @@ export const orderedTaxonomy = (state, taxonomy, orderBy = 'title') => {
         return a.get(orderBy).localeCompare(b.get(orderBy));
       }
     });
+
+  if (withoutArchived) {
+    let unarchived = Immutable.OrderedMap();
+
+    result.map(( taxonomy, key ) => {
+        if (!taxonomy.get('archived')) {
+          unarchived = unarchived.set(key, taxonomy);
+        }
+    });
+
+    result = unarchived;
+  }
+
+  return result;
 };
 
 export const orderedTaxonomyWithJobs = (state, taxonomy, orderBy = 'title') => {
