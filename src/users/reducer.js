@@ -37,9 +37,11 @@ export default function reducer(state = initialState, action = {}) {
     case SUCCESS(UserActions.CREATE):
     case SUCCESS(UserActions.UPDATE):
     case SUCCESS(UserActions.PATCH):
-    case SUCCESS(UserActions.ARCHIVE):
     case SUCCESS(UserActions.RESTORE):
       return ImmutableUtils.mergeSuccess(state, action.payload);
+
+    case SUCCESS(UserActions.ARCHIVE):
+      return ImmutableUtils.archiveSuccess(state, action.payload);
 
     case SUCCESS(UserActions.FETCH_COLLECTION):
       return ImmutableUtils.mergeCollectionSuccess(state, action.payload);
