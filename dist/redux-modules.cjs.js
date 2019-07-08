@@ -1229,22 +1229,6 @@ function get(object, path, defaultValue) {
 var get_1 = get;
 
 /**
- * Merges [entities] properties
- * @param {Immutable} entities
- * @param {Immutable} payload
- * @return {Map}
- */
-function entitiesMerger(A, B) {
-  if (Immutable__default.List.isList(A) && Immutable__default.List.isList(B)) {
-    return B; // Replace the nested list
-  }
-  if (A && A.mergeWith) {
-    return A.mergeWith(entitiesMerger, B);
-  }
-  return B;
-}
-
-/**
  * Clears a modules entities
  * @return Object
  */
@@ -1297,7 +1281,7 @@ function mergeRequest(state) {
 function mergeSuccess(state, payload) {
   return state.set('fetching', false).set('error', false).update('entities', function (entities) {
     var selected = get_1(payload, 'data.entities', {});
-    return entities.mergeWith(entitiesMerger, Immutable__default.fromJS(selected));
+    return entities.mergeDeep(Immutable__default.fromJS(selected));
   }).update('result', function (result) {
     return get_1(payload, 'data.result', false);
   });
@@ -3571,14 +3555,29 @@ var taxonomies = function taxonomies(state) {
 
 var orderedTaxonomy = function orderedTaxonomy(state, taxonomy) {
   var orderBy = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'title';
+  var withoutArchived = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
 
-  return taxonomies(state).get(taxonomy, Immutable__default.Map()).toOrderedMap().sort(function (a, b) {
+  var result = taxonomies(state).get(taxonomy, Immutable__default.Map()).toOrderedMap().sort(function (a, b) {
     if (Number.isInteger(a.get(orderBy))) {
       return a.get('id') - b.get('id');
     } else {
       return a.get(orderBy).localeCompare(b.get(orderBy));
     }
   });
+
+  if (withoutArchived) {
+    var unarchived = Immutable__default.OrderedMap();
+
+    result.map(function (taxonomy, key) {
+      if (!taxonomy.get('archived')) {
+        unarchived = unarchived.set(key, taxonomy);
+      }
+    });
+
+    result = unarchived;
+  }
+
+  return result;
 };
 
 var orderedTaxonomyWithJobs = function orderedTaxonomyWithJobs(state, taxonomy) {
@@ -4219,9 +4218,9 @@ function byOrganisations$2(activity, organisations) {
     return true; // pass through
   }
   if (Immutable__default.isCollection(organisations)) {
-    return organisations.includes(activity.get('subject_id'));
+    return organisations.includes(activity.getIn(['subject', 'id']));
   }
-  return activity.get('subject_id') === organisations;
+  return activity.getIn(['subject', 'id']) === organisations;
 }
 
 /**
