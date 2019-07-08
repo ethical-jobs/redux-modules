@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [2.7.0]
+
+- trello-feature-187 : Added filtering for archived taxonomies
+
 ## [2.6.0]
 
 - trello-102 Add Invitation create action and reducer
