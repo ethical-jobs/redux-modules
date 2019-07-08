@@ -16,7 +16,7 @@ pipeline:
       status: success
       event: tag
 
-  notify-slack:
-    image: plugins/slack
-    webhook: https://hooks.slack.com/services/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
-    channel: deployments
+#  notify-slack:
+#    image: plugins/slack
+#    webhook: https://hooks.slack.com/services/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
+#    channel: deployments
