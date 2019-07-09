@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [2.8.0]
+
+- Add user archive action
+
 ## [2.7.1]
 
 - Disabled notify-slack in drone-yml.
