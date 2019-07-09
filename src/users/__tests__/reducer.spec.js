@@ -69,11 +69,14 @@ test('should handle SUCCESS actions correctly', () => {
     SUCCESS(Actions.CREATE),
     SUCCESS(Actions.UPDATE),
     SUCCESS(Actions.PATCH),
-    SUCCESS(Actions.ARCHIVE),
     SUCCESS(Actions.RESTORE),
   ];
   expect(
     Assertions.successState(Reducer, actionTypes, initialState, Fixtures.collection)
+  ).toBe(true);
+
+  expect(
+    Assertions.archiveSuccessState(Reducer, SUCCESS(Actions.ARCHIVE), Fixtures.mergedStoreState, Fixtures.single)
   ).toBe(true);
 });
 
