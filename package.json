@@ -31,7 +31,7 @@
     "unfetch": "^3.0.0"
   },
   "dependencies": {
-    "@ethical-jobs/redux": "^1.0.0"
+    "@ethical-jobs/redux": "^1.5.0"
   },
   "peerDependencies": {
     "@ethical-jobs/sdk": "^1.0.0",

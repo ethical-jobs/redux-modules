@@ -1,3 +1,5 @@
+import Immutable from "immutable";
+
 export const collection = {
    "data": {
       "entities": {
@@ -19,13 +21,22 @@ export const collection = {
             },
          },
       },
-      "result":[
+      "results":[
          5151,
          27264,
          2827
-      ]
+      ],
+     "result": 5151
    }
 };
+
+export const mergedStoreState = Immutable.fromJS({
+  fetching: false,
+  error: false,
+  filters: {},
+  ...collection.data,
+  result: false,
+});
 
 export const single = {
   "data": {
