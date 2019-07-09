@@ -41,7 +41,6 @@ export default function reducer(state = initialState, action = {}) {
       return ImmutableUtils.mergeSuccess(state, action.payload);
 
     case SUCCESS(UserActions.ARCHIVE):
-      console.log(ImmutableUtils.archiveSuccess(state, action.payload));
       return ImmutableUtils.archiveSuccess(state, action.payload);
 
     case SUCCESS(UserActions.FETCH_COLLECTION):
