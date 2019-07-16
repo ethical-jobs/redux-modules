@@ -21,6 +21,9 @@ export default function reducer(state = initialState, action = {}) {
     case UserActions.CLEAR_ENTITIES:
       return ImmutableUtils.clearEntities(state);
 
+    case UserActions.CLEAR_FILTERS:
+      return ImmutableUtils.clearFilters(state);
+
     case UserActions.UPDATE_FILTERS:
       return ImmutableUtils.updateFilters(state, action.payload);
 

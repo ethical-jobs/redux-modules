@@ -15,6 +15,7 @@ export const PATCH = createActionType('USERS/PATCH');
 export const ARCHIVE = createActionType('USERS/ARCHIVE');
 export const RESTORE = createActionType('USERS/RESTORE');
 export const CLEAR_ENTITIES = createActionType('USERS/CLEAR_ENTITIES');
+export const CLEAR_FILTERS = createActionType('USERS/CLEAR_FILTERS');
 export const UPDATE_FILTERS = createActionType('USERS/UPDATE_FILTERS');
 export const REPLACE_FILTERS = createActionType('USERS/REPLACE_FILTERS');
 
@@ -69,6 +70,10 @@ export const restore = id => ({
 
 export const clear = () => ({
   type: CLEAR_ENTITIES,
+});
+
+export const clearFilters = () => ({
+  type: CLEAR_FILTERS,
 });
 
 export const updateFilters = filters => ({
