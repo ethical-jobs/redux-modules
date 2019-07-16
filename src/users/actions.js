@@ -10,6 +10,7 @@ import Api from '@ethical-jobs/sdk';
 export const FETCH_COLLECTION = createActionType('USERS/FETCH_COLLECTION');
 export const FETCH_ENTITY = createActionType('USERS/FETCH_ENTITY');
 export const CREATE = createActionType('USERS/CREATE');
+export const CREATE_FROM_INVITATION = createActionType('USERS/CREATE_FROM_INVITATION');
 export const UPDATE = createActionType('USERS/UPDATE');
 export const PATCH = createActionType('USERS/PATCH');
 export const ARCHIVE = createActionType('USERS/ARCHIVE');
@@ -39,6 +40,11 @@ export const fetchEntity = id => ({
 export const create = params => ({
   type: CREATE,
   payload: Api.post('/users', params),
+});
+
+export const createFromInvitation = params => ({
+  type: CREATE,
+  payload: Api.post('/users/fromInvitation', params),
 });
 
 export const update = (id, params) => ({
