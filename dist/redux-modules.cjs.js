@@ -3683,7 +3683,7 @@ var create$4 = function create(params) {
 
 var createFromInvitation = function createFromInvitation(params) {
   return {
-    type: CREATE$3,
+    type: CREATE_FROM_INVITATION,
     payload: Api.post('/users/fromInvitation', params)
   };
 };

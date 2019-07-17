@@ -43,7 +43,7 @@ export const create = params => ({
 });
 
 export const createFromInvitation = params => ({
-  type: CREATE,
+  type: CREATE_FROM_INVITATION,
   payload: Api.post('/users/fromInvitation', params),
 });
 
