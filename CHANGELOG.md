@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [2.9.0]
+
+- Adds ability to clear user filters and create from invite
+
 ## [2.8.0]
 
 - Add user archive action

@@ -17,6 +17,12 @@ test('updateFilters creates correct action', () => {
   });
 });
 
+test('clearFilters creates correct action', () => {
+  expect(actions.clearFilters()).toEqual({
+    type: actions.CLEAR_FILTERS,
+  });
+});
+
 test('replaceFilters creates correct action', () => {
   expect(actions.replaceFilters(params)).toEqual({
     type: actions.REPLACE_FILTERS,
@@ -41,6 +47,13 @@ test('fetchEntity creates correct action', () => {
 test('create action creates correct action', () => {
   expect(actions.create(params)).toEqual({
     type: actions.CREATE,
+    payload: new Promise(() => {}),
+  });
+});
+
+test('createFromInvitation action creates correct action', () => {
+  expect(actions.createFromInvitation(params)).toEqual({
+    type: actions.CREATE_FROM_INVITATION,
     payload: new Promise(() => {}),
   });
 });

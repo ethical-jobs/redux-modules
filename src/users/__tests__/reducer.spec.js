@@ -43,6 +43,12 @@ test('should handle updateFilters action correctly', () => {
   ).toBe(true);
 });
 
+test('should handle clearFilters action correctly', () => {
+  expect(
+    Assertions.clearedFilters(Reducer, Actions.clearFilters, initialState)
+  ).toBe(true);
+});
+
 /*
 |--------------------------------------------------------------------------
 | REQUEST actions
@@ -54,6 +60,7 @@ test('should handle REQUEST actions correctly', () => {
     REQUEST(Actions.FETCH_COLLECTION),
     REQUEST(Actions.FETCH_ENTITY),
     REQUEST(Actions.CREATE),
+    REQUEST(Actions.CREATE_FROM_INVITATION),
     REQUEST(Actions.UPDATE),
     REQUEST(Actions.ARCHIVE),
     REQUEST(Actions.RESTORE),
@@ -67,6 +74,7 @@ test('should handle SUCCESS actions correctly', () => {
   const actionTypes = [
     SUCCESS(Actions.FETCH_ENTITY),
     SUCCESS(Actions.CREATE),
+    SUCCESS(Actions.CREATE_FROM_INVITATION),
     SUCCESS(Actions.UPDATE),
     SUCCESS(Actions.PATCH),
     SUCCESS(Actions.RESTORE),
@@ -85,6 +93,7 @@ test('should handle FAILURE actions correctly', () => {
     FAILURE(Actions.FETCH_COLLECTION),
     FAILURE(Actions.FETCH_ENTITY),
     FAILURE(Actions.CREATE),
+    FAILURE(Actions.CREATE_FROM_INVITATION),
     FAILURE(Actions.UPDATE),
     FAILURE(Actions.PATCH),
     FAILURE(Actions.ARCHIVE),
