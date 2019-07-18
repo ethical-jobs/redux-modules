@@ -3644,11 +3644,13 @@ var index$8 = {
 var FETCH_COLLECTION$4 = createActionType('USERS/FETCH_COLLECTION');
 var FETCH_ENTITY$4 = createActionType('USERS/FETCH_ENTITY');
 var CREATE$3 = createActionType('USERS/CREATE');
+var CREATE_FROM_INVITATION = createActionType('USERS/CREATE_FROM_INVITATION');
 var UPDATE$3 = createActionType('USERS/UPDATE');
 var PATCH$1 = createActionType('USERS/PATCH');
 var ARCHIVE$3 = createActionType('USERS/ARCHIVE');
 var RESTORE$3 = createActionType('USERS/RESTORE');
 var CLEAR_ENTITIES$4 = createActionType('USERS/CLEAR_ENTITIES');
+var CLEAR_FILTERS$1 = createActionType('USERS/CLEAR_FILTERS');
 var UPDATE_FILTERS$4 = createActionType('USERS/UPDATE_FILTERS');
 var REPLACE_FILTERS$4 = createActionType('USERS/REPLACE_FILTERS');
 
@@ -3676,6 +3678,13 @@ var create$4 = function create(params) {
   return {
     type: CREATE$3,
     payload: Api.post('/users', params)
+  };
+};
+
+var createFromInvitation = function createFromInvitation(params) {
+  return {
+    type: CREATE_FROM_INVITATION,
+    payload: Api.post('/users/fromInvitation', params)
   };
 };
 
@@ -3719,6 +3728,12 @@ var clear$4 = function clear() {
   };
 };
 
+var clearFilters$2 = function clearFilters() {
+  return {
+    type: CLEAR_FILTERS$1
+  };
+};
+
 var updateFilters$5 = function updateFilters(filters) {
   return {
     type: UPDATE_FILTERS$4,
@@ -3737,21 +3752,25 @@ var actions$7 = /*#__PURE__*/Object.freeze({
   FETCH_COLLECTION: FETCH_COLLECTION$4,
   FETCH_ENTITY: FETCH_ENTITY$4,
   CREATE: CREATE$3,
+  CREATE_FROM_INVITATION: CREATE_FROM_INVITATION,
   UPDATE: UPDATE$3,
   PATCH: PATCH$1,
   ARCHIVE: ARCHIVE$3,
   RESTORE: RESTORE$3,
   CLEAR_ENTITIES: CLEAR_ENTITIES$4,
+  CLEAR_FILTERS: CLEAR_FILTERS$1,
   UPDATE_FILTERS: UPDATE_FILTERS$4,
   REPLACE_FILTERS: REPLACE_FILTERS$4,
   fetchCollection: fetchCollection$4,
   fetchEntity: fetchEntity$4,
   create: create$4,
+  createFromInvitation: createFromInvitation,
   update: update$3,
   patch: patch$1,
   archive: archive$3,
   restore: restore$3,
   clear: clear$4,
+  clearFilters: clearFilters$2,
   updateFilters: updateFilters$5,
   replaceFilters: replaceFilters$4
 });
@@ -3778,12 +3797,16 @@ function reducer$8() {
     case CLEAR_ENTITIES$4:
       return ImmutableTools.clearEntities(state);
 
+    case CLEAR_FILTERS$1:
+      return ImmutableTools.clearFilters(state);
+
     case UPDATE_FILTERS$4:
       return ImmutableTools.updateFilters(state, action.payload);
 
     case REQUEST(FETCH_COLLECTION$4):
     case REQUEST(FETCH_ENTITY$4):
     case REQUEST(CREATE$3):
+    case REQUEST(CREATE_FROM_INVITATION):
     case REQUEST(UPDATE$3):
     case REQUEST(PATCH$1):
     case REQUEST(ARCHIVE$3):
@@ -3792,13 +3815,13 @@ function reducer$8() {
 
     case SUCCESS(FETCH_ENTITY$4):
     case SUCCESS(CREATE$3):
+    case SUCCESS(CREATE_FROM_INVITATION):
     case SUCCESS(UPDATE$3):
     case SUCCESS(PATCH$1):
     case SUCCESS(RESTORE$3):
       return ImmutableTools.mergeSuccess(state, action.payload);
 
     case SUCCESS(ARCHIVE$3):
-      console.log(ImmutableTools.archiveSuccess(state, action.payload));
       return ImmutableTools.archiveSuccess(state, action.payload);
 
     case SUCCESS(FETCH_COLLECTION$4):
@@ -3807,6 +3830,7 @@ function reducer$8() {
     case FAILURE(FETCH_COLLECTION$4):
     case FAILURE(FETCH_ENTITY$4):
     case FAILURE(CREATE$3):
+    case FAILURE(CREATE_FROM_INVITATION):
     case FAILURE(UPDATE$3):
     case FAILURE(PATCH$1):
     case FAILURE(ARCHIVE$3):
