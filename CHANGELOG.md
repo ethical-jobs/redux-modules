@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
-## [2.9.0]
+## [2.9.0, 2.9.1]
 
 - Adds ability to clear user filters and create from invite
 
