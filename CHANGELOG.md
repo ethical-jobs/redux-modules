@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [v2.10.0]
+
+- eng-trello-161 Fix sticky filters issue
+
 ## [2.9.0, 2.9.1]
 
 - Adds ability to clear user filters and create from invite
