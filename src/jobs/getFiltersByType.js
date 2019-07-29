@@ -10,6 +10,7 @@ export default type => {
     case JobTypes.PENDING:
       return {
         status: JobStatus.PENDING,
+        expired: undefined, // clear
       };
     case JobTypes.EXPIRED:
       return {
@@ -20,6 +21,7 @@ export default type => {
     case JobTypes.DRAFT:
       return {
         status: JobStatus.DRAFT,
+        expired: undefined, // clear
         limit: 1200,
       };
     case JobTypes.APPROVED:
