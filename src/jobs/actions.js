@@ -42,9 +42,9 @@ export const searchCollection = params => ({
   payload: Api.search('jobs', params),
 });
 
-export const fetchEntity = id => ({
+export const fetchEntity = (id, params = {}) => ({
   type: FETCH_ENTITY,
-  payload: Api.get(`/jobs/${id}`),
+  payload: Api.get(`/jobs/${id}`, params),
 });
 
 export const create = params => ({
