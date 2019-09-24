@@ -7,9 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
-## [v2.11.0]
+## [v2.11.0, 2.11.1]
 
 - Make job fetchEntity support params option
+- Update sdk-js dependency
 
 ## [v2.10.0]
 
