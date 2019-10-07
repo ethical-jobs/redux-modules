@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v1.0.0.
 
 ## [Unreleased]
 
+## [v2.12.0]
+
+- ATS-72: Upgrade sdk-js to v1.5.0
+
 ## [v2.11.0, 2.11.1]
 
 - Make job fetchEntity support params option
