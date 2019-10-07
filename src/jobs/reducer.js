@@ -14,7 +14,7 @@ export const initialState = Immutable.fromJS({
 });
 
 /**
- * Organisations reducer
+ * Jobs reducer
  *
  * @author Andrew McLagan <andrew@ethicaljobs.com.au>
  */
